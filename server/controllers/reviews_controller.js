@@ -3,7 +3,7 @@ const Review = require('../models/review_model');
 const mongoose = require('mongoose');
 
 // get all reviews
-const get_reviews = async(request, response) => {
+const get_reviews = async (request, response) => {
     const reviews = await Review.find({}).sort({createdAt : -1});
     response.status(200).json(reviews);
 }

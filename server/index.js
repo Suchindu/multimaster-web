@@ -4,8 +4,9 @@ require('dotenv').config();
 const express = require('express'); 
 const review_route = require('./routes/reviews.js');
 const mongoose = require('mongoose');
-const port = process.env.port || 5050; 
+const port = process.env.port || 5050;
 const uri = process.env.uri;
+const cors = require('cors');
 
 // Creating an express app
 const app = express();
@@ -16,6 +17,9 @@ app.use((request, response, next) => {
     console.log(request.path, request.method);
     next();
 });
+app.use(cors({
+    origin : "http://localhost:5173"
+}));
 
 // Routes
 app.use('/api/reviews', review_route); // මෙතන 'api/reviews'දාල තියෙනව වගේ ඔයාලගෙ collection නම දාන්න.ඒ නමෙන්ම collection එක හදන්න.
