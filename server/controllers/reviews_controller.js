@@ -3,22 +3,22 @@ const Review = require('../models/review_model');
 const mongoose = require('mongoose');
 
 // get all reviews
-const get_reviews = async(request, response) => {
+const get_reviews = async (request, response) => {
     const reviews = await Review.find({}).sort({createdAt : -1});
     response.status(200).json(reviews);
 }
 
 // get a single review
 const get_review = async (request, response) => {
-     const { id } = request.params;
+    const { id } = request.params;
 
-     const review = await Review.findById(id);
+    const review = await Review.findById(id);
 
-     if(!mongoose.Types.ObjectId.isValid(id)){
+    if(!mongoose.Types.ObjectId.isValid(id)){
         return response.status(404).json({ error : "No Such Review" });
-     }
+    }
 
-     response.status(200).json(review);
+    response.status(200).json(review);
 }
 
 // create a new review

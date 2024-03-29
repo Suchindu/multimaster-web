@@ -1,9 +1,27 @@
-import React from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'; 
 
-const App = () => {
+// Importing pages and components
+import Review from './pages/review_form';
+import Header from './components/header';
+
+function App() {
   return (
-    <div className='bg-red-400 text-white'>App</div>
-  )
+    <>
+    <div className="App">
+      <BrowserRouter>
+       <Header /> 
+        <div className="pages">
+          <Routes>
+            <Route
+              path='/'
+              element={<Review />}
+            />
+          </Routes>
+        </div>
+      </BrowserRouter>
+    </div>
+    </>
+  );
 }
 
 export default App;
