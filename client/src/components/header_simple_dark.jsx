@@ -14,7 +14,7 @@ export default function Header_dark() {
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="flex h-20 items-center justify-between">
               <div className="flex items-center">
-                <div className="flex-shrink-0 flex items-center space-x-2 sm:space-x-4 md:space-x-2">
+                <div className="flex-shrink-0 flex items-center space-x-2 sm:space-x-4 md:space-x-2 pr-16">
                   <img
                     className="h-12 w-auto"
                     src="/multimaster.svg"
@@ -26,28 +26,28 @@ export default function Header_dark() {
                   
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
-                  <div className="flex space-x-4">
+                  <div className="flex space-x-4" style={{ letterSpacing: '0.04em'}}>
                     {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
                     <a href="#" className="rounded-md bg-color3 px-3 py-2 text-sm font-medium text-white">
-                      Dashboard
+                      Home
                     </a>
                     <a
                       href="#"
                       className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-color2 hover:text-white"
                     >
-                      Team
+                      Store
                     </a>
                     <a
                       href="#"
                       className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-color2 hover:text-white"
                     >
-                      Projects
+                      Technician
                     </a>
                     <a
                       href="#"
                       className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-color2 hover:text-white"
                     >
-                      Calendar
+                      Repair Stauts
                     </a>
                   </div>
                 </div>
@@ -153,28 +153,28 @@ export default function Header_dark() {
                 href="#"
                 className="block rounded-md bg-color3 px-3 py-2 text-base font-medium text-white"
               >
-                Dashboard
+                Home
               </Disclosure.Button>
               <Disclosure.Button
                 as="a"
                 href="#"
                 className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
               >
-                Team
+                Store
               </Disclosure.Button>
               <Disclosure.Button
                 as="a"
                 href="#"
                 className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
               >
-                Projects
+                Technician
               </Disclosure.Button>
               <Disclosure.Button
                 as="a"
                 href="#"
                 className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
               >
-                Calendar
+                Repair Stauts
               </Disclosure.Button>
             </div>
             <div className="border-t border-gray-700 pb-3 pt-4">
