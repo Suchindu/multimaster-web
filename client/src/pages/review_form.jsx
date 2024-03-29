@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 // Importing the components
 import ReviewDetails from '../components/review_details';
-import Review_Form from '../components/review_form';
+import Form from '../components/review_form';
 
 function ReviewForm() {
     const [reviews, setReviews] = useState(null);
@@ -28,13 +28,16 @@ function ReviewForm() {
 
     return (
         <>
-        <div className="review-details p-4 bg-gray-100 rounded-lg mt-2 ml-2 mr-2 shadow-md border border-gray-900">
+        <div className="review-details p-4 bg-white-900 rounded-lg mt-2 ml-2 mr-2 shadow-md border border-blue-900">
             <h2 className="text-xl font-bold mb-5 ">Reviews</h2>
             {error && <p className="text-red-500">{error}</p>}
             {reviews &&
                 reviews.map((review) => (
                     <ReviewDetails key={review._id} review={review} />
                 ))}
+        </div>
+        <div>
+            <Form />
         </div>
         </>
     );
