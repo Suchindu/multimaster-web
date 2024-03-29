@@ -10,15 +10,15 @@ const get_reviews = async (request, response) => {
 
 // get a single review
 const get_review = async (request, response) => {
-     const { id } = request.params;
+    const { id } = request.params;
 
-     const review = await Review.findById(id);
+    const review = await Review.findById(id);
 
-     if(!mongoose.Types.ObjectId.isValid(id)){
+    if(!mongoose.Types.ObjectId.isValid(id)){
         return response.status(404).json({ error : "No Such Review" });
-     }
+    }
 
-     response.status(200).json(review);
+    response.status(200).json(review);
 }
 
 // create a new review
