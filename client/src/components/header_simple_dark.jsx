@@ -1,6 +1,9 @@
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { Bars3Icon,XMarkIcon } from '@heroicons/react/24/outline'
+import { CiSearch } from "react-icons/ci";
+import { BsCart2 } from "react-icons/bs";
+import { VscGitCompare } from "react-icons/vsc";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -13,64 +16,82 @@ export default function Header_dark() {
         <>
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="flex h-20 items-center justify-between">
-              <div className="flex items-center">
-                <div className="flex-shrink-0 flex items-center space-x-2 sm:space-x-4 md:space-x-2 pr-16">
+              <div className="flex items-center ">
+                <div className="flex-shrink-0 flex items-center space-x-2 sm:space-x-4 md:space-x-2 ">
                   <img
-                    className="h-12 w-auto"
+                    className="h-11 w-auto"
                     src="/multimaster.svg"
                     
                     alt="Multimaster logo"
                     />
-                    <p className="text-white" style={{ fontFamily: 'Goldman, sans-serif',letterSpacing: '0.05em',fontSize: '20px'}}>multimaster</p>
+                    <p className="text-white" style={{ fontFamily: 'Goldman, sans-serif',letterSpacing: '0.05em',fontSize: '18px'}}>multimaster</p>
 
                   
                 </div>
-                <div className="hidden sm:ml-6 sm:block">
-                  <div className="flex space-x-4" style={{ letterSpacing: '0.04em'}}>
+                <div className="hidden lg:ml-20 sm:ml-7 sm:block" >
+                  <div className="flex space-x-4" >
                     {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
-                    <a href="#" className="rounded-md bg-color3 px-3 py-2 text-sm font-medium text-white">
+                    <a href="#" className="rounded-md bg-color3 px-3 py-2 text-sm font-medium text-white" style={{ fontSize: '13px'}}>
                       Home
                     </a>
                     <a
                       href="#"
-                      className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-color2 hover:text-white"
+                      className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-color2 hover:text-white" style={{ fontSize: '13px'}}
                     >
                       Store
                     </a>
                     <a
                       href="#"
-                      className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-color2 hover:text-white"
+                      className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-color2 hover:text-white" style={{ fontSize: '13px'}}
                     >
                       Technician
                     </a>
                     <a
                       href="#"
-                      className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-color2 hover:text-white"
+                      className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-color2 hover:text-white" style={{ fontSize: '13px'}}
                     >
                       Repair Stauts
                     </a>
                   </div>
                 </div>
               </div>
-              <div className="hidden sm:ml-6 sm:block">
+              <div className="hidden sm:ml-6 lg:block">
                 <div className="flex items-center">
+                  
                   <button
                     type="button"
-                    className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                    className="relative rounded-full bg-color2 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 mr-4"
                   >
                     <span className="absolute -inset-1.5" />
-                    <span className="sr-only">View notifications</span>
-                    <BellIcon className="h-6 w-6" aria-hidden="true" />
+                    <span className="sr-only">Search</span>
+                    <CiSearch className="h-6 w-6 pr-0.5 pl-0.5" aria-hidden="true" />
+                  </button>
+                  <button
+                  type="button"
+                    className="relative rounded-full bg-color2 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 mr-4 "
+                  >
+                    <span className="absolute -inset-1.5" />
+                    <span className="sr-only">Cart</span>
+                    <BsCart2 className="h-6 w-6 pr-1 pl-1" aria-hidden="true" />
                   </button>
 
+                  <button
+                    type="button"
+                    className="relative rounded-full bg-color2 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 "
+                  >
+                    <span className="absolute -inset-1.5" />
+                    <span className="sr-only">Search</span>
+                    <VscGitCompare className="h-6 w-6 pr-1 pl-1" aria-hidden="true" />
+                  </button>
+                  
                   {/* Profile dropdown */}
-                  <Menu as="div" className="relative ml-3">
+                  <Menu as="div" className="relative ml-3 pl-5 hidden sm:block">
                     <div>
                       <Menu.Button className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                         <span className="absolute -inset-1.5" />
                         <span className="sr-only">Open user menu</span>
                         <img
-                          className="h-8 w-8 rounded-full"
+                          className="h-10 w-10 rounded-full"
                           src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                           alt=""
                         />
@@ -196,7 +217,7 @@ export default function Header_dark() {
                 >
                   <span className="absolute -inset-1.5" />
                   <span className="sr-only">View notifications</span>
-                  <BellIcon className="h-6 w-6" aria-hidden="true" />
+                  <CiSearch className="h-6 w-6" aria-hidden="true" />
                 </button> */}
               </div>
               <div className="mt-3 space-y-1 px-2">
