@@ -28,7 +28,7 @@ export default function Header_dark() {
 
                   
                 </div>
-                <div className="hidden lg:ml-20 sm:ml-7 sm:block" >
+                <div className="hidden lg:ml-20 sm:ml-7 md:block" >
                   <div className="flex space-x-4" >
                     {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
                     <a href="#" className="rounded-md bg-color3 px-3 py-2 text-sm font-medium text-white" style={{ fontSize: '13px'}}>
@@ -151,7 +151,7 @@ export default function Header_dark() {
                   </Menu>
                 </div>
               </div>
-              <div className="-mr-2 flex sm:hidden">
+              <div className="-mr-2 flex lg:hidden">
                 {/* Mobile menu button */}
                 <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                   <span className="absolute -inset-0.5" />
@@ -166,7 +166,7 @@ export default function Header_dark() {
             </div>
           </div>
 
-          <Disclosure.Panel className="sm:hidden">
+          <Disclosure.Panel className=" lg:hidden">
             <div className="space-y-1 px-2 pb-3 pt-2">
               {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
               <Disclosure.Button
