@@ -3,13 +3,14 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 // Importing pages and components
 import Review from './pages/review_form';
 import Header from './components/header';
+import Footer from './components/footer';
 
 function App() {
   return (
     <>
     <div className="App">
       <BrowserRouter>
-       <Header /> 
+       <Header/> 
         <div className="pages">
           <Routes>
             <Route
@@ -18,6 +19,7 @@ function App() {
             />
           </Routes>
         </div>
+        <Footer/>
       </BrowserRouter>
     </div>
     </>
