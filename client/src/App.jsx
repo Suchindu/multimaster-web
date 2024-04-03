@@ -2,7 +2,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 // Importing pages and components
 import Review from './pages/review_form';
-import Header from './components/header';
+import Header from './components/header_simple_dark';
+
 
 function App() {
   return (
