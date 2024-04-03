@@ -1,15 +1,16 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'; 
 
 // Importing pages and components
-//  import Review from './pages/review_form';
-import Header_dark from './components/header_simple_dark';
+import Review from './pages/review_form';
+import Header from './components/header';
+import Footer from './components/footer';
 
 function App() {
   return (
     <>
     <div className="App">
       <BrowserRouter>
-       <Header_dark /> 
+       <Header /> 
         <div className="pages">
           <Routes>
             <Route
@@ -18,6 +19,7 @@ function App() {
             />
           </Routes>
         </div>
+        <Footer/>
       </BrowserRouter>
     </div>
     </>
