@@ -3,7 +3,7 @@ function review_details({ review }) {
 
     return (
       <>
-        <div className="review-details p-4 mt-5 bg-blue-400 rounded-lg shadow-md">
+        <div className="review-details p-4 mt-5 bg-color1 rounded-lg shadow-md">
           <h3 className="text-xl font-bold mb-2 ">{review._id}</h3>
           <p className="mb-1"><strong>Name:</strong> {review.name}</p>
           <p className="mb-1"><strong>Email:</strong> {review.email}</p>

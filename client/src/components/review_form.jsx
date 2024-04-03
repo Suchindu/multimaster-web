@@ -1,6 +1,9 @@
 import { useState } from "react";
+import { useReviewsContext } from "../hooks/useReviewsContext";
 
 function review_form() {
+    const { dispatch } = useReviewsContext();
+
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [technician, setTechnician] = useState("");
@@ -41,6 +44,8 @@ function review_form() {
             
             setError(null);
             alert("New Review Added");
+
+            dispatch({ type : 'CREATE_REVIEW', payload : json});
         }
     } 
     
