@@ -1,5 +1,5 @@
 const express = require('express');
-
+const Repair = require('../models/repair_model');
 const router = express.Router();
 
 //get all repairs
@@ -13,8 +13,16 @@ router.get('/:id', (req, res) => {
 });
 
 //post a new repair
-router.post('/', (req, res) => {
-    res.json({mssg: "Post a new repair!"})
+router.post('/', async(req, res) => {
+    const {name, email, date, device_brand, device_model, problem, description} = req.body;
+    try {
+        const repair = await Repair.create({name, email, date, device_brand, device_model, problem, description})
+        res.status(200).json({repair})
+    } catch(error){
+        res.status(400).json({error: error.message})
+    }
+
+    // res.json({mssg: "Post a new repair!"})
 });
 
 //delete a repair
