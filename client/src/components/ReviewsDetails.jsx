@@ -37,6 +37,7 @@ function ReviewDetails({ review }) {
     } else {
       alert("Review Can't be updated !");
     }
+}   
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -45,7 +46,6 @@ function ReviewDetails({ review }) {
       [name]: value
     }));
   }
-}
 
   return (
     <>
@@ -78,7 +78,7 @@ function ReviewDetails({ review }) {
               value={updatedReview.name}
               onChange={handleChange} /><br />
 
-            <label label className="mb-1 text-white">
+            <label className="mb-1 text-white">
               Email</label><br />
             <input
               type="email"
@@ -87,7 +87,7 @@ function ReviewDetails({ review }) {
               value={updatedReview.email}
               onChange={handleChange} /><br />
 
-            <label label className="mb-1 text-white"
+            <label className="mb-1 text-white"
               >Technician</label><br />
             <input
               type="text"
@@ -96,7 +96,7 @@ function ReviewDetails({ review }) {
               value={updatedReview.technician}
               onChange={handleChange} /><br />
 
-            <label label className="mb-1 text-white" 
+            <label className="mb-1 text-white" 
               >Date Of Service</label><br />
             <input
               type="date"
@@ -105,7 +105,7 @@ function ReviewDetails({ review }) {
               value={updatedReview.date_of_service}
               onChange={handleChange} /><br />
 
-            <label label className="mb-1 text-white" 
+            <label className="mb-1 text-white" 
               >Service Type</label><br />
             <input
               type="text"
@@ -114,7 +114,7 @@ function ReviewDetails({ review }) {
               value={updatedReview.service_type}
               onChange={handleChange} /><br />
 
-            <label label className="mb-1 text-white" 
+            <label className="mb-1 text-white" 
               >Rating</label><br />
             <input
               type="number"
@@ -125,7 +125,7 @@ function ReviewDetails({ review }) {
               value={updatedReview.rating}
               onChange={handleChange} /><br />
 
-            <label label className="mb-1 text-white"
+            <label className="mb-1 text-white"
               >Review</label><br />
             <textarea
               type="text"
