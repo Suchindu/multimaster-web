@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'; 
 
 // Importing pages and components
-import Review from './pages/review_form';
+import Review from './pages/Reviews';
 import Header from './components/header';
 import Footer from './components/footer';
 
