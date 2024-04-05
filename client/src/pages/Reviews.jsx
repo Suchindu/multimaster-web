@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import { useReviewsContext } from "../hooks/useReviewsContext";
 
 // Importing the components
-import ReviewDetails from '../components/review_details';
-import Form from '../components/review_form';
+import ReviewDetails from '../components/ReviewsDetails';
+import Form from '../components/ReviewsForm';
 
 function ReviewForm() {
-    // const [reviews, setReviews] = useState(null);
+    
     const [error, setError] = useState(null);
 
     const { reviews, dispatch } = useReviewsContext();
@@ -20,8 +20,6 @@ function ReviewForm() {
                 }
                 const json = await response.json();
                 dispatch({ type : 'SET_REVIEWS', payload : json});
-                
-                // setReviews(json);
 
             } catch (error) {
                 setError(error.message);
