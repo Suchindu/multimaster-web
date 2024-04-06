@@ -68,7 +68,7 @@ const Repair_form = () => {
                         maxLength={20}
                         onChange={(e) => setName(e.target.value)}
                         value={name}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full md:w-64 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                 </div><br/>
                 
@@ -83,7 +83,7 @@ const Repair_form = () => {
                         required="required"
                         onChange={(e) => setEmail(e.target.value)}
                         value={email}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full md:w-64 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                 </div> <br/>
 
@@ -99,7 +99,7 @@ const Repair_form = () => {
                         maxLength={10}
                         onChange={(e) => setContact(e.target.value)}
                         value={contact}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full md:w-64 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                 </div> <br/>
 
@@ -113,7 +113,7 @@ const Repair_form = () => {
                         name="date"
                         onChange={(e) => setDate(e.target.value)}
                         value={date}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full md:w-64 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                 </div> <br/>
 
@@ -128,7 +128,7 @@ const Repair_form = () => {
                         required="required"
                         onChange={(e) => setDeviceBrand(e.target.value)}
                         value={device_brand}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full md:w-64 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                 </div> <br/>
 
@@ -143,7 +143,7 @@ const Repair_form = () => {
                         required="required"
                         onChange={(e) => setDeviceModel(e.target.value)}
                         value={device_model}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full md:w-64 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                 </div> <br/>
 
@@ -158,7 +158,7 @@ const Repair_form = () => {
                         required="required"
                         onChange={(e) => setProblem(e.target.value)}
                         value={problem}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full md:w-64 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                 </div> <br/>
 
@@ -166,13 +166,15 @@ const Repair_form = () => {
                     <label className="block mb-2  text-white text-lg">
                         Description:
                     </label>
-                    <input
-                        type="textarea"
+                    <textarea
+                        type="text"
                         id="description"
                         name="description"
+                        rows={4}
+                        cols={50}
                         onChange={(e) => setDescription(e.target.value)}
                         value={description}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full md:w-64 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                 </div> <br/>
             </div>
