@@ -17,7 +17,7 @@ const Repair_form = () => {
 
         //email validation
      const handleEmailChange = (e) => {
-            const input = e.target.value;
+            const input = e.target.value.toLowerCase();
             setEmail(input);
             const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // regular expression
             if(!emailPattern.test(input)){
