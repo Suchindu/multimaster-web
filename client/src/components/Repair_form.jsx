@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
 //component
 import RepairAlert_box from './RepairAlert_box';
+import { useRepairContext } from '../hooks/useRepairContext';
 const Repair_form = () => {
+    const { dispatch } = useRepairContext();
+
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [contact, setContact] = useState('');
@@ -81,6 +84,7 @@ const Repair_form = () => {
             setError(null);
             //alert("New Repair Request Added");
             setShowAlert(true);
+            dispatch({type: 'Create_Repair', payload: json})
         }
     };
 
@@ -101,6 +105,8 @@ const Repair_form = () => {
                         id="name"
                         name="name"
                         required="required"
+                        autoComplete='off'
+                        placeholder='Full Name'
                         maxLength={20}
                         onChange={(e) => setName(e.target.value)}
                         value={name}
@@ -117,6 +123,8 @@ const Repair_form = () => {
                         id="email"
                         name="email"
                         required="required"
+                        autoComplete='off'
+                        placeholder='example@gmail.com'
                         onChange={handleEmailChange}
                         value={email}
                         className="w-full md:w-64 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -133,6 +141,8 @@ const Repair_form = () => {
                         id="contact"
                         name="contact"
                         required="required"
+                        autoComplete='off'
+                        placeholder='0xxxxxxxxx'
                         pattern="0[0-9]{9}"
                         title="Please enter a 10-digit phone number starting with '0'"
                         maxLength={10}
@@ -166,6 +176,7 @@ const Repair_form = () => {
                         id="device_brand"
                         name="device_brand"
                         required="required"
+                        autoComplete='off'
                         onChange={(e) => setDeviceBrand(e.target.value)}
                         value={device_brand}
                         className="w-full md:w-64 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -181,6 +192,7 @@ const Repair_form = () => {
                         id="device_model"
                         name="device_model"
                         required="required"
+                        autoComplete='off'
                         onChange={(e) => setDeviceModel(e.target.value)}
                         value={device_model}
                         className="w-full md:w-64 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -196,6 +208,7 @@ const Repair_form = () => {
                         id="problem"
                         name="problem"
                         required="required"
+                        autoComplete='off'
                         onChange={(e) => setProblem(e.target.value)}
                         value={problem}
                         className="w-full md:w-64 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -204,12 +217,14 @@ const Repair_form = () => {
 
                   <div>
                     <label className="block mb-2  text-white text-lg">
-                        Description:
+                        Description(Optional):
                     </label>
                     <textarea
                         type="text"
                         id="description"
                         name="description"
+                        autoComplete='off'
+                        placeholder='Additional Information'
                         rows={4}
                         cols={50}
                         onChange={(e) => setDescription(e.target.value)}
