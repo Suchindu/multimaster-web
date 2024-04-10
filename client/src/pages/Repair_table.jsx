@@ -1,8 +1,12 @@
-import { useEffect, useState } from "react";
+import { useEffect} from "react";
 //components
 import Repair_details from "../components/Repair_details";
+//hooks
+import { useRepairContext } from "../hooks/useRepairContext";
+
 const Repair_table = () => {
-    const[repairs, setRepairs] = useState(null);
+    // const[repairs, setRepairs] = useState(null);
+    const {repairs, dispatch} = useRepairContext();
 
     useEffect(() => {
         //fetch repairs from the database
@@ -12,7 +16,8 @@ const Repair_table = () => {
                 const json = await response.json();
                 console.log(json);
                 if (response.ok) {
-                    setRepairs(json);
+                    // setRepairs(json);
+                    dispatch({ type: "SET_Repairs", payload: json });
                 }
             }
 
@@ -38,9 +43,10 @@ const Repair_table = () => {
                 </div>
             </div>
         <div>
-            <table className="border border-collapse mt-10 table-auto w-full border-gray-400">
+            <table className="border border-collapse mt-10 table-auto w-full border-gray-600">
                 <thead>
-                    <tr>
+                    <tr className="dark:bg-gray-300 text-left">
+                        <th className="border border-gray-500 px-4 py-2">ID</th>
                         <th className="border border-gray-500 px-4 py-2">Name</th>
                         <th className="border border-gray-500 px-4 py-2">Email</th>
                         <th className="border border-gray-500 px-4 py-2">Contact</th>
@@ -50,6 +56,7 @@ const Repair_table = () => {
                         <th className="border border-gray-500 px-4 py-2">Problem</th>
                         <th className="border border-gray-500 px-4 py-2">Description</th>
                         <th className="border border-gray-500 px-4 py-2">Actions</th> 
+                        <th className="border border-gray-500 px-4 py-2">Status</th> 
                     </tr>
                 </thead>
                 <tbody>
