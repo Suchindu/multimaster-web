@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
 import { useReviewsContext } from "../hooks/useReviewsContext";
 
-import ReviewDetails from '../components/ReviewsDetails';
-import ReviewsForm from "../components/ReviewsForm"
-import ReviewsTable from "../components/ReviewsAdminView";
+import ReviewsTable from '../components/ReviewsAdminView';
 
-function ReviewForm() {
+function ReviewsAdmin() {
     
     const [error, setError] = useState(null);
 
@@ -31,21 +29,17 @@ function ReviewForm() {
 
     return (
         <>
-        <div>
-            <h2 className="text-xl font-bold mb-5 ">Reviews Submitting Form</h2>
-                <ReviewsForm/>
-        </div>
         <div className="review-details p-4 bg-white-900 rounded-lg mt-2 ml-2 mr-2 shadow-xl">
-            <h2 className="text-xl font-bold mb-5 ">Submitted Reviews</h2>
+            <h2 className="text-xl font-bold mb-5 ">
+                Tabular Form Of Submiteed Reviews</h2>
             {error && <p className="text-red-500">{error}</p>}
             {reviews &&
                 reviews.map((review) => (
-                    <ReviewDetails key={review._id} review={review} />
+                    <ReviewsTable key={review._id} review={review} />
                 ))}
-            {reviews && <ReviewsTable reviews={reviews} />}
         </div>
         </>
     );
 }
 
-export default ReviewForm;
+export default ReviewsAdmin;

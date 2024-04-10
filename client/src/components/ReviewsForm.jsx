@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useReviewsContext } from "../hooks/useReviewsContext";
 
-function review_form() {
+function ReviewForm() {
     const { dispatch } = useReviewsContext();
 
     const [name, setName] = useState("");
@@ -57,14 +57,14 @@ function review_form() {
                 <input 
                     type="text" 
                     required 
-                    value={name} 
+                    value={name}
                     onChange={(event) => setName(event.target.value)} /><br/>
             
                 <label>Email</label><br />
                 <input 
                     type="email" 
                     required 
-                    value={email} 
+                    value={email}
                     onChange={(event) => setEmail(event.target.value)} /><br/>
             
                 <label>Technician</label><br />
@@ -113,4 +113,4 @@ function review_form() {
     );
 }
 
-export default review_form;
+export default ReviewForm;

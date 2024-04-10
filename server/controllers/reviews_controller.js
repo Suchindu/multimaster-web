@@ -23,10 +23,10 @@ const get_review = async (request, response) => {
 
 // create a new review
 const create_review = async (request, response) => {
-    const {name, email, technician, date_of_service, service_type, rating, review_body} = request.body;
+    const {review_id ,name, email, technician, date_of_service, service_type, rating, review_body} = request.body;
 
     try {
-        const review = await Review.create({name, email, technician, date_of_service, service_type, rating, review_body});
+        const review = await Review.create({review_id, name, email, technician, date_of_service, service_type, rating, review_body});
         response.status(200).json(review);
     } catch (error) {
         response.status(400).json({error : error.message}); 
