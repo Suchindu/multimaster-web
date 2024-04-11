@@ -14,7 +14,13 @@ export const RepairsReducer = (state, action) => {
             }
         case "DELETE_REPAIR":
             return {
-                repairs: state.repairs.filter((re) => re._id !== action.payload._id)
+                ...state,
+                repairs: state.repairs.filter((re) => re._id !== action.payload)
+            }
+        case "UPDATE_REPAIR":
+            return {
+                ...state,
+                repairs: state.repairs.map((re) => re._id === action.payload._id ? action.payload : re)
             }
         default:
             return state;
