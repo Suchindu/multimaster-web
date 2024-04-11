@@ -173,7 +173,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="mt-10 border-t border-white/10 pt-8 sm:mt-15 lg:mt-15">
-          <p className="text-xs leading-5 text-gray-400">&copy; 2024 multimaster, Inc. All rights reserved.</p>
+          <p className="text-xs leading-5 text-gray-400">&copy; {new Date().getFullYear()} multimaster, Inc. All rights reserved.</p>
         </div>
       </div>
     </footer>
