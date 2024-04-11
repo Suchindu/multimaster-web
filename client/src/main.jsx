@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
 import { ReviewsContextProvider } from './context/ReviewContext.jsx';
+import { RepairsContextProvider } from './context/RepairContext.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -10,7 +11,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <App/>
     </ReviewsContextProvider>
   </React.StrictMode>
-)
 
 // ReactDOM.createRoot(document.getElementById('root')).render(
 //   <React.StrictMode>

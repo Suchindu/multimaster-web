@@ -28,9 +28,9 @@ const get_repair = async (req, res) => {
 
 //post a new repair
 const createRepair = async (req, res) => {
-    const {name, email, date, device_brand, device_model, problem, description} = req.body;
+    const {name, email, contact,  date, device_brand, device_model, problem, description} = req.body;
     try {
-        const repair = await Repair.create({name, email, date, device_brand, device_model, problem, description})
+        const repair = await Repair.create({name, email, contact, date, device_brand, device_model, problem, description})
         res.status(200).json({repair})
     } catch(error){
         res.status(400).json({error: error.message})

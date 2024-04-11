@@ -13,6 +13,11 @@ const repair_schema = new schema({
         required: true
     },
 
+    contact: {
+        type: String,
+        required: true
+    },
+
     date: {
         type: Date,
         required: true
