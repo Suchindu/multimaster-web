@@ -21,7 +21,6 @@ export default function ReviewTable({ review }) {
       }
     }
 
-
   return (
     <div>
       <h2 className="text-xl font-bold mb-4">Reviews</h2>
@@ -42,7 +41,7 @@ export default function ReviewTable({ review }) {
         <tbody>
           {reviews.map((review) => (
             <tr key={review._id}>
-              <td className="border px-4 py-2">{review.review_id}</td>
+              <td className="border px-4 py-2">{review.review_id_str}</td>
               <td className="border px-4 py-2">{review.name}</td>
               <td className="border px-4 py-2">{review.email}</td>
               <td className="border px-4 py-2">{review.technician}</td>

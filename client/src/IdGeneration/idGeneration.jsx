@@ -1,28 +1,51 @@
-async function generateID() {
-    
+export async function generateReviewIdStr() {
+
     try {
         const response = await fetch('http://localhost:4000/api/reviews/');
         const reviews = await response.json();
 
-        // Extract review_ids from the reviews
-        const existingReviewIds = reviews.map(review => parseInt(review.review_id));
-        console.log(existingReviewIds);
+        const ReviewId_Integer = reviews.map(review => parseInt(review.review_id_int));
 
         let newReviewId;
 
-        if (existingReviewIds.length === 0) {
+        if (ReviewId_Integer.length === 0) {
             newReviewId = 1;
         } else {
-            // Get the last review_id and increment its number
-            const lastReviewId = Math.max(...existingReviewIds);
+            const lastReviewId = Math.max(...ReviewId_Integer);
             newReviewId = lastReviewId + 1;
         }
 
-        return newReviewId;
+        const ReviewId_String = "review_" + newReviewId;
+
+        return ReviewId_String;
+
     } catch (error) {
         console.error('Error fetching review IDs:', error);
         return null;
     }
 }
 
-export default generateID;
+export async function generateReviewIdInt() {
+
+    try {
+        const response = await fetch('http://localhost:4000/api/reviews/');
+        const reviews = await response.json();
+
+        const ReviewId_Integer = reviews.map(review => parseInt(review.review_id_int));
+
+        let newReviewId;
+
+        if (ReviewId_Integer.length === 0) {
+            newReviewId = 1;
+        } else {
+            const lastReviewId = Math.max(...ReviewId_Integer);
+            newReviewId = lastReviewId + 1;
+        }
+
+        return newReviewId;
+
+    } catch (error) {
+        console.error('Error fetching review IDs:', error);
+        return null;
+    }
+}
