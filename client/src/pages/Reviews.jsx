@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useReviewsContext } from "../hooks/useReviewsContext";
 
 import ReviewDetails from '../components/ReviewsDetails';
-import ReviewsForm from "../components/ReviewsForm"
+import Form from '../components/ReviewsForm';
 import ReviewTable from "../components/ReviewsTable";
 
 function ReviewForm() {
@@ -33,7 +33,7 @@ function ReviewForm() {
         <>
         <div>
             <h2 className="text-xl font-bold mb-5 ">Reviews Submitting Form</h2>
-                <ReviewsForm/>
+                <Form/>
         </div>
         <div className="review-details p-4 bg-white-900 rounded-lg mt-2 ml-2 mr-2 shadow-xl">
             <h2 className="text-xl font-bold mb-5 ">Submitted Reviews</h2>
@@ -42,7 +42,7 @@ function ReviewForm() {
                 reviews.map((review) => (
                     <ReviewDetails key={review._id} review={review} />
                 ))}
-            {reviews && <ReviewTable review={reviews} />}
+            {reviews && <ReviewTable key={reviews._id} review={reviews}/>}
         </div>
         </>
     );
