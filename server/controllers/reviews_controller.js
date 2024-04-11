@@ -23,7 +23,7 @@ const get_review = async (request, response) => {
 
 // create a new review
 const create_review = async (request, response) => {
-    const {review_id ,name, email, technician, date_of_service, service_type, rating, review_body} = request.body;
+    const {name, email, technician, date_of_service, service_type, rating, review_body} = request.body;
 
     try {
         const review = await Review.create({review_id, name, email, technician, date_of_service, service_type, rating, review_body});

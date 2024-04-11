@@ -3,7 +3,7 @@ import { useReviewsContext } from "../hooks/useReviewsContext";
 
 import ReviewDetails from '../components/ReviewsDetails';
 import ReviewsForm from "../components/ReviewsForm"
-import ReviewsTable from "../components/ReviewsAdminView";
+import ReviewTable from "../components/ReviewsTable";
 
 function ReviewForm() {
     
@@ -42,7 +42,7 @@ function ReviewForm() {
                 reviews.map((review) => (
                     <ReviewDetails key={review._id} review={review} />
                 ))}
-            {reviews && <ReviewsTable reviews={reviews} />}
+            {reviews && <ReviewTable review={reviews} />}
         </div>
         </>
     );

@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { useReviewsContext } from "../hooks/useReviewsContext";
+import generateID from "../IdGeneration/idGeneration";
 
 function ReviewForm() {
     const { dispatch } = useReviewsContext();
 
+    const [review_id, setReviewid] = useState("");
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [technician, setTechnician] = useState("");
@@ -16,8 +18,10 @@ function ReviewForm() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        
+        setReviewid(await generateID());
 
-        const review = {name, email, technician, date_of_service, service_type, rating, review_body};
+        const review = {review_id, name, email, technician, date_of_service, service_type, rating, review_body};
 
         const response = await fetch('http://localhost:4000/api/reviews/', {
             method : "POST",

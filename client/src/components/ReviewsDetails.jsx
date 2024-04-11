@@ -65,7 +65,7 @@ function ReviewDetails({ review }) {
           onClick={handleDelete}>Delete</button>
         <button className="bg-color5 rounded-lg w-20 ml-2 mt-5" 
           onClick={() => setIsUpdating(true)}>Update</button>
-
+        
         {isUpdating && (
         <div>
           <form>
