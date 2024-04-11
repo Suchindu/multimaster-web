@@ -4,6 +4,7 @@ require('dotenv').config();
 const express = require('express'); 
 const review_route = require('./routes/reviews.js');
 const repair_route = require('./routes/repair.js');
+const product_route = require('./routes/product.js');
 const mongoose = require('mongoose');
 const port = process.env.port || 5050;
 const uri = process.env.uri;
@@ -23,9 +24,9 @@ app.use(cors({
 }));
 
 // Routes
-app.use('/api/reviews', review_route); // මෙතන 'api/reviews'දාල තියෙනව වගේ ඔයාලගෙ collection නම දාන්න.ඒ නමෙන්ම collection එක හදන්න.
-app.use('/api/repair', repair_route); // මෙතන 'api/repair'දාල තියෙනව වගේ ඔයාලගෙ collection නම දාන්න.ඒ නමෙන්ම collection එක හදන්න.
-
+app.use('/api/reviews', review_route); 
+app.use('/api/repair', repair_route); 
+app.use('/api/products', product_route);
 // Connect to DB
 mongoose.connect(uri)
     .then(() => {
