@@ -3,6 +3,14 @@ const mongoose = require('mongoose');
 const schema = mongoose.Schema;
 
 const review_schema = new schema({
+        review_id_int : {
+            type : Number,
+            required : true
+        },
+        review_id_str : {
+            type : String,
+            required : true
+        },
         name : {
             type : String,
             required : true
