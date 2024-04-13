@@ -42,8 +42,8 @@ const Repair_table = () => {
             const filtered = repairs.filter((repair) => {
                 return repair.name.toLowerCase().includes(search.toLowerCase()) ||
                 repair.email.toLowerCase().includes(search.toLowerCase()) ||
-                repair.contact.toLowerCase().includes(search.toLowerCase()) ||
                 repair.date.toLowerCase().includes(search.toLowerCase());
+                //repair.contact.toLowerCase().includes(search.toLowerCase()) ||
                 // repair.device_brand.toLowerCase().includes(search.toLowerCase()) ||
                 // repair.device_model.toLowerCase().includes(search.toLowerCase()) ||
                 // repair.problem.toLowerCase().includes(search.toLowerCase()) ||
