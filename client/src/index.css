@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@media print {
+    table {
+      width: 100%;
+      max-width: 100%;
+      font-size: 10px;
+    }
+    th, td {
+      padding: 8px; 
+    }
+    .hide-on-print {
+      display: none; 
+    }
+  }
