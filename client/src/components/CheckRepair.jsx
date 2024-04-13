@@ -1,6 +1,7 @@
 // fetch details from the database and add the search bar to filter the data
 import React, { useState, useRef } from 'react';
 import { useReactToPrint } from 'react-to-print';
+import { FaDownload, FaShareAlt } from 'react-icons/fa';
 //components
 import Header from './header';
 import Footer from './footer';
@@ -66,11 +67,13 @@ const CheckRepair = () => {
                     <h2 className="text-lg font-bold mb-4 text-blue-800">Repair Details</h2>
                         <p className="text-md font-semibold"><strong>Name:</strong> {data.name || 'No name'}</p>
                         <p className="text-md font-semibold"><strong>Date:</strong> {data.date ? new Date(data.date).toISOString().split('T')[0] : 'No date'}</p>
-                        <p className="text-md font-semibold"><strong>Device Model:</strong> {data.device_model || 'No device model'}</p>
                         <p className="text-md font-semibold"><strong>Device Brand:</strong> {data.device_brand || 'No device brand'}</p>
-                        <p className="text-md font-semibold"><strong>Status:</strong> {data.status || 'No status'}</p>
-                        <button onClick={handleDownload} className="mt-4 mr-2 px-4 py-2 bg-blue-800 text-white rounded-md shadow-lg hide-on-print">Download</button>
-                        <button onClick={handleShare} className="mt-4 ml-2 px-4 py-2 bg-blue-800 text-white rounded-md shadow-lg hide-on-print">Share</button>
+                        <p className="text-md font-semibold"><strong>Device Model:</strong> {data.device_model || 'No device model'}</p>
+                        <p className={`text-md font-semibold ${data.status === 'completed' ? 'text-green-500' : data.status === 'not completed' ? 'text-red-500' : 'text-yellow-500'}`}><strong>Status:</strong> {data.status || 'No status'}</p>
+                        <div className='flex mt-4'>
+                        <button onClick={handleDownload} className="mt-4 mr-2 px-4 py-2 bg-blue-800 text-white rounded-md shadow-lg flex items-center hide-on-print"> <FaDownload className="mr-2" /> Download</button>
+                        <button onClick={handleShare} className="mt-4 ml-2 px-4 py-2 bg-blue-800 text-white rounded-md shadow-lg flex items-center hide-on-print"> <FaShareAlt className="mr-2" /> Share</button>
+                        </div>
                 </div>
             )}     
         </div>
