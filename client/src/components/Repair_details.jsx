@@ -83,11 +83,11 @@ const Repair_details = ({ repair }) => {
   const getStatusColor = (status) => {
     switch (status) {
       case "completed":
-        return "bg-green-600 text-white"; // Green background for completed
+        return "bg-green-700 text-white"; // Green background for completed
       case "not completed":
         return "bg-red-600 text-white"; // Red background for not completed
       case "checking":
-        return "bg-yellow-400 text-black"; // Yellow background for checking
+        return "bg-yellow-600 text-white"; // Yellow background for checking
       default:
         return "bg-gray-200"; // Default background
     }
