@@ -9,6 +9,12 @@ const Repair_details = ({ repair }) => {
   const { dispatch } = useRepairContext();
   const [errors, setErrors] = useState({});
 
+  let date = new Date(repair.date); // Convert the date string to a Date object
+  let formattedDate = `${date.getFullYear()}-${
+    // Format the date as YYYY-MM-DD
+    ("0" + (date.getMonth() + 1)).slice(-2)
+  }-${("0" + date.getDate()).slice(-2)}`;
+
   //delete repair request
   const handleClick = async () => {
     const response = await fetch(
@@ -105,10 +111,8 @@ const Repair_details = ({ repair }) => {
           <td className="px-4 py-2 border-b border-gray-200">
             {repair.contact}
           </td>
-          <td className="px-4 py-2 border-b border-gray-200">
-            {new Date(repair.date).getFullYear()}-
-            {("0" + (new Date(repair.date).getMonth() + 1)).slice(-2)}-
-            {("0" + new Date(repair.date).getDate()).slice(-2)}
+          <td className="px-4 py-2 border-b border-gray-200 whitespace-nowrap">
+            {formattedDate}
           </td>
           <td className="px-4 py-2 border-b border-gray-200">
             {repair.device_brand}
@@ -152,170 +156,175 @@ const Repair_details = ({ repair }) => {
       {isUpdating && (
         <tr>
           <td colSpan={9}>
-            <div className="mx-auto w-full max-w-4xl p-6 bg-white rounded-lg shadow-md"></div>
-            <form className="space-y-6" onSubmit={handleUpdate}>
-              <div className="flex flex-col">
-                <label
-                  className="mb-2 text-sm font-semibold text-gray-600"
-                  htmlFor="name"
-                >
-                  Name:
-                </label>
-                <input
-                  type="text"
-                  className="p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-                  id="name"
-                  name="name"
-                  value={updatedRepair.name}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="flex flex-col">
-                <label
-                  className="mb-2 text-sm font-semibold text-gray-600"
-                  htmlFor="email"
-                >
-                  Email:
-                </label>
-                <input
-                  type="email"
-                  className={`p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 ${
-                    errors.email ? "border-red-700" : ""
-                  }`}
-                  id="email"
-                  name="email"
-                  value={updatedRepair.email}
-                  onChange={handleChange}
-                />
-                {errors.email && (
-                  <p className="text-red-500 text-xs italic mt-2">
-                    {errors.email}
-                  </p>
-                )}
-              </div>
-              <div className="flex flex-col">
-                <label className="mb-2 text-sm font-semibold text-gray-600">
-                  Date:
-                </label>
-                <input
-                  type="date"
-                  className="p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-                  id="date"
-                  name="date"
-                  value={updatedRepair.date}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="flex flex-col">
-                <label
-                  className="mb-2 text-sm font-semibold text-gray-600"
-                  htmlFor="contact"
-                >
-                  Contact:
-                </label>
-                <input
-                  type="tel"
-                  className={`p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 ${
-                    errors.contact ? "border-red-700" : ""
-                  }`}
-                  name="contact"
-                  value={updatedRepair.contact}
-                  onChange={handleChange}
-                  pattern="0[0-9]{9}"
-                  maxLength={10}
-                />
-                {errors.contact && (
-                  <p className="text-red-500 text-xs italic mt-2">
-                    {errors.contact}
-                  </p>
-                )}
-              </div>
-              <div className="flex flex-col">
-                <label
-                  className="mb-2 text-sm font-semibold text-gray-600"
-                  htmlFor="device_brand"
-                >
-                  Device Brand:
-                </label>
-                <input
-                  type="text"
-                  className="p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-                  id="device_brand"
-                  name="device_brand"
-                  value={updatedRepair.device_brand}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="flex flex-col">
-                <label
-                  className="mb-2 text-sm font-semibold text-gray-600"
-                  htmlFor="device_model"
-                >
-                  Device Model:
-                </label>
-                <input
-                  type="text"
-                  className="p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-                  id="device_model"
-                  name="device_model"
-                  value={updatedRepair.device_model}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="flex flex-col">
-                <label
-                  className="mb-2 text-sm font-semibold text-gray-600"
-                  htmlFor="device_model"
-                >
-                  Problem:
-                </label>
-                <input
-                  type="text"
-                  className="p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-                  id="problem"
-                  name="problem"
-                  value={updatedRepair.problem}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="flex flex-col">
-                <label className="mb-2 text-sm font-semibold text-gray-600">
-                  Description:
-                </label>
-                <input
-                  type="text"
-                  className="p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-                  id="description"
-                  name="description"
-                  value={updatedRepair.description}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="flex flex-col">
-                <label className="mb-2 text-sm font-semibold text-gray-600">
-                  Status:
-                </label>
-                <select
-                  className="p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-                  id="status"
-                  name="status"
-                  value={updatedRepair.status}
-                  onChange={handleChange}
-                >
-                  <option value="completed">Completed</option>
-                  <option value="checking">Checking</option>
-                  <option value="not completed">Not Completed</option>
-                </select>
-              </div>
-              <div className="flex justify-start mt-4">
-                <button
-                  type="submit"
-                  className="px-6 py-2 text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:ring-opacity-50"
-                >
-                  Update
-                </button>
-              </div>
-            </form>
+            <div className="flex justify-center items-center w-full "></div>
+            <div className="max-w-4xl w-full p-6 bg-white rounded-lg shadow-lg">
+              <form
+                className="space-y-6 bg-gray-100 p-6 rounded-lg"
+                onSubmit={handleUpdate}
+              >
+                <div className="flex flex-col">
+                  <label
+                    className="mb-2 text-sm font-semibold text-gray-600"
+                    htmlFor="name"
+                  >
+                    Name:
+                  </label>
+                  <input
+                    type="text"
+                    className="p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-200"
+                    id="name"
+                    name="name"
+                    value={updatedRepair.name}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <label
+                    className="mb-2 text-sm font-semibold text-gray-600"
+                    htmlFor="email"
+                  >
+                    Email:
+                  </label>
+                  <input
+                    type="email"
+                    className={`p-3 border rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-200 ${
+                      errors.email ? "border-red-700" : "border-gray-300"
+                    }`}
+                    id="email"
+                    name="email"
+                    value={updatedRepair.email}
+                    onChange={handleChange}
+                  />
+                  {errors.email && (
+                    <p className="text-red-500 text-xs italic mt-2">
+                      {errors.email}
+                    </p>
+                  )}
+                </div>
+                <div className="flex flex-col">
+                  <label className="mb-2 text-sm font-semibold text-gray-600">
+                    Date:
+                  </label>
+                  <input
+                    type="date"
+                    className="p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-200"
+                    id="date"
+                    name="date"
+                    value={updatedRepair.date}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <label
+                    className="mb-2 text-sm font-semibold text-gray-600"
+                    htmlFor="contact"
+                  >
+                    Contact:
+                  </label>
+                  <input
+                    type="tel"
+                    className={`p-3 border rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-200 ${
+                      errors.email ? "border-red-700" : "border-gray-300"
+                    }`}
+                    name="contact"
+                    value={updatedRepair.contact}
+                    onChange={handleChange}
+                    pattern="0[0-9]{9}"
+                    maxLength={10}
+                  />
+                  {errors.contact && (
+                    <p className="text-red-500 text-xs italic mt-2">
+                      {errors.contact}
+                    </p>
+                  )}
+                </div>
+                <div className="flex flex-col">
+                  <label
+                    className="mb-2 text-sm font-semibold text-gray-600"
+                    htmlFor="device_brand"
+                  >
+                    Device Brand:
+                  </label>
+                  <input
+                    type="text"
+                    className="p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-200"
+                    id="device_brand"
+                    name="device_brand"
+                    value={updatedRepair.device_brand}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <label
+                    className="mb-2 text-sm font-semibold text-gray-600"
+                    htmlFor="device_model"
+                  >
+                    Device Model:
+                  </label>
+                  <input
+                    type="text"
+                    className="p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-200"
+                    id="device_model"
+                    name="device_model"
+                    value={updatedRepair.device_model}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <label
+                    className="mb-2 text-sm font-semibold text-gray-600"
+                    htmlFor="device_model"
+                  >
+                    Problem:
+                  </label>
+                  <input
+                    type="text"
+                    className="p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-200"
+                    id="problem"
+                    name="problem"
+                    value={updatedRepair.problem}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <label className="mb-2 text-sm font-semibold text-gray-600">
+                    Description:
+                  </label>
+                  <input
+                    type="text"
+                    className="p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-200"
+                    id="description"
+                    name="description"
+                    value={updatedRepair.description}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <label className="mb-2 text-sm font-semibold text-gray-600">
+                    Status:
+                  </label>
+                  <select
+                    className="p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-200"
+                    id="status"
+                    name="status"
+                    value={updatedRepair.status}
+                    onChange={handleChange}
+                  >
+                    <option value="completed">Completed</option>
+                    <option value="checking">Checking</option>
+                    <option value="not completed">Not Completed</option>
+                  </select>
+                </div>
+                <div className="flex justify-start mt-4">
+                  <button
+                    type="submit"
+                    className="px-6 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:ring-opacity-50 transition duration-200"
+                  >
+                    Update
+                  </button>
+                </div>
+              </form>
+            </div>
           </td>
         </tr>
       )}

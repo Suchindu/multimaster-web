@@ -106,7 +106,7 @@ const Repair_form = () => {
           </h1>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
           <div>
-            <label className="block mb-2 text-lg text-gray-700">Name:</label>
+            <label className="block mb-2 text-lg text-gray-700">Name*:</label>
             <input
               type="text"
               id="name"
@@ -122,7 +122,7 @@ const Repair_form = () => {
           </div>
           <br />
           <div>
-            <label className="block mb-2 text-lg text-gray-700">Email:</label>
+            <label className="block mb-2 text-lg text-gray-700">Email*:</label>
             <input
               type="email"
               id="email"
@@ -141,7 +141,7 @@ const Repair_form = () => {
           <br />
           <div>
             <label className="block mb-2 text-lg text-gray-700">
-              Contact Number:
+              Contact Number*:
             </label>
             <input
               type="text"
@@ -163,7 +163,7 @@ const Repair_form = () => {
           </div>{" "}
           <br />
           <div>
-            <label className="block mb-2 text-lg text-gray-700">Date:</label>
+            <label className="block mb-2 text-lg text-gray-700">Date*:</label>
             <input
               type="date"
               id="date"
@@ -177,7 +177,7 @@ const Repair_form = () => {
           <br />
           <div>
             <label className="block mb-2 text-lg text-gray-700">
-              Device Brand:
+              Device Brand*:
             </label>
             <input
               type="text"
@@ -194,7 +194,7 @@ const Repair_form = () => {
           <br />
           <div>
             <label className="block mb-2 text-lg text-gray-700">
-              Device Model:
+              Device Model*:
             </label>
             <input
               type="text"
@@ -210,7 +210,9 @@ const Repair_form = () => {
           </div>{" "}
           <br />
           <div>
-            <label className="block mb-2 text-lg text-gray-700">Problem:</label>
+            <label className="block mb-2 text-lg text-gray-700">
+              Problem*:
+            </label>
             <input
               type="text"
               id="problem"
@@ -235,6 +237,7 @@ const Repair_form = () => {
                 placeholder="Additional Information"
                 rows={4}
                 cols={50}
+                maxLength={200}
                 onChange={(e) => setDescription(e.target.value)}
                 value={description}
                 className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"

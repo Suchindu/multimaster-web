@@ -57,17 +57,62 @@ const CheckRepair = () => {
     }
   };
 
+  const SidebarContent = () => {
+    if (!data) return <div>Loading...</div>;
+
+    switch (data.status) {
+      case "completed":
+        return (
+          <div className="ml-3">
+            <h3 className="text-lg font-semibold">Congratulations!</h3>
+            <p>Your repair has been completed successfully.</p>
+          </div>
+        );
+      case "checking":
+        return (
+          <div className="ml-3">
+            <h3 className="text-lg font-semibold">Repair In Progress</h3>
+            <p>
+              Your device is currently being repaired. We appreciate your
+              patience.
+            </p>
+          </div>
+        );
+      case "not completed":
+        return (
+          <div className="ml-3">
+            <h3 className="text-lg font-semibold">Pending Completion</h3>
+            <p>
+              We are encountering some issues. Please contact support for more
+              details.
+            </p>
+          </div>
+        );
+      default:
+        return (
+          <div>
+            <h3 className="text-lg font-semibold">Welcome!</h3>
+            <p>Enter a repair ID to see the status of your device.</p>
+          </div>
+        );
+    }
+  };
+
   return (
     <>
       <Header />
-      <div className='"bg-gray-50 min-h-screen"'>
-        <h1 className="mt-40 ml-60 text-2xl font-semibold text-blue-800">
+
+      <div className="w-full lg:w-1/4 lg:mr-5">
+        <SidebarContent />
+      </div>
+      <div className="bg-gray-50 min-h-screen flex flex-col items-center px-4 lg:px-20">
+        <h1 className="mt-10 text-2xl font-semibold text-blue-800">
           Check Repair Status
         </h1>
         <input
           type="text"
           value={searchTerm}
-          className="mt-8 p-4 text-lg bg-white rounded-lg shadow-lg w-full max-w-md ml-48 border-l-4 border-blue-800"
+          className="mt-5 p-4 text-lg bg-white rounded-lg shadow-lg w-full max-w-md border-l-4 border-blue-800"
           onChange={handleSearch}
           placeholder="Search by ID"
         />
@@ -75,30 +120,30 @@ const CheckRepair = () => {
         {data && (
           <div
             ref={componentRef}
-            className="mt-8 mb-8 p-6 bg-white rounded-lg shadow-2xl w-full max-w-md ml-4 border-l-4 border-blue-800"
+            className="mt-5 p-6 bg-white rounded-lg shadow-2xl w-full max-w-md border-l-4 border-blue-800"
           >
             <h2 className="text-lg font-bold mb-4 text-blue-800">
               Repair Details
             </h2>
-            <p className="text-md font-semibold">
+            <p className="text-md font-semibold mb-1">
               <strong>Name:</strong> {data.name || "No name"}
             </p>
-            <p className="text-md font-semibold">
+            <p className="text-md font-semibold mb-1">
               <strong>Date:</strong>{" "}
               {data.date
                 ? new Date(data.date).toISOString().split("T")[0]
                 : "No date"}
             </p>
-            <p className="text-md font-semibold">
+            <p className="text-md font-semibold mb-1">
               <strong>Device Brand:</strong>{" "}
               {data.device_brand || "No device brand"}
             </p>
-            <p className="text-md font-semibold">
+            <p className="text-md font-semibold mb-1">
               <strong>Device Model:</strong>{" "}
               {data.device_model || "No device model"}
             </p>
             <p
-              className={`text-md font-semibold ${
+              className={`text-md font-semibold mb1 ${
                 data.status === "completed"
                   ? "text-green-500"
                   : data.status === "not completed"
@@ -108,17 +153,17 @@ const CheckRepair = () => {
             >
               <strong>Status:</strong> {data.status || "No status"}
             </p>
-            <div className="flex mt-4">
+            <div className="flex justify-around mt-4">
               <button
                 onClick={handleDownload}
-                className="mt-4 mr-2 px-4 py-2 bg-blue-800 text-white rounded-md shadow-lg flex items-center hide-on-print transform transition duration-500 ease-in-out hover:scale-105"
+                className="px-4 py-2 bg-blue-800 text-white rounded-md shadow-lg flex items-center transform transition duration-300 ease-in-out hover:scale-105"
               >
                 {" "}
                 <FaDownload className="mr-2" /> Download
               </button>
               <button
                 onClick={handleShare}
-                className="mt-4 ml-2 px-4 py-2 bg-blue-800 text-white rounded-md shadow-lg flex items-center hide-on-print transform transition duration-500 ease-in-out hover:scale-105"
+                className="px-4 py-2 bg-blue-800 text-white rounded-md shadow-lg flex items-center transform transition duration-300 ease-in-out hover:scale-105"
               >
                 {" "}
                 <FaShareAlt className="mr-2" /> Share
@@ -127,7 +172,7 @@ const CheckRepair = () => {
           </div>
         )}
       </div>
-      <Footer />
+      <Footer className="mt-auto" />
     </>
   );
 };
