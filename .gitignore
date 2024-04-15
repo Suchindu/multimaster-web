@@ -21,3 +21,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+client/src/App.jsx
+client/src/main.jsx
+

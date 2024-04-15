@@ -17,3 +17,4 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 //     <Shopping_cart />
 //   </React.StrictMode>,
 // );
+);
