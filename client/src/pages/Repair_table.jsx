@@ -78,14 +78,14 @@ const Repair_table = () => {
         </div>
       </div>
       <div className="flex flex-nowrap">
-        <h2 className="text-blue-700 text-base font-medium ml-1 mb-2 ">
+        <h2 className="text-blue-700 text-base font-medium ml-1 mb-3 ">
           Total Repairs: {repairs.length}
         </h2>
-        <h2 className="text-red-600 text-base font-medium ml-1 mb-2">
+        <h2 className="text-red-600 text-base font-medium ml-4 mb-3">
           Not Completed Repairs:{" "}
           {repairs.filter((repair) => repair.status === "not completed").length}
         </h2>
-        <h2 className="text-green-600 text-base font-medium ml-1 mb-2">
+        <h2 className="text-green-600 text-base font-medium ml-4 mb-3">
           Completed Repairs:{" "}
           {repairs.filter((repair) => repair.status === "completed").length}
         </h2>

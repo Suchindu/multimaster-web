@@ -123,7 +123,7 @@ const Repair_details = ({ repair }) => {
             {repair.description}
           </td>
           <td
-            className={`px-4 py-2 border-b border-gray-200 ${getStatusColor(
+            className={`px-4 py-2 border-b border-gray-200 font-medium ${getStatusColor(
               repair.status
             )}`}
           >
@@ -131,13 +131,13 @@ const Repair_details = ({ repair }) => {
           </td>
           <td className="flex justify-center items-center">
             <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transform transition-all duration-300 ease-in-out hide-on-print"
+              className="bg-blue-700 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transform transition-all duration-300 ease-in-out hide-on-print"
               onClick={() => setIsUpdating(true)}
             >
               Edit
             </button>
             <button
-              className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transform transition-all duration-300 ease-in-out hide-on-print"
+              className="bg-red-700 hover:bg-red-900 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transform transition-all duration-300 ease-in-out hide-on-print"
               onClick={handleClick}
             >
               Delete

@@ -168,6 +168,7 @@ const Repair_form = () => {
               type="date"
               id="date"
               name="date"
+              pattern="mm/dd/yyyy"
               onChange={(e) => setDate(e.target.value)}
               value={date}
               className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
@@ -184,6 +185,7 @@ const Repair_form = () => {
               name="device_brand"
               required="required"
               autoComplete="off"
+              placeholder="Brand Name"
               onChange={(e) => setDeviceBrand(e.target.value)}
               value={device_brand}
               className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
@@ -199,6 +201,7 @@ const Repair_form = () => {
               id="device_model"
               name="device_model"
               required="required"
+              placeholder="Model Name"
               autoComplete="off"
               onChange={(e) => setDeviceModel(e.target.value)}
               value={device_model}
@@ -214,6 +217,7 @@ const Repair_form = () => {
               name="problem"
               required="required"
               autoComplete="off"
+              placeholder="Problem Description"
               onChange={(e) => setProblem(e.target.value)}
               value={problem}
               className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
