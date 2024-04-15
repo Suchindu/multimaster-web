@@ -15,3 +15,13 @@
       display: none; 
     }
   }
+
+  /* Tailwind CSS with @apply */
+/* .expand-width {
+  transition: all 0.3s ease;
+  width: 50%;
+}
+
+.expand-width:focus {
+  width: 100%;
+} */
