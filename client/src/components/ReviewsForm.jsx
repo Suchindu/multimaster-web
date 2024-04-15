@@ -1,9 +1,12 @@
 import { useState } from "react";
 import { useReviewsContext } from "../hooks/useReviewsContext";
+import {generateReviewIdInt, generateReviewIdStr}  from "../IdGeneration/idGeneration";
 
-function review_form() {
+function ReviewForm() {
     const { dispatch } = useReviewsContext();
 
+    const [review_id_int, setReviewidInt] = useState(null);
+    const [review_id_str, setReviewidStr] = useState(null);
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [technician, setTechnician] = useState("");
@@ -16,8 +19,14 @@ function review_form() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        
+        let id_integer = await generateReviewIdInt();
+        setReviewidInt(id_integer);
 
-        const review = {name, email, technician, date_of_service, service_type, rating, review_body};
+        let id_string = await generateReviewIdStr();
+        setReviewidStr(id_string);
+
+        const review = {review_id_int ,review_id_str, name, email, technician, date_of_service, service_type, rating, review_body};
 
         const response = await fetch('http://localhost:4000/api/reviews/', {
             method : "POST",
@@ -41,6 +50,8 @@ function review_form() {
             setService("");
             setRating(0);
             setReview("");
+            setReviewidInt(null);
+            setReviewidStr(null);
             
             setError(null);
             alert("New Review Added");
@@ -57,14 +68,14 @@ function review_form() {
                 <input 
                     type="text" 
                     required 
-                    value={name} 
+                    value={name}
                     onChange={(event) => setName(event.target.value)} /><br/>
             
                 <label>Email</label><br />
                 <input 
                     type="email" 
                     required 
-                    value={email} 
+                    value={email}
                     onChange={(event) => setEmail(event.target.value)} /><br/>
             
                 <label>Technician</label><br />
@@ -113,4 +124,4 @@ function review_form() {
     );
 }
 
-export default review_form;
+export default ReviewForm;
