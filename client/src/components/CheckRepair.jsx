@@ -8,10 +8,11 @@ import Footer from "./footer";
 //import multimasterLogo from '../../public/multimaster.svg';
 
 const CheckRepair = () => {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [data, setData] = useState(null);
-  const componentRef = useRef();
+  const [searchTerm, setSearchTerm] = useState(""); //state to store the search term
+  const [data, setData] = useState(null); //state to store the fetched data
+  const componentRef = useRef(); //reference to the component
 
+  //fetch repair details
   const fetchData = async (_id) => {
     try {
       const response = await fetch(`http://localhost:4000/api/repair/${_id}`);
