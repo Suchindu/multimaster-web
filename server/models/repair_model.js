@@ -42,6 +42,12 @@ const repair_schema = new schema({
         type: String,
         required: false
     },
+
+    status: {
+        type: String,
+        enum: ['completed', 'checking', 'not completed'],
+        default: 'not completed'
+      }
 }, { timestamps: true });
 
 module.exports = mongoose.model('Repair', repair_schema);

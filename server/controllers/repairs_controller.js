@@ -69,7 +69,7 @@ const updateRepair = async (req, res) => {
 
     const repair = await Repair.findOneAndUpdate({_id: id}, {
         ...req.body
-    });
+    }, {new: true}); 
 
     if(!repair){
         return res.status(400).json({error: "No such repair"})
