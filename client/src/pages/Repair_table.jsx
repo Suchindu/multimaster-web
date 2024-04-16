@@ -5,7 +5,6 @@ import Repair_details from "../components/Repair_details";
 //hooks
 import { useRepairContext } from "../hooks/useRepairContext";
 
-
 const Repair_table = () => {
     const componentPdf = useRef();
     // const[repairs, setRepairs] = useState(null);

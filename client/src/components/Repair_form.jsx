@@ -2,9 +2,13 @@ import React, { useEffect, useState } from 'react';
 //component
 import RepairAlert_box from './RepairAlert_box';
 import { useRepairContext } from '../hooks/useRepairContext';
+import { generateRepairIdInt, generateRepairIdStr } from '../IdGeneration/repairs';
+
 const Repair_form = () => {
     const { dispatch } = useRepairContext();
 
+    const [repair_id_int, setrepairIdInt] = useState("");
+    const [repair_id_str, setrepairIdStr] = useState("");
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [contact, setContact] = useState('');
@@ -18,8 +22,8 @@ const Repair_form = () => {
     const [error, setError] = useState(null);
     const [showAlert, setShowAlert] = useState(false);
 
-        //email validation
-     const handleEmailChange = (e) => {
+    //email validation
+    const handleEmailChange = (e) => {
             const input = e.target.value.toLowerCase();
             setEmail(input);
             const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // regular expression
@@ -57,7 +61,14 @@ const Repair_form = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         // Handle form submission logic here
-        const repair = ({name, email, contact, date, device_brand, device_model, problem, description});
+        
+        let repair_id_integer = await generateRepairIdInt();
+        setrepairIdInt(repair_id_integer);
+
+        let repair_id_string = await generateRepairIdStr();
+        setrepairIdStr(repair_id_string);
+      
+        const repair = ({repair_id_int, repair_id_str, name, email, contact, date, device_brand, device_model, problem, description});
 
         const response = await fetch( 'http://localhost:4000/api/repair/', {
             method: "POST",

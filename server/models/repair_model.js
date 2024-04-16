@@ -3,6 +3,16 @@ const mongoose = require('mongoose');
 const schema = mongoose.Schema;
 
 const repair_schema = new schema({
+    repair_id_int : {
+        type : Number,
+        required : true
+    },
+
+    repair_id_str : {
+        type : String,
+        required : true
+    },
+
     name: {
         type: String,
         required: true

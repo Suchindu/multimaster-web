@@ -37,7 +37,7 @@ const Repair_details = ({repair}) => {
           <>
                         {repair ?(
                         <tr className='hover:bg-blue-100 focus:bg-blue-300 font-semibold text-left'>
-                            <td className='border border-gray-500'>{repair._id}</td>
+                            <td className='border border-gray-500'>{repair.repair_id_str}</td>
                             <td className='border border-gray-500 pr-4'>{repair.name}</td>
                             <td className='border border-gray-500 pr-4'>{repair.email}</td>
                             <td className='border border-gray-500 pr-7'>{repair.contact}</td>
