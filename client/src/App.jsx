@@ -8,6 +8,7 @@ import Repair_form from './components/Repair_form';
 
 import Cart from './components/Cart.jsx';
 import Home from './pages/Home.jsx';
+import CheckOut from './components/checkout.jsx';
 
 
 
@@ -18,6 +19,7 @@ function App() {
       <Routes>
         <Route exact path='/' element={<Home />}/>
         <Route path='/cart' element={<Cart />}/>
+        <Route path='/checkout' element={<CheckOut />}/>
       </Routes>
     </div>
   );

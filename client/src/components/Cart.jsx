@@ -35,7 +35,6 @@
 
 // export default Cart
 
-
 import React from "react";
 import { useDispatch } from "react-redux";
 import {
@@ -51,23 +50,21 @@ import {
   XMarkIcon,
 } from "@heroicons/react/20/solid";
 import { useSelector } from "react-redux";
-import Total from '../components/Total.jsx'
-
-
+import Total from "../components/Total.jsx";
 
 export default function Cart() {
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
 
   const getTotal = () => {
-    let totalQuantity = 0
-    let totalPrice = 0
-    cart.forEach(item => {
-      totalQuantity += item.quantity
-      totalPrice += item.price * item.quantity
-    })
-    return {totalPrice, totalQuantity}
-  }
+    let totalQuantity = 0;
+    let totalPrice = 0;
+    cart.forEach((item) => {
+      totalQuantity += item.quantity;
+      totalPrice += item.price * item.quantity;
+    });
+    return { totalPrice, totalQuantity };
+  };
 
   return (
     <div className="bg-white">
@@ -181,14 +178,18 @@ export default function Cart() {
                         </div>
                       </div>
                       <div className="absolute right-0 top-0">
-                          <button
-                            type="button"
-                            className="-m-2 inline-flex p-2 text-gray-400 hover:text-gray-500"
-                          >
-                            <span className="sr-only">Remove</span>
-                            <XMarkIcon className="h-5 w-5" aria-hidden="true" />
-                          </button>
-                        </div>
+                        <button
+                          type="button"
+                          className="-m-2 inline-flex p-2 text-gray-400 hover:text-gray-500"
+                          onClick={() => dispatch(removeItem(product.id))}
+                        >
+                          <span className="sr-only">Remove</span>
+                          <XMarkIcon
+                            className="h-5 w-5 cartItem__removeButton"
+                            aria-hidden="true"
+                          />
+                        </button>
+                      </div>
                     </div>
 
                     <p className="mt-4 flex space-x-2 text-sm text-gray-700">
@@ -231,7 +232,9 @@ export default function Cart() {
             <dl className="mt-6 space-y-4">
               <div className="flex items-center justify-between">
                 <dt className="text-sm text-gray-600">Subtotal</dt>
-                <dd className="text-sm font-medium text-gray-900">${getTotal().totalPrice}</dd>
+                <dd className="text-sm font-medium text-gray-900">
+                  LKR {getTotal().totalPrice}
+                </dd>
               </div>
               <div className="flex items-center justify-between border-t border-gray-200 pt-4">
                 <dt className="flex items-center text-sm text-gray-600">
@@ -249,7 +252,7 @@ export default function Cart() {
                     />
                   </a>
                 </dt>
-                <dd className="text-sm font-medium text-gray-900">$5.00</dd>
+                <dd className="text-sm font-medium text-gray-900">LKR 00.00</dd>
               </div>
               <div className="flex items-center justify-between border-t border-gray-200 pt-4">
                 <dt className="flex text-sm text-gray-600">
@@ -267,13 +270,15 @@ export default function Cart() {
                     />
                   </a>
                 </dt>
-                <dd className="text-sm font-medium text-gray-900">$8.32</dd>
+                <dd className="text-sm font-medium text-gray-900">LKR 00.00</dd>
               </div>
               <div className="flex items-center justify-between border-t border-gray-200 pt-4">
                 <dt className="text-base font-medium text-gray-900">
                   Order total
                 </dt>
-                <dd className="text-base font-medium text-gray-900">$112.32</dd>
+                <dd className="text-base font-medium text-gray-900">
+                  LKR {getTotal().totalPrice}
+                </dd>
               </div>
             </dl>
 
