@@ -28,9 +28,9 @@ const get_repair = async (req, res) => {
 
 //post a new repair
 const createRepair = async (req, res) => {
-    const {name, email, contact,  date, device_brand, device_model, problem, description} = req.body;
+    const {repair_id_int, repair_id_str, name, email, contact,  date, device_brand, device_model, problem, description} = req.body;
     try {
-        const repair = await Repair.create({name, email, contact, date, device_brand, device_model, problem, description})
+        const repair = await Repair.create({repair_id_int, repair_id_str, name, email, contact, date, device_brand, device_model, problem, description})
         res.status(200).json({repair})
     } catch(error){
         res.status(400).json({error: error.message})
@@ -69,7 +69,7 @@ const updateRepair = async (req, res) => {
 
     const repair = await Repair.findOneAndUpdate({_id: id}, {
         ...req.body
-    });
+    }, {new: true}); 
 
     if(!repair){
         return res.status(400).json({error: "No such repair"})

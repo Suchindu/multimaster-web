@@ -38,6 +38,10 @@ const review_schema = new schema({
         review_body : {
             type : String,
             required : true
+        },
+        technician_reply : {
+            type : String,
+            required : true
         }
 }, {timestamps : true});
 

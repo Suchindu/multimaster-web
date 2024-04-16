@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'; 
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 //Importing pages and components
 import Review from './pages/Reviews';
@@ -34,7 +34,7 @@ export default App;
 //     <>
 //     <div className="App">
 //       <BrowserRouter>
-//        <Header/> 
+//        <Header/>
 //         <div className="pages">
 //           <Routes>
 //             <Route
@@ -50,26 +50,24 @@ export default App;
 //   );
 // }
 
-// function App() {
-//   return (
-//     <>
-//     <div className="App">
-//       <BrowserRouter>
-//         <div className="pages">
-//           <Routes>
-//             <Route
-//               path='/'
-//               element={<Repair_form />}
-//             />
-//           </Routes>
-//         </div>
-//         {/* <Footer/> */}
-//       </BrowserRouter>
-//     </div>
-//     </>
-//   );
-// }
 
-
-
-
+function App() {
+  return (
+    <>
+    <div className="App">
+      <BrowserRouter>
+        <div className="pages">
+          <Routes>
+            <Route
+              path='/'
+              element={<Repair_form />}
+            />
+          </Routes>
+        </div>
+        {/* <Footer/> */}
+      </BrowserRouter>
+    </div>
+    </>
+  );
+}
+export default App;

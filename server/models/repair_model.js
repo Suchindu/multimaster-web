@@ -3,6 +3,16 @@ const mongoose = require('mongoose');
 const schema = mongoose.Schema;
 
 const repair_schema = new schema({
+    repair_id_int : {
+        type : Number,
+        required : true
+    },
+
+    repair_id_str : {
+        type : String,
+        required : true
+    },
+
     name: {
         type: String,
         required: true
@@ -42,6 +52,12 @@ const repair_schema = new schema({
         type: String,
         required: false
     },
+
+    status: {
+        type: String,
+        enum: ['completed', 'checking', 'not completed'],
+        default: 'not completed'
+      }
 }, { timestamps: true });
 
 module.exports = mongoose.model('Repair', repair_schema);
