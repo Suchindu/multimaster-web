@@ -1,13 +1,55 @@
-import { PhotoIcon, UserCircleIcon } from "@heroicons/react/24/solid";
+import React, { useState } from "react";
+import { PhotoIcon } from "@heroicons/react/24/solid";
+import axios from "axios"; // Import Axios for making HTTP requests
+import { useSelector } from "react-redux";
 
 export default function Checkout() {
+  const cart = useSelector((state) => state.cart);
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    mobileNumber: "",
+    country: "Sri Lanka",
+    streetAddress: "",
+    city: "",
+    region: "",
+    postalCode: "",
+    additionalDetails: "",
+  });
+
+  const handleFormChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleFileChange = (e) => {
+    // Handle file upload if needed
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault(); // Prevent default form submission
+    try {
+      // Combine form data and cart items
+      const orderData = { ...formData, cart };
+
+      // Send POST request to backend to submit order with cart items
+      const response = await axios.post("/api/orders", orderData);
+
+      // Handle successful response (e.g., show confirmation message)
+      console.log("Order submitted:", response.data);
+    } catch (error) {
+      // Handle error
+      console.error("Error submitting order:", error);
+    }
+  };
+
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
       <div className="bg-white p-10 rounded-lg shadow-md w-full max-w-4xl">
         <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
           Checkout
         </h1>
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="space-y-12">
             <div className="border-b border-gray-900/10 pb-12">
 
