@@ -1,14 +1,13 @@
 import React from 'react';
 // import { toast } from 'react-toastify';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { PhotoIcon } from '@heroicons/react/20/solid';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
-export default function AddProduct({getProducts}) {
+export default function EditProduct() {
 
-    const navigate = useNavigate();
-    // const [id, setId] = useState(0);
+    const { id } = useParams();
     const [name, setName] = useState('');
     const [brand, setBrand] = useState('');
     const [price, setPrice] = useState(0);
@@ -16,56 +15,130 @@ export default function AddProduct({getProducts}) {
     const [description, setDescription] = useState('');
     const [image, setImage] = useState('');
     const [countInStock, setCountInStock] = useState(0);
+    const navigate = useNavigate();
+    const [isFileChanged, setIsFileChanged] = useState(false);
     const [imagePreview, setImagePreview] = useState(null);
-    
 
+    useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const response = await axios.get(`http://localhost:4000/api/products/${id}`);
+        console.log(response.data);
+        setName(response.data.name);
+        setBrand(response.data.brand);
+        setPrice(response.data.price);
+        setCategory(response.data.category);
+        setDescription(response.data.description);
+        setImage(response.data.image);
+        setImagePreview(`http://localhost:4000/server${response.data.image}`)
+        setCountInStock(response.data.countInStock);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchProduct();
+  }, [id]);
+    
     const onChangeFile = (e) => {
       setImage(e.target.files[0]);
+      setIsFileChanged(true)
       setImagePreview(URL.createObjectURL(e.target.files[0]))
     }
 
-
     const changeOnClick = (e) => {
       e.preventDefault();
-  
-      const formData = new FormData();
-      formData.append('image', image);
-  
-      axios.post('http://localhost:4000/api/products/upload', formData)
-      .then((res) => {
-        console.log(res.data);
-          const productData = {
-              name: name,
-              brand: brand,
-              price: price,
-              category: category,
-              description: description,
-              image: res.data.image,
-              countInStock: countInStock
-          };
-  
-          axios.post('http://localhost:4000/api/products/', productData)
-          .then((res) => {
-              console.log(res.data);
-              alert('Product added successfully!')
-              setName('');
-              setBrand('');
-              setPrice(0);
-              setCategory('');
-              setDescription('');
-              setImage('');
-              setCountInStock(0);
-          })
-          .catch(error => {
-              console.log(error);
-              alert(error.response.data.message)
-          });
-      })
-      .catch(error => {
+    
+      const productData = {
+        name: name,
+        brand: brand,
+        price: price,
+        category: category,
+        description: description,
+        countInStock: countInStock
+      };
+    
+      if (isFileChanged) {
+        const formData = new FormData();
+        formData.append('image', image);
+        console.log(image);
+        axios.post('http://localhost:4000/api/products/upload', formData)
+        .then((res) => {
+          console.log(res.data);
+          productData.image = res.data.image;
+          updateProduct(productData);
+        })
+        .catch(error => {
           console.log(error);
           alert(error.response.data.message)
+        });
+      } else {
+        updateProduct(productData);
+      }
+    }
+    
+    const updateProduct = (productData) => {
+      axios.put(`http://localhost:4000/api/products/${id}`, productData)
+      .then((res) => {
+        console.log(res.data);
+        alert('Product Updated successfully!')
+        setName('');
+        setBrand('');
+        setPrice(0);
+        setCategory('');
+        setDescription('');
+        setImage('');
+        setCountInStock(0);
+      })
+      .catch(error => {
+        console.log(error);
+        alert(error.response.data.message)
       });
     }
+
+    
+    // const changeOnClick = (e) => {
+    //   e.preventDefault();
+  
+    //   const formData = new FormData();
+    //   formData.append('image', image);
+    //   console.log(image);
+    //   axios.post('http://localhost:4000/api/products/upload', formData)
+    //   .then((res) => {
+    //     console.log(res.data);
+    //       const productData = {
+    //           name: name,
+    //           brand: brand,
+    //           price: price,
+    //           category:category,
+    //           description: description,
+    //           image: res.data.image ,
+    //           countInStock:countInStock
+    //       };
+  
+    //       axios.put(`http://localhost:4000/api/products/${id}`, productData)
+    //       .then((res) => {
+    //           console.log(res.data);
+    //           alert('Product Updated successfully!')
+    //           getProducts();
+    //           setName('');
+    //           setBrand('');
+    //           setPrice(0);
+    //           setCategory('');
+    //           setDescription('');
+    //           setImage('');
+    //           setCountInStock(0);
+    //       })
+    //       .catch(error => {
+    //           console.log(error);
+    //           alert(error.response.data.message)
+    //       });
+    //   })
+    //   .catch(error => {
+    //       console.log(error);
+    //       alert(error.response.data.message)
+    //   });
+    // }
 
 
 
@@ -208,9 +281,13 @@ export default function AddProduct({getProducts}) {
                       className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
                     >
                       <span>UPLOAD IMAGE FILE</span>
-                      <input id="file-upload" filename="image" onChange={onChangeFile} type="file" className="sr-only" />
-                      {imagePreview && <img src={imagePreview} alt="Preview" style={{ width: '300px', height: '300px' }}/>}
+                      
+                    <input id="file-upload" filename="image" onChange={onChangeFile} type="file" className="sr-only" />
+                    
+                    {imagePreview && <img src={imagePreview} alt="Preview" style={{ width: '300px', height: '300px' }} />}
+                    
                     </label>
+                    
                   </div>
                   <p className="text-xs leading-10 text-gray-600">PNG, JPG, GIF up to 10MB</p>
                 </div>

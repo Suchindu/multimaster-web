@@ -2,10 +2,14 @@ import React, { useEffect } from 'react';
 import AddProduct from './AddProduct';
 import axios from 'axios';
 import { useState } from 'react';
-// import { get, set } from 'mongoose';
+import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
 
 
 export default function Product() {
+
+  const navigate = useNavigate();
   const [products, setProducts] = useState([]);
   // const [submitted, setSubmitted] = useState(false);
 
@@ -25,14 +29,23 @@ export default function Product() {
                 console.error("Axios Erro Occur :", error);
               });
           }
+        
+        const deleteProduct = (id) => {
+          axios.delete(`http://localhost:4000/api/products/${id}`)
+          .then((res) => {
+            console.log(res.data);
+            getProducts();
+          })
+          .catch(error => {
+            console.error("Axios Erro Occur :", error);
+          });
+        }
 
           
 
   return (
     <div>
-    <AddProduct
-      getProducts={getProducts}
-    /> 
+
     <div className="border rounded-md border-gray-300 p-4 px-4 m-4 sm:px-6 lg:px-8">
       <div className="sm:flex sm:items-center">
         <div className="sm:flex-auto">
@@ -44,6 +57,7 @@ export default function Product() {
         <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
           <button
             type="button"
+            onClick={() => navigate('/add-products')}
             className="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
           >
             Add Product
@@ -92,25 +106,25 @@ export default function Product() {
                 <tbody className="divide-y divide-gray-200 bg-white">
                   {products.length > 0 ? products.map((product) => (
                     <tr key={product._id}>
-                      <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
+                      <td className="whitespace-wrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
                         {product._id}
                       </td>
-                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{product.name}</td>
+                      <td className="whitespace-wrap px-3 py-4 text-sm text-gray-500">{product.name}</td>
                       <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{product.brand}</td>
                       <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{product.price}</td>
                       <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{product.category}</td>
-                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{product.description}</td>
-                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{product.image}</td>
+                      <td className="whitespace-wrap px-3 py-4 text-sm text-gray-500">{product.description}</td>
+                      <td className="whitespace-wrap px-3 py-4 text-sm text-gray-500">{product.image}</td>
                       <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{product.countInStock}</td>
                       <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                        <a href="#" className="border border-gray-300 rounded px-2 py-1 text-indigo-600 hover:text-indigo-900">
+                        <Link to={`/edit-product/${product._id}`} className="border border-gray-300 rounded px-2 py-1 text-indigo-600 hover:text-indigo-900">
                           Edit<span className="sr-only">, {product._id}</span>
-                        </a>
+                        </Link>
                       </td>
                       <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                        <a href="#" className="border border-gray-300 rounded px-2 py-1 text-indigo-600 hover:text-indigo-900">
+                        <button onClick={e=> deleteProduct(product._id)} className="border border-gray-300 rounded px-2 py-1 text-indigo-600 hover:text-indigo-900">
                           Delete<span className="sr-only">, {product._id}</span>
-                        </a>
+                        </button>
                       </td>
                     </tr>
                   )):

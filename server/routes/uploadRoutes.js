@@ -12,7 +12,6 @@ const storage = multer.diskStorage({
   filename(req, file, cb) {
     cb(
       null,
-      // file.originalname
       `${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`
     );
   },
@@ -33,7 +32,7 @@ function fileFilter(req, file, cb) {
 }
 
 const upload = multer({ storage: storage, fileFilter:fileFilter });
-// , fileFilter:fileFilter
+
 const uploadSingleImage = upload.single('image');
 
 router.post('/api/products/upload', (req, res) => {
