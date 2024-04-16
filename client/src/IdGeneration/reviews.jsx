@@ -15,12 +15,12 @@ export async function generateReviewIdStr() {
             newReviewId = lastReviewId + 1;
         }
 
-        const ReviewId_String = "review_" + newReviewId;
+        const ReviewId_String = "REV00" + newReviewId;
 
         return ReviewId_String;
 
     } catch (error) {
-        console.error('Error fetching review IDs:', error);
+        console.error('Error fetching review IDs : ', error);
         return null;
     }
 }
@@ -45,7 +45,7 @@ export async function generateReviewIdInt() {
         return newReviewId;
 
     } catch (error) {
-        console.error('Error fetching review IDs:', error);
+        console.error('Error fetching review IDs : ', error);
         return null;
     }
 }

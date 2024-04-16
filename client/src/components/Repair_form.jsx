@@ -1,34 +1,80 @@
 import React, { useEffect, useState } from "react";
 //component
-import RepairAlert_box from "./RepairAlert_box";
-import { useRepairContext } from "../hooks/useRepairContext";
+
+import RepairAlert_box from './RepairAlert_box';
+import { useRepairContext } from '../hooks/useRepairContext';
+import { generateRepairIdInt, generateRepairIdStr } from '../IdGeneration/repairs';
+
+
+// import RepairAlert_box from "./RepairAlert_box";
+// import { useRepairContext } from "../hooks/useRepairContext";
+
 const Repair_form = () => {
   const { dispatch } = useRepairContext();
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [contact, setContact] = useState("");
-  const [date, setDate] = useState("");
-  const [device_brand, setDeviceBrand] = useState("");
-  const [device_model, setDeviceModel] = useState("");
-  const [problem, setProblem] = useState("");
-  const [description, setDescription] = useState("");
-  const [emailError, setEmailError] = useState(null);
-  const [contactError, setContactError] = useState(null);
-  const [error, setError] = useState(null);
-  const [showAlert, setShowAlert] = useState(false);
 
-  //email validation
-  const handleEmailChange = (e) => {
-    const input = e.target.value.toLowerCase();
-    setEmail(input);
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // regular expression
-    if (!emailPattern.test(input)) {
-      setEmailError("Please enter a valid email address");
-    } else {
-      setEmailError(null);
-    }
-  };
+    const [repair_id_int, setrepairIdInt] = useState("");
+    const [repair_id_str, setrepairIdStr] = useState("");
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [contact, setContact] = useState('');
+    const [date, setDate] = useState('');
+    const [device_brand, setDeviceBrand] = useState('');
+    const [device_model, setDeviceModel] = useState('');
+    const [problem, setProblem] = useState('');
+    const [description, setDescription] = useState('');
+    const [emailError, setEmailError] = useState(null);
+    const [contactError, setContactError] = useState(null);
+    const [error, setError] = useState(null);
+    const [showAlert, setShowAlert] = useState(false);
+
+    //email validation
+    const handleEmailChange = (e) => {
+            const input = e.target.value.toLowerCase();
+            setEmail(input);
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // regular expression
+            if(!emailPattern.test(input)){
+                setEmailError("Please enter a valid email address");
+        }else {    
+            setEmailError(null);
+        }
+    };
+
+    //contact validation
+    const handleContactChange = (e) => {
+        const input = e.target.value; // Remove non-digit characters
+        if(!/^\d*$/.test(input)){
+            setContactError("Please enter a valid phone number");
+        }else {
+            setContact(input);
+            setContactError(null);
+        }
+
+//   const [name, setName] = useState("");
+//   const [email, setEmail] = useState("");
+//   const [contact, setContact] = useState("");
+//   const [date, setDate] = useState("");
+//   const [device_brand, setDeviceBrand] = useState("");
+//   const [device_model, setDeviceModel] = useState("");
+//   const [problem, setProblem] = useState("");
+//   const [description, setDescription] = useState("");
+//   const [emailError, setEmailError] = useState(null);
+//   const [contactError, setContactError] = useState(null);
+//   const [error, setError] = useState(null);
+//   const [showAlert, setShowAlert] = useState(false);
+
+//   //email validation
+//   const handleEmailChange = (e) => {
+//     const input = e.target.value.toLowerCase();
+//     setEmail(input);
+//     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // regular expression
+//     if (!emailPattern.test(input)) {
+//       setEmailError("Please enter a valid email address");
+//     } else {
+//       setEmailError(null);
+//     }
+//   };
+
 
   //contact validation
   const handleContactChange = (e) => {
@@ -49,7 +95,25 @@ const Repair_form = () => {
     }, 2000);
 
     return () => clearTimeout(timeout);
-  }, [showAlert]);
+
+}, [showAlert]);
+
+
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        // Handle form submission logic here
+        
+        let repair_id_integer = await generateRepairIdInt();
+        setrepairIdInt(repair_id_integer);
+
+        let repair_id_string = await generateRepairIdStr();
+        setrepairIdStr(repair_id_string);
+      
+        const repair = ({repair_id_int, repair_id_str, name, email, contact, date, device_brand, device_model, problem, description});
+
+//   }, [showAlert]);
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
