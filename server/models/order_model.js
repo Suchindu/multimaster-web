@@ -1,80 +1,74 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
-const orderSchema = mongoose.Schema(
-  {
-    user: {
-      type: mongoose.Schema.Types.ObjectId,
-      required: true,
-      ref: "User",
-    },
-    orderItems: [
-      {
-        name: { type: String, required: true },
-        qty: { type: Number, required: true },
-        image: { type: String, required: true },
-        price: { type: Number, required: true },
-        product: {
-          type: mongoose.Schema.Types.ObjectId,
-          required: true,
-          ref: "Product",
-        },
-      },
-    ],
-    shippingAddress: {
-      Streetaddress: { type: String, required: true },
-      emailaddress: { type: String, required: true },
-      mobileNumber: { type: String, required: true },
-      city: { type: String, required: true },
-      province: { type: String, required: true },
-      postalCode: { type: String, required: true },
-    },
-    paymentslip: {
-      type: String,
-      required: true,
-      
-    },
-    itemsPrice: {
-      type: Number,
-      required: true,
-      default: 0.0,
-    },
-    taxPrice: {
-      type: Number,
-      required: true,
-      default: 0.0,
-    },
-    shippingPrice: {
-      type: Number,
-      required: true,
-      default: 0.0,
-    },
-    totalPrice: {
-      type: Number,
-      required: true,
-      default: 0.0,
-    },
-    isPaid: {
-      type: Boolean,
-      required: true,
-      default: false,
-    },
-    paidAt: {
-      type: Date,
-    },
-    isDelivered: {
-      type: Boolean,
-      required: true,
-      default: false,
-    },
-    deliveredAt: {
-      type: Date,
-    },
+const productSchema = new mongoose.Schema({
+  productId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Product',
+    required: true
   },
-  {
-    timestamps: true,
+  quantity: {
+    type: Number,
+    required: true
   }
-);
+});
 
-const Order = mongoose.model("Order", orderSchema);
+const orderSchema = new mongoose.Schema({
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true
+  },
+  products: [productSchema], // Array of subdocuments representing products
+  totalPrice: {
+    type: Number,
+    required: true
+  },
+  firstName: {
+    type: String,
+    required: true
+  },
+  lastName: {
+    type: String,
+    required: true
+  },
+  email: {
+    type: String,
+    required: true
+  },
+  mobileNumber: {
+    type: String,
+    required: true
+  },
+  streetAddress: {
+    type: String,
+    required: true
+  },
+  city: {
+    type: String,
+    required: true
+  },
+  province: {
+    type: String,
+    required: true
+  },
+  postalCode: {
+    type: String,
+    required: true
+  },
+  paymentSlip: {
+    type: String,
+    required: true
+  },
+  additionalDetails: {
+    type: String
+  },
+  orderState: {
+    type: String,
+    enum: ['pending', 'approved', 'rejected'],
+    default: 'pending'
+  }
+}, { timestamps: true });
 
-export default Order;
+const Order = mongoose.model('Order', orderSchema);
+
+module.exports = Order;
