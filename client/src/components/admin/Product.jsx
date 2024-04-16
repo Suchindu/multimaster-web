@@ -26,35 +26,12 @@ export default function Product() {
               });
           }
 
-          const addProducts = (data) =>{
-            // setSubmitted(true);
-            
-            const payload = {
-              // id: data.id,
-              name: data.name,
-              brand: data.brand,
-              price: data.price, 
-              category: data.category,
-              image: data.image,
-              description: data.description,
-              image: data.image,
-              countInStock: data.countInStock
-            }
-              axios.post('http://localhost:4000/api/products/', payload)
-              .then(() => {
-                  
-                  getProducts();
-                  // setSubmitted(false);
-              })
-              .catch(error => {
-                console.error("Axios Erro Occur :", error);
-              });
-          }
+          
 
   return (
     <div>
     <AddProduct
-      addProduct = {addProducts}
+      getProducts={getProducts}
     /> 
     <div className="border rounded-md border-gray-300 p-4 px-4 m-4 sm:px-6 lg:px-8">
       <div className="sm:flex sm:items-center">

@@ -1,9 +1,10 @@
 import React from 'react';
 // import { toast } from 'react-toastify';
 import { useState } from 'react';
+import { PhotoIcon } from '@heroicons/react/20/solid';
+import axios from 'axios';
 
-
-export default function AddProduct({ addProduct}) {
+export default function AddProduct({getProducts}) {
 
     // const [id, setId] = useState(0);
     const [name, setName] = useState('');
@@ -11,38 +12,65 @@ export default function AddProduct({ addProduct}) {
     const [price, setPrice] = useState(0);
     const [category, setCategory] = useState('');
     const [description, setDescription] = useState('');
-    const [image, setImage] = useState(null);
+    const [image, setImage] = useState('');
     const [countInStock, setCountInStock] = useState(0);
+    
 
-    // const uploadFileHandler = async (e) => {
-    //   const formData = new FormData();
-    //   formData.append('image', e.target.files[0]);
-    //   try {
-    //     const res = await uploadProductImage(formData).unwrap();
-    //     toast.success(res.message);
-    //     setImage(res.image);
-    //   } catch (err) {
-    //     toast.error(err?.data?.message || err.error);
-    //   }
-    // };
+    const onChangeFile = (e) => {
+      setImage(e.target.files[0]);
+    }
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setName('');
-    setBrand('');
-    setPrice(0);
-    setCategory('');
-    setDescription('');
-    setImage('');
-    setCountInStock(0);
-     
-  }
+
+    const changeOnClick = (e) => {
+      e.preventDefault();
+  
+      const formData = new FormData();
+      formData.append('image', image);
+  
+      axios.post('http://localhost:4000/api/products/upload', formData)
+      .then((res) => {
+        console.log(res.data);
+          const productData = {
+              name: name,
+              brand: brand,
+              price: price,
+              category: category,
+              description: description,
+              image: res.data.image,
+              countInStock: countInStock
+          };
+  
+          axios.post('http://localhost:4000/api/products/', productData)
+          .then((res) => {
+              console.log(res.data);
+              alert('Product added successfully!')
+              getProducts();
+              setName('');
+              setBrand('');
+              setPrice(0);
+              setCategory('');
+              setDescription('');
+              setImage('');
+              setCountInStock(0);
+          })
+          .catch(error => {
+              console.log(error);
+              alert(error.response.data.message)
+          });
+      })
+      .catch(error => {
+          console.log(error);
+          alert(error.response.data.message)
+      });
+    }
+
+
 
 
   return (
     
     <div className="flex items-center justify-center min-h-screen p-4">
-    <form className=" border rounded-md border-gray-300 p-4 w-full sm:w-auto " onSubmit={handleSubmit}>
+    <form className=" border rounded-md border-gray-300 p-4 w-full sm:w-auto " onSubmit={changeOnClick} encType='multipart/form-data'>
       <div className="space-y-12">
         <div className="border-b border-gray-900/10 pb-12">
           <h2 className="text-xl  font-sans font-semibold leading-7 text-gray-900">Add Product</h2>
@@ -97,7 +125,7 @@ export default function AddProduct({ addProduct}) {
                   value={price}
                   onChange={(e) => setPrice(e.target.value)}
                   min= "0"
-                  max="100000"
+                  max="1000000"
                   step=".01"
                   autoComplete="price"
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -177,7 +205,7 @@ export default function AddProduct({ addProduct}) {
                       className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
                     >
                       <span>Upload a file</span>
-                      <input id="file-upload" name="file-upload" value={image} onChange={handleImageUpload} type="file" className="sr-only" />
+                      <input id="file-upload" filename="image" onChange={onChangeFile} type="file" className="sr-only" />
                     </label>
                     <p className="pl-1">or drag and drop</p>
                   </div>
@@ -193,15 +221,15 @@ export default function AddProduct({ addProduct}) {
         <button
           type="submit"
           className="rounded-md bg-color4 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-          onClick={()=> addProduct({
-            name:name, 
-            brand:brand, 
-            price:price,
-            image:image, 
-            category:category, 
-            description:description, 
-            countInStock:countInStock
-          })}
+          // onClick={()=> addProduct({
+          //   name:name, 
+          //   brand:brand, 
+          //   price:price,
+          //   image:image, 
+          //   category:category, 
+          //   description:description, 
+          //   countInStock:countInStock
+          // })}
         >
           Submit
         </button>
@@ -211,3 +239,114 @@ export default function AddProduct({ addProduct}) {
   
   )
 }
+// import React, { useState } from 'react';
+// import axios from 'axios';
+// import { PhotoIcon } from '@heroicons/react/20/solid';
+
+// export default function AddProduct({ getProducts }) {
+//     const [name, setName] = useState('');
+//     const [brand, setBrand] = useState('');
+//     const [price, setPrice] = useState('');
+//     const [category, setCategory] = useState('');
+//     const [description, setDescription] = useState('');
+//     const [image, setImage] = useState(null);
+//     const [countInStock, setCountInStock] = useState('');
+
+//     const onChangeFile = (e) => {
+//         setImage(e.target.files[0]);
+//     }
+
+//     const handleSubmit = async (e) => {
+//         e.preventDefault();
+
+//         try {
+//             const formData = new FormData();
+//             formData.append('name', name);
+//             formData.append('brand', brand);
+//             formData.append('price', price);
+//             formData.append('category', category);
+//             formData.append('description', description);
+//             formData.append('image', image);
+//             formData.append('countInStock', countInStock);
+
+//             await axios.post('http://localhost:4000/api/products/', formData);
+//             getProducts();
+//             alert('Product Added Successfully');
+//             // Reset form fields after successful submission
+//             setName('');
+//             setBrand('');
+//             setPrice('');
+//             setCategory('');
+//             setDescription('');
+//             setImage(null);
+//             setCountInStock('');
+//         } catch (error) {
+//             console.error('Error adding product:', error.message);
+//             alert('Failed to add product. Please try again later.');
+//         }
+//     }
+
+//     return (
+//         <div className="flex items-center justify-center min-h-screen p-4">
+//             <form className="border rounded-md border-gray-300 p-4 w-full sm:w-auto" onSubmit={handleSubmit} encType='multipart/form-data'>
+//                 <div className="space-y-12">
+//                     <div className="border-b border-gray-900/10 pb-12">
+//                         <h2 className="text-xl font-sans font-semibold leading-7 text-gray-900">Add Product</h2>
+//                         <div className="lg:w-[600px] mt-5 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 w-auto">
+//                             <div className="col-span-full">
+//                                 <label htmlFor="name" className="block text-sm font-medium leading-6 text-gray-900">Product Title</label>
+//                                 <input type="text" name="name" id="name" value={name} onChange={(e) => setName(e.target.value)} autoComplete="name" className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+//                             </div>
+//                             <div className="col-span-3">
+//                                 <label htmlFor="brand" className="block text-sm font-medium leading-6 text-gray-900">Product Brand</label>
+//                                 <input type="text" name="brand" id="brand" value={brand} onChange={(e) => setBrand(e.target.value)} autoComplete="brand" className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+//                             </div>
+//                             <div className="col-span-3">
+//                                 <label htmlFor="price" className="block text-sm font-medium leading-6 text-gray-900">Product Price (LKR)</label>
+//                                 <input type="number" name="price" id="price" value={price} onChange={(e) => setPrice(e.target.value)} min="0" max="1000000" step=".01" autoComplete="price" className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+//                             </div>
+//                             <div className="col-span-3">
+//                                 <label htmlFor="category" className="block text-sm font-medium leading-6 text-gray-900">Product Category</label>
+//                                 <select id="category" name="category" value={category} onChange={(e) => setCategory(e.target.value)} autoComplete="category-name" className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+//                                     <option></option>
+//                                     <option>KeyBoard</option>
+//                                     <option>Mouse</option>
+//                                     <option>MotherBoard</option>
+//                                 </select>
+//                             </div>
+//                             <div className="col-span-3">
+//                                 <label htmlFor="countInStock" className="block text-sm font-medium leading-6 text-gray-900">Product Count In Stock</label>
+//                                 <input type="number" name="countInStock" id="countInStock" value={countInStock} onChange={(e) => setCountInStock(e.target.value)} min="0" max="100" autoComplete="countInStock" className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+//                             </div>
+//                             <div className="col-span-full">
+//                                 <label htmlFor="description" className="block text-sm font-medium leading-6 text-gray-900">Product Description</label>
+//                                 <textarea id="description" name="description" value={description} onChange={(e) => setDescription(e.target.value)} rows={4} className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+//                             </div>
+//                             <label for="myfile">Select a file:</label>
+//                             <input type="file" id="myfile" name="image" onChange={onChangeFile}></input>
+//                             {/* <div className="col-span-full">
+//                                 <label htmlFor="image" className="block text-sm font-medium leading-6 text-gray-900">Product Images</label>
+//                                 <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
+//                                     <div className="text-center">
+//                                         <PhotoIcon className="mx-auto h-12 w-12 text-gray-300" aria-hidden="true" />
+//                                         <div className="mt-4 flex text-sm leading-6 text-gray-600">
+//                                             <label htmlFor="file-upload" className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500">
+//                                                 <span>Upload a file</span>
+//                                                 <input id="file-upload" filename="image" onChange={onChangeFile} type="file" className="sr-only" />
+//                                             </label>
+//                                             <p className="pl-1">or drag and drop</p>
+//                                         </div>
+//                                         <p className="text-xs leading-5 text-gray-600">PNG, JPG, GIF up to 10MB</p>
+//                                     </div>
+//                                 </div>
+//                             </div> */}
+//                         </div>
+//                     </div>
+//                 </div>
+//                 <div className="mt-6 flex items-center justify-end gap-x-6">
+//                     <button type="submit" className="rounded-md bg-color4 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Submit</button>
+//                 </div>
+//             </form>
+//         </div>
+//     );
+// }
