@@ -51,23 +51,23 @@ export default App;
 // }
 
 
-function App() {
-  return (
-    <>
-    <div className="App">
-      <BrowserRouter>
-        <div className="pages">
-          <Routes>
-            <Route
-              path='/'
-              element={<Repair_form />}
-            />
-          </Routes>
-        </div>
-        {/* <Footer/> */}
-      </BrowserRouter>
-    </div>
-    </>
-  );
-}
-export default App;
+// function App() {
+//   return (
+//     <>
+//     <div className="App">
+//       <BrowserRouter>
+//         <div className="pages">
+//           <Routes>
+//             <Route
+//               path='/'
+//               element={<Repair_form />}
+//             />
+//           </Routes>
+//         </div>
+//         {/* <Footer/> */}
+//       </BrowserRouter>
+//     </div>
+//     </>
+//   );
+// }
+// export default App;

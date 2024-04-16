@@ -20,4 +20,16 @@ import { store } from './redux/store';
 //   <React.StrictMode>
 //     <Shopping_cart />
 //   </React.StrictMode>,
-// );
+// )
+
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <BrowserRouter>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </BrowserRouter>
+  </React.StrictMode>
+);
