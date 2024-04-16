@@ -5,28 +5,48 @@ import Review from './pages/Reviews';
 import Header from './components/header';
 import Footer from './components/footer';
 import Repair_form from './components/Repair_form';
-import TestDashboard from './components/test_dashboard';
+
+import Cart from './components/Cart.jsx';
+import Home from './pages/Home.jsx';
+
+
+
 
 function App() {
   return (
-    <>
-    <div className="App">
-      <BrowserRouter>
-       <Header/> 
-        <div className="pages">
-          <Routes>
-            <Route
-              path='/'
-              element={<Review />}
-            />
-          </Routes>
-        </div>
-        <Footer/>
-      </BrowserRouter>
+    <div className="app">
+      <Routes>
+        <Route exact path='/' element={<Home />}/>
+        <Route path='/cart' element={<Cart />}/>
+      </Routes>
     </div>
-    </>
   );
 }
+
+export default App;
+
+ 
+
+// function App() {
+//   return (
+//     <>
+//     <div className="App">
+//       <BrowserRouter>
+//        <Header/> 
+//         <div className="pages">
+//           <Routes>
+//             <Route
+//               path='/'
+//               element={<Review />}
+//             />
+//           </Routes>
+//         </div>
+//         <Footer/>
+//       </BrowserRouter>
+//     </div>
+//     </>
+//   );
+// }
 
 // function App() {
 //   return (

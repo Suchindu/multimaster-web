@@ -1,6 +1,6 @@
 import './home.css'
-import Item from '../components/Item'
-import { ShoppingCart } from '@mui/icons-material'
+import Item from '../components/Item.jsx'
+import { ClockIcon } from '@heroicons/react/20/solid'
 import {useNavigate} from 'react-router-dom'
 import { useSelector } from 'react-redux';
 
@@ -65,8 +65,8 @@ function Home() {
           />
         </div>
       </div>
-      <div className='shopping-cart' onClick={() => navigate('/cart')}>
-        <ShoppingCart id='cartIcon'/>
+      <div className='ClockIcon' onClick={() => navigate('/cart')}>
+        <ClockIcon id='cartIcon'/>
         <p>{getTotalQuantity() || 0}</p>
       </div>
     </div>

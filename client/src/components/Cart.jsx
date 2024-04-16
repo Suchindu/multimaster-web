@@ -35,20 +35,7 @@
 
 // export default Cart
 
-// /*
-//   This example requires some changes to your config:
 
-//   ```
-//   // tailwind.config.js
-//   module.exports = {
-//     // ...
-//     plugins: [
-//       // ...
-//       require('@tailwindcss/forms'),
-//     ],
-//   }
-//   ```
-// */
 import React from "react";
 import { useDispatch } from "react-redux";
 import {
@@ -64,7 +51,7 @@ import {
   XMarkIcon,
 } from "@heroicons/react/20/solid";
 import { useSelector } from "react-redux";
-import Total from '../components/Total'
+import Total from '../components/Total.jsx'
 
 
 

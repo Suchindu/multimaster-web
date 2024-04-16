@@ -1,4 +1,4 @@
-import './total.css'
+
 import {useSelector} from 'react-redux'
 
 function Total() {
