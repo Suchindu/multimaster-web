@@ -12,13 +12,20 @@ const productSchema = new mongoose.Schema({
   // },
   title: {
     type: String,
-    required: true
+    required: true,
+  },
+  price: {
+    type: Number,
+    required: true,
+  },
+  image: {
+    type: String,
+    required: true,
   },
   quantity: {
     type: Number,
-    required: true
+    required: true,
   },
-
 });
 
 const orderSchema = new mongoose.Schema({
@@ -53,17 +60,13 @@ const orderSchema = new mongoose.Schema({
     required: true,
   },
 
-
-
-
-
-
-
   products: [productSchema], // Array of subdocuments representing products
+
   totalPrice: {
     type: Number,
     required: true
   },
+
   // firstName: {
   //   type: String,
   //   required: true
@@ -100,9 +103,11 @@ const orderSchema = new mongoose.Schema({
   //   type: String,
   //   required: true
   // },
+
   additionalDetails: {
     type: String
   },
+  
   orderState: {
     type: String,
     enum: ['pending', 'approved', 'rejected'],

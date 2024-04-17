@@ -1,48 +1,9 @@
-// import './cart.css'
-// import Total from '../components/Total'
-// import CartItem from '../components/CartItem'
-// import { useSelector } from 'react-redux'
-
-// function Cart() {
-
-//   const cart = useSelector((state) => state.cart)
-
-//   return (
-//     <div className="cart">
-//       <div className="cart__left">
-//         <div>
-//           <h3>Shopping Cart</h3>
-//           {cart?.map((item) => (
-//             <CartItem
-//               key={item.id}
-//               id={item.id}
-//               image={item.image}
-//               title={item.title}
-//               price={item.price}
-//               quantity={item.quantity}
-//             />
-//           ))}
-//         </div>
-//       </div>
-
-//       <div className="cart__right">
-//         <Total/>
-//       </div>
-
-//     </div>
-//   )
-// }
-
-// export default Cart
-
-import React from "react";
 import { useDispatch } from "react-redux";
 import {
   incrementQuantity,
   decrementQuantity,
   removeItem,
 } from "../redux/cartSlice";
-
 import {
   CheckIcon,
   ClockIcon,
@@ -50,11 +11,14 @@ import {
   XMarkIcon,
 } from "@heroicons/react/20/solid";
 import { useSelector } from "react-redux";
-
+import { useNavigate } from "react-router-dom";
 
 export default function Cart() {
   const cart = useSelector((state) => state.cart);
+
   const dispatch = useDispatch();
+
+  const navigate = useNavigate();
 
   const getTotal = () => {
     let totalQuantity = 0;
@@ -116,7 +80,6 @@ export default function Cart() {
                           LKR {product.price}
                         </p>
                       </div>
-
 
                       <div className="mt-4">
                         <label
@@ -254,6 +217,9 @@ export default function Cart() {
               <button
                 type="submit"
                 className="w-full rounded-md border border-transparent bg-indigo-600 px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50"
+                onClick={() => {
+                  navigate("/checkout");
+                }}
               >
                 Checkout
               </button>
