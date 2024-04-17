@@ -21,7 +21,7 @@ axios.get("http://localhost:4000/api/products")
     
 
     return (
-        <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 xl:gap-x-8 ">
+        <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 ">
         {products.map((product) => {
             return (
             <Product key={product._id} product={product} />
