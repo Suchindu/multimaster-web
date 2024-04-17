@@ -14,6 +14,8 @@ export default function Product() {
   const navigate = useNavigate();
   const [products, setProducts] = useState([]);
   
+  
+  
   const componentRef = useRef();
 
  
@@ -60,7 +62,24 @@ export default function Product() {
             A list of all the products available in the store.
           </p>
         </div>
+        <div className="flex flex-col sm:flex-row items-center justify-center">
+        <input
+          type="text"
+          placeholder="Search..."
+          // value={searchTerm}
+          // onChange={e => setSearchTerm(e.target.value)}
+          className="border-2 border-gray-300 bg-white h-10 px-5 pr-16 sm:pr-60 rounded-lg text-sm focus:outline-none w-full sm:w-auto"
+        />
+        <button 
+        // onClick={handleSearch}
+        className="bg-blue-500 text-white px-6 py-2 rounded-lg ml-2 hover:bg-blue-600 focus:outline-none mt-2 sm:mt-0 w-full sm:w-auto"
+        >
+            Search
+        </button>
+      </div>
+
         <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
+       
           <button
             type="button"
             onClick={() => navigate('/add-products')}
@@ -80,7 +99,9 @@ export default function Product() {
           )}
           content={() => componentRef.current}
           />
+
         </div>
+       
       </div>
     <div>
       <div className="mt-8 flow-root">
