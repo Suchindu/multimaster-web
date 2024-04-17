@@ -11,18 +11,27 @@ import CheckOut from './components/checkout.jsx';
 import Login from "./components/Auth/Login.jsx";
 import Register from "./components/Auth/Register.jsx";
 import UserProfile from "./components/Auth/UserProfile.jsx";
+import Orderview from "./components/order_view.jsx";
+
 
 const queryClient = new QueryClient();
 
 function App() {
   return (
-    <div className="app">
-      <Routes>
-        <Route exact path='/' element={<Home />}/>
-        <Route path='/cart' element={<Cart />}/>
-        <Route path='/checkout' element={<CheckOut />}/>
-      </Routes>
-    </div>
+    <QueryClientProvider client={queryClient}>
+      <div className="app">
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/checkout" element={<CheckOut />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/profile" element={<UserProfile />} />
+          <Route path='/orderview' element={<Orderview />}/>
+
+        </Routes>
+      </div>
+    </QueryClientProvider>
   );
 }
 

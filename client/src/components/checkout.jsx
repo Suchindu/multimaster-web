@@ -66,7 +66,7 @@ export default function Checkout() {
     try {
       // Combine form data and cart items
       const orderData = {
-        uid: uuidv4(),
+        uid: uuidv4().slice(-10),
         name: data.name,
         email: data.email,
         address: data.address,
