@@ -7,9 +7,9 @@ import { RepairsContextProvider } from './context/RepairContext.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <ReviewsContextProvider>
+    
       <App/>
-    </ReviewsContextProvider>
+    
   </React.StrictMode>
 
 // ReactDOM.createRoot(document.getElementById('root')).render(

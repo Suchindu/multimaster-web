@@ -1,7 +1,7 @@
 require('dotenv').config();
-
 // Importing the necessary frameworks  
 const express = require('express'); 
+const path = require('path');
 const review_route = require('./routes/reviews.js');
 const repair_route = require('./routes/repair.js');
 const product_route = require('./routes/product.js');
@@ -20,16 +20,14 @@ app.use((request, response, next) => {
     console.log(request.path, request.method);
     next();
 });
-app.use(cors({
-    origin : "http://localhost:5173"
-}));
+app.use(cors());
 
 // Routes
 app.use('/api/reviews', review_route); 
 app.use('/api/repair', repair_route); 
 app.use('/api/products', product_route);
 app.use(upload_route);
-
+app.use('/uploads', express.static(path.join(__dirname + '/uploads')));
 // Connect to DB
 mongoose.connect(uri)
     .then(() => {
