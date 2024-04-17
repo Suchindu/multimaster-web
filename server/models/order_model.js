@@ -6,12 +6,12 @@ const productSchema = new mongoose.Schema({
   //   ref: 'Products',
   //   required: true
   // },
-  quantity: {
-    type: Number,
-    required: true
-  },
+  // quantity: {
+  //   type: Number,
+  //   required: true
+  // },
   title: {
-    type: Number,
+    type: String,
     required: true
   },
   quantity: {
@@ -27,6 +27,10 @@ const orderSchema = new mongoose.Schema({
   //   ref: 'User',
   //   required: true
   // },
+  uid: {
+    type: String,
+    required: true,
+  },
 
 
   name: {
