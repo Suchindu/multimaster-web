@@ -5,7 +5,7 @@ import AddProduct from './components/admin/AddProduct';
 import SearchProduct from './components/store/ProductGrid';
 import EditProduct from './components/admin/EditProduct';
 import OverviewProduct from './components/store/ProductOverview';
-
+import ProductSearch from './components/store/ProductSearch';
 // Importing pages and components
 // import Review from './pages/review_form';
 import Header from './components/header';
@@ -23,7 +23,8 @@ function App() {
           <Route path='/add-products' element={<AddProduct/>}/>
           <Route path='/products' element={<SearchProduct/>}/>
           <Route path="/edit-product/:id" element={<EditProduct/>}/>
-          <Route path="/View-product/:id" element={<OverviewProduct/>}/>
+          <Route path="/view-product/:id" element={<OverviewProduct/>}/>
+          <Route path="/productsearch" element={<ProductSearch/>}/>
         </Routes>
         <Footer/>
       </BrowserRouter>

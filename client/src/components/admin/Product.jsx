@@ -1,9 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useRef } from 'react';
+import { useEffect } from 'react';
 import AddProduct from './AddProduct';
 import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import ReactToPrint from 'react-to-print';
 
 
 
@@ -11,8 +13,10 @@ export default function Product() {
 
   const navigate = useNavigate();
   const [products, setProducts] = useState([]);
-  // const [submitted, setSubmitted] = useState(false);
+  
+  const componentRef = useRef();
 
+ 
 
       useEffect(() => {
         getProducts();
@@ -41,10 +45,12 @@ export default function Product() {
           });
         }
 
+       
+
           
 
   return (
-    <div>
+    <div >
 
     <div className="border rounded-md border-gray-300 p-4 px-4 m-4 sm:px-6 lg:px-8">
       <div className="sm:flex sm:items-center">
@@ -62,13 +68,27 @@ export default function Product() {
           >
             Add Product
           </button>
+          <ReactToPrint
+        trigger={() => (
+          <button
+            type="button"
+            
+            className="block rounded-md bg-green-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600 mt-2"
+          >
+            Print as PDF
+          </button>
+          )}
+          content={() => componentRef.current}
+          />
         </div>
       </div>
+    <div>
       <div className="mt-8 flow-root">
         <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
             <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
-              <table className="min-w-full divide-y divide-gray-300">
+            
+              <table ref={componentRef} className="min-w-full divide-y divide-gray-300">
                 <thead className="bg-gray-50">
                   <tr>
                     <th scope="col" className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
@@ -137,11 +157,13 @@ export default function Product() {
 }
                 </tbody>
               </table>
+              </div>
             </div>
           </div>
         </div>
       </div>
+      </div>
     </div>
-  </div>
+
   )
 }
