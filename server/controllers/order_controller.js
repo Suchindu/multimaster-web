@@ -34,40 +34,41 @@ const getOrderById = async (req, res) => {
 
 // Create a new order
 const createOrder = async (req, res) => {
-  const {
-    userId,
-    products,
-    totalPrice,
-    firstName,
-    lastName,
-    email,
-    mobileNumber,
-    streetAddress,
-    city,
-    province,
-    postalCode,
-    paymentSlip,
-    additionalDetails,
-    orderState,
-  } = req.body;
+  // const {
+  //   //userId,
+  //   //products,
+  //   //totalPrice,
+  //   firstName,
+  //   lastName,
+  //   email,
+  //   mobileNumber,
+  //   streetAddress,
+  //   city,
+  //   province,
+  //   postalCode,
+  //   paymentSlip,
+  //   additionalDetails,
+  //   orderState,
+  // } = req.body;
 
   try {
-    const order = await Order.create({
-      userId,
-      products,
-      totalPrice,
-      firstName,
-      lastName,
-      email,
-      mobileNumber,
-      streetAddress,
-      city,
-      province,
-      postalCode,
-      paymentSlip,
-      additionalDetails,
-      orderState,
-    });
+    const order = await Order.create(req.body)
+    // const order = await Order.create({
+    //  // userId,
+    //  // products,
+    //   //totalPrice,
+    //   firstName,
+    //   lastName,
+    //   email,
+    //   mobileNumber,
+    //   streetAddress,
+    //   city,
+    //   province,
+    //   postalCode,
+    //   paymentSlip,
+    //   additionalDetails,
+    //   orderState,
+    // });
     res.status(200).json(order);
   } catch (error) {
     console.error(error);

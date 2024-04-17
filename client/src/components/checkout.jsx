@@ -30,10 +30,27 @@ export default function Checkout() {
     e.preventDefault(); // Prevent default form submission
     try {
       // Combine form data and cart items
-      const orderData = { ...formData, cart };
+      const orderData = {
+        // Add the necessary fields from formData
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        email: formData.email,
+        mobileNumber: formData.mobileNumber,
+        streetAddress: formData.streetAddress,
+        city: formData.city,
+        province: formData.region, // Or change to province if that's what backend expects
+        postalCode: formData.postalCode,
+        // Add other fields as needed
+        // Ensure that the cart items are properly formatted
+        cart: cart.map(item => ({
+          productId: item.productId,
+          quantity: item.quantity,
+          // Add other product-related fields if needed
+        })),
+      };
 
       // Send POST request to backend to submit order with cart items
-      const response = await axios.post("/api/orders", orderData);
+      const response = await axios.post("http://localhost:5000/api/orders", orderData);
 
       // Handle successful response (e.g., show confirmation message)
       console.log("Order submitted:", response.data);

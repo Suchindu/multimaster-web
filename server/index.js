@@ -5,6 +5,8 @@ const express = require('express');
 const review_route = require('./routes/reviews.js');
 const repair_route = require('./routes/repair.js');
 const product_route = require('./routes/product.js');
+const order_route = require('./routes/order_routes.js');
+
 const mongoose = require('mongoose');
 const port = process.env.port || 5050;
 const uri = process.env.uri;
@@ -27,6 +29,7 @@ app.use(cors({
 app.use('/api/reviews', review_route); 
 app.use('/api/repair', repair_route); 
 app.use('/api/products', product_route);
+app.use('/api/orders', order_route);
 // Connect to DB
 mongoose.connect(uri)
     .then(() => {
