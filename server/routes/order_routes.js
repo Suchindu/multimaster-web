@@ -1,8 +1,10 @@
 const express = require('express');
 const router = express.Router();
+
 const {
     getOrders,
     getOrderById,
+    getOrderByUid,
     createOrder,
     deleteOrder,
     updateOrder
@@ -22,5 +24,8 @@ router.delete('/:id', deleteOrder);
 
 // Route to update an order by ID
 router.patch('/:id', updateOrder);
+
+// Route to get a single order by UID
+router.get('/orderid/:uid', getOrderByUid);
 
 module.exports = router;

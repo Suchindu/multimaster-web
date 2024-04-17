@@ -32,6 +32,23 @@ const getOrderById = async (req, res) => {
   }
 };
 
+
+// Get a single order by UID
+const getOrderByUid = async (req, res) => {
+  const { uid } = req.params;
+
+  try {
+    const order = await Order.findOne({ uid: uid });
+    if (!order) {
+      return res.status(404).json({ error: "No such order" });
+    }
+    res.status(200).json(order);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Server error" });
+  }
+};
+
 // Create a new order
 const createOrder = async (req, res) => {
   // const {
@@ -123,6 +140,7 @@ const updateOrder = async (req, res) => {
 module.exports = {
   getOrders,
   getOrderById,
+  getOrderByUid,
   createOrder,
   deleteOrder,
   updateOrder,

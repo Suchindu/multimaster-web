@@ -12,6 +12,7 @@ import Login from "./components/Auth/Login.jsx";
 import Register from "./components/Auth/Register.jsx";
 import UserProfile from "./components/Auth/UserProfile.jsx";
 import Orderview from "./components/order_view.jsx";
+import SingleOrder from "./components/singleorder.jsx";
 
 
 const queryClient = new QueryClient();
@@ -28,7 +29,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/profile" element={<UserProfile />} />
           <Route path='/orderview' element={<Orderview />}/>
-
+          <Route path="/singleorder/:uid" element={<SingleOrder />} />
         </Routes>
       </div>
     </QueryClientProvider>
