@@ -96,52 +96,6 @@ export default function EditProduct() {
       });
     }
 
-    
-    // const changeOnClick = (e) => {
-    //   e.preventDefault();
-  
-    //   const formData = new FormData();
-    //   formData.append('image', image);
-    //   console.log(image);
-    //   axios.post('http://localhost:4000/api/products/upload', formData)
-    //   .then((res) => {
-    //     console.log(res.data);
-    //       const productData = {
-    //           name: name,
-    //           brand: brand,
-    //           price: price,
-    //           category:category,
-    //           description: description,
-    //           image: res.data.image ,
-    //           countInStock:countInStock
-    //       };
-  
-    //       axios.put(`http://localhost:4000/api/products/${id}`, productData)
-    //       .then((res) => {
-    //           console.log(res.data);
-    //           alert('Product Updated successfully!')
-    //           getProducts();
-    //           setName('');
-    //           setBrand('');
-    //           setPrice(0);
-    //           setCategory('');
-    //           setDescription('');
-    //           setImage('');
-    //           setCountInStock(0);
-    //       })
-    //       .catch(error => {
-    //           console.log(error);
-    //           alert(error.response.data.message)
-    //       });
-    //   })
-    //   .catch(error => {
-    //       console.log(error);
-    //       alert(error.response.data.message)
-    //   });
-    // }
-
-
-
 
   return (
     

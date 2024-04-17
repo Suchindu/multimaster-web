@@ -7,289 +7,147 @@
     // ...
     plugins: [
       // ...
-      require('@tailwindcss/typography'),
+      require('@tailwindcss/aspect-ratio'),
     ],
   }
   ```
 */
-import { useState } from 'react'
+import axios from 'axios';
+import { Fragment, useState, useEffect } from 'react'
+import { useNavigate, useParams } from 'react-router-dom';
+import { Dialog, RadioGroup, Transition } from '@headlessui/react'
+import { XMarkIcon } from '@heroicons/react/24/outline'
 import { StarIcon } from '@heroicons/react/20/solid'
-import { RadioGroup } from '@headlessui/react'
-import { CurrencyDollarIcon, GlobeAmericasIcon } from '@heroicons/react/24/outline'
 
 const product = {
-  name: 'Basic Tee',
-  price: '$35',
+  name: 'Zip Tote Basket',
+  price: '$220',
   rating: 3.9,
-  reviewCount: 512,
   href: '#',
-  breadcrumbs: [
-    { id: 1, name: 'Women', href: '#' },
-    { id: 2, name: 'Clothing', href: '#' },
-  ],
-  images: [
-    {
-      id: 1,
-      imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-page-01-featured-product-shot.jpg',
-      imageAlt: "Back of women's Basic Tee in black.",
-      primary: true,
-    },
-    {
-      id: 2,
-      imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-page-01-product-shot-01.jpg',
-      imageAlt: "Side profile of women's Basic Tee in black.",
-      primary: false,
-    },
-    {
-      id: 3,
-      imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-page-01-product-shot-02.jpg',
-      imageAlt: "Front of women's Basic Tee in black.",
-      primary: false,
-    },
-  ],
+  description:
+    'The Zip Tote Basket is the perfect midpoint between shopping tote and comfy backpack. With convertible straps, you can hand carry, should sling, or backpack this convenient and spacious bag. The zip top and durable canvas construction keeps your goods protected for all-day use.',
+  imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-page-03-product-04.jpg',
+  imageAlt: 'Back angled view with bag open and handles to the side.',
   colors: [
-    { name: 'Black', bgColor: 'bg-gray-900', selectedColor: 'ring-gray-900' },
-    { name: 'Heather Grey', bgColor: 'bg-gray-400', selectedColor: 'ring-gray-400' },
-  ],
-  sizes: [
-    { name: 'XXS', inStock: true },
-    { name: 'XS', inStock: true },
-    { name: 'S', inStock: true },
-    { name: 'M', inStock: true },
-    { name: 'L', inStock: true },
-    { name: 'XL', inStock: false },
-  ],
-  description: `
-    <p>The Basic tee is an honest new take on a classic. The tee uses super soft, pre-shrunk cotton for true comfort and a dependable fit. They are hand cut and sewn locally, with a special dye technique that gives each tee it's own look.</p>
-    <p>Looking to stock your closet? The Basic tee also comes in a 3-pack or 5-pack at a bundle discount.</p>
-  `,
-  details: [
-    'Only the best materials',
-    'Ethically and locally made',
-    'Pre-washed and pre-shrunk',
-    'Machine wash cold with similar colors',
+    { name: 'Washed Black', bgColor: 'bg-gray-700', selectedColor: 'ring-gray-700' },
+    { name: 'White', bgColor: 'bg-white', selectedColor: 'ring-gray-400' },
+    { name: 'Washed Gray', bgColor: 'bg-gray-500', selectedColor: 'ring-gray-500' },
   ],
 }
-const policies = [
-  { name: 'International delivery', icon: GlobeAmericasIcon, description: 'Get your order in 2 years' },
-  { name: 'Loyalty rewards', icon: CurrencyDollarIcon, description: "Don't look at other tees" },
-]
+
+
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
 export default function Example() {
-  const [selectedColor, setSelectedColor] = useState(product.colors[0])
-  const [selectedSize, setSelectedSize] = useState(product.sizes[2])
+  // const [open, setOpen] = useState(false)
+  // const [selectedColor, setSelectedColor] = useState(product.colors[0])
+  
+  const { id } = useParams();
+  const [name, setName] = useState('');
+  const [brand, setBrand] = useState('');
+  const [price, setPrice] = useState(0);
+  const [category, setCategory] = useState('');
+  const [description, setDescription] = useState('');
+  const [image, setImage] = useState('');
+  const [countInStock, setCountInStock] = useState(0);
+  const navigate = useNavigate();
+  const [imagePreview, setImagePreview] = useState(null);
+
+
+useEffect(() => {
+  const fetchProduct = async () => {
+    try {
+      const response = await axios.get(`http://localhost:4000/api/products/${id}`);
+      console.log(response.data);
+      setName(response.data.name);
+      setBrand(response.data.brand);
+      setPrice(response.data.price);
+      setCategory(response.data.category);
+      setDescription(response.data.description);
+      setImage(response.data.image);
+      setCountInStock(response.data.countInStock);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  fetchProduct();
+}, [id]);
 
   return (
-    <div className="bg-white">
-      <div className="pb-16 pt-6 sm:pb-24">
-        <nav aria-label="Breadcrumb" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <ol role="list" className="flex items-center space-x-4">
-            {product.breadcrumbs.map((breadcrumb) => (
-              <li key={breadcrumb.id}>
-                <div className="flex items-center">
-                  <a href={breadcrumb.href} className="mr-4 text-sm font-medium text-gray-900">
-                    {breadcrumb.name}
-                  </a>
-                  <svg viewBox="0 0 6 20" aria-hidden="true" className="h-5 w-auto text-gray-300">
-                    <path d="M4.878 4.34H3.551L.27 16.532h1.327l3.281-12.19z" fill="currentColor" />
-                  </svg>
-                </div>
-              </li>
-            ))}
-            <li className="text-sm">
-              <a href={product.href} aria-current="page" className="font-medium text-gray-500 hover:text-gray-600">
-                {product.name}
-              </a>
-            </li>
-          </ol>
-        </nav>
-        <div className="mx-auto mt-8 max-w-2xl px-4 sm:px-6 lg:max-w-7xl lg:px-8">
-          <div className="lg:grid lg:auto-rows-min lg:grid-cols-12 lg:gap-x-8">
-            <div className="lg:col-span-5 lg:col-start-8">
-              <div className="flex justify-between">
-                <h1 className="text-xl font-medium text-gray-900">{product.name}</h1>
-                <p className="text-xl font-medium text-gray-900">{product.price}</p>
-              </div>
-              {/* Reviews */}
-              <div className="mt-4">
-                <h2 className="sr-only">Reviews</h2>
-                <div className="flex items-center">
-                  <p className="text-sm text-gray-700">
-                    {product.rating}
-                    <span className="sr-only"> out of 5 stars</span>
-                  </p>
-                  <div className="ml-1 flex items-center">
-                    {[0, 1, 2, 3, 4].map((rating) => (
-                      <StarIcon
-                        key={rating}
-                        className={classNames(
-                          product.rating > rating ? 'text-yellow-400' : 'text-gray-200',
-                          'h-5 w-5 flex-shrink-0'
-                        )}
-                        aria-hidden="true"
-                      />
-                    ))}
-                  </div>
-                  <div aria-hidden="true" className="ml-4 text-sm text-gray-300">
-                    ·
-                  </div>
-                  <div className="ml-4 flex">
-                    <a href="#" className="text-sm font-medium text-indigo-600 hover:text-indigo-500">
-                      See all {product.reviewCount} reviews
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Image gallery */}
-            <div className="mt-8 lg:col-span-7 lg:col-start-1 lg:row-span-3 lg:row-start-1 lg:mt-0">
-              <h2 className="sr-only">Images</h2>
-
-              <div className="grid grid-cols-1 lg:grid-cols-2 lg:grid-rows-3 lg:gap-8">
-                {product.images.map((image) => (
-                  <img
-                    key={image.id}
-                    src={image.imageSrc}
-                    alt={image.imageAlt}
-                    className={classNames(
-                      image.primary ? 'lg:col-span-2 lg:row-span-2' : 'hidden lg:block',
-                      'rounded-lg'
-                    )}
-                  />
-                ))}
-              </div>
-            </div>
-
-            <div className="mt-8 lg:col-span-5">
-              <form>
-                {/* Color picker */}
+    //
                 <div>
-                  <h2 className="text-sm font-medium text-gray-900">Color</h2>
-
-                  <RadioGroup value={selectedColor} onChange={setSelectedColor} className="mt-2">
-                    <RadioGroup.Label className="sr-only">Choose a color</RadioGroup.Label>
-                    <div className="flex items-center space-x-3">
-                      {product.colors.map((color) => (
-                        <RadioGroup.Option
-                          key={color.name}
-                          value={color}
-                          className={({ active, checked }) =>
-                            classNames(
-                              color.selectedColor,
-                              active && checked ? 'ring ring-offset-1' : '',
-                              !active && checked ? 'ring-2' : '',
-                              'relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full p-0.5 focus:outline-none'
-                            )
-                          }
-                        >
-                          <RadioGroup.Label as="span" className="sr-only">
-                            {color.name}
-                          </RadioGroup.Label>
-                          <span
-                            aria-hidden="true"
-                            className={classNames(
-                              color.bgColor,
-                              'h-8 w-8 rounded-full border border-black border-opacity-10'
-                            )}
-                          />
-                        </RadioGroup.Option>
-                      ))}
+                  <button
+                    type="submit"
+                    className="rounded-md bg-color4 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                    onClick={() => navigate('/products')}
+                  >
+                    Back
+                  </button>
+                  <div className="border rounded-lg grid w-ful grid-cols-1 items-start gap-x-6 gap-y-8 sm:grid-cols-12 lg:gap-x-8 p-10">
+                    <div className="sm:col-span-4 lg:col-span-5">
+                      <div className="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg bg-gray-100">
+                        <img src={`http://localhost:4000${image}`} alt={product.imageAlt} className="object-cover object-center" />
+                      </div>
                     </div>
-                  </RadioGroup>
-                </div>
+                    <div className="sm:col-span-8 lg:col-span-7">
+                      <h2 className="text-2xl font-bold text-gray-900 sm:pr-12">{name}</h2>
 
-                {/* Size picker */}
-                <div className="mt-8">
-                  <div className="flex items-center justify-between">
-                    <h2 className="text-sm font-medium text-gray-900">Size</h2>
-                    <a href="#" className="text-sm font-medium text-indigo-600 hover:text-indigo-500">
-                      See sizing chart
-                    </a>
+                      <section aria-labelledby="information-heading" className="mt-3">
+                        <h3 id="information-heading" className="sr-only">
+                          Product information
+                        </h3>
+
+                        <p className="text-2xl text-gray-900">{product.price}</p>
+
+                        {/* Reviews */}
+                        <div className="mt-3">
+                          <h4 className="sr-only">Reviews</h4>
+                          
+                        </div>
+
+                        <div className="mt-6">
+                          <h4 className="sr-only">Description</h4>
+
+                          <p className="text-sm text-gray-700">{product.description}</p>
+                        </div>
+                      </section>
+
+                      <section aria-labelledby="options-heading" className="mt-6">
+                        <h3 id="options-heading" className="sr-only">
+                          Product options
+                        </h3>
+
+                        <form>
+                          {/* Colors */}
+                          <div>
+                            <h4 className="text-sm text-gray-600">Color</h4>
+
+                            
+                          </div>
+
+                          <div className="mt-6">
+                            <button
+                              type="submit"
+                              className="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50"
+                            >
+                              Add to bag
+                            </button>
+                          </div>
+
+                          <p className="absolute left-4 top-4 text-center sm:static sm:mt-6">
+                            <a href={product.href} className="font-medium text-indigo-600 hover:text-indigo-500">
+                              View full details
+                            </a>
+                          </p>
+                        </form>
+                      </section>
+                    </div>
                   </div>
-
-                  <RadioGroup value={selectedSize} onChange={setSelectedSize} className="mt-2">
-                    <RadioGroup.Label className="sr-only">Choose a size</RadioGroup.Label>
-                    <div className="grid grid-cols-3 gap-3 sm:grid-cols-6">
-                      {product.sizes.map((size) => (
-                        <RadioGroup.Option
-                          key={size.name}
-                          value={size}
-                          className={({ active, checked }) =>
-                            classNames(
-                              size.inStock ? 'cursor-pointer focus:outline-none' : 'cursor-not-allowed opacity-25',
-                              active ? 'ring-2 ring-indigo-500 ring-offset-2' : '',
-                              checked
-                                ? 'border-transparent bg-indigo-600 text-white hover:bg-indigo-700'
-                                : 'border-gray-200 bg-white text-gray-900 hover:bg-gray-50',
-                              'flex items-center justify-center rounded-md border py-3 px-3 text-sm font-medium uppercase sm:flex-1'
-                            )
-                          }
-                          disabled={!size.inStock}
-                        >
-                          <RadioGroup.Label as="span">{size.name}</RadioGroup.Label>
-                        </RadioGroup.Option>
-                      ))}
-                    </div>
-                  </RadioGroup>
-                </div>
-
-                <button
-                  type="submit"
-                  className="mt-8 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                >
-                  Add to cart
-                </button>
-              </form>
-
-              {/* Product details */}
-              <div className="mt-10">
-                <h2 className="text-sm font-medium text-gray-900">Description</h2>
-
-                <div
-                  className="prose prose-sm mt-4 text-gray-500"
-                  dangerouslySetInnerHTML={{ __html: product.description }}
-                />
-              </div>
-
-              <div className="mt-8 border-t border-gray-200 pt-8">
-                <h2 className="text-sm font-medium text-gray-900">Fabric &amp; Care</h2>
-
-                <div className="prose prose-sm mt-4 text-gray-500">
-                  <ul role="list">
-                    {product.details.map((item) => (
-                      <li key={item}>{item}</li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-
-              {/* Policies */}
-              <section aria-labelledby="policies-heading" className="mt-10">
-                <h2 id="policies-heading" className="sr-only">
-                  Our Policies
-                </h2>
-
-                <dl className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
-                  {policies.map((policy) => (
-                    <div key={policy.name} className="rounded-lg border border-gray-200 bg-gray-50 p-6 text-center">
-                      <dt>
-                        <policy.icon className="mx-auto h-6 w-6 flex-shrink-0 text-gray-400" aria-hidden="true" />
-                        <span className="mt-4 text-sm font-medium text-gray-900">{policy.name}</span>
-                      </dt>
-                      <dd className="mt-1 text-sm text-gray-500">{policy.description}</dd>
-                    </div>
-                  ))}
-                </dl>
-              </section>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+                  </div>
+  
   )
 }
