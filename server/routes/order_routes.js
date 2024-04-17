@@ -5,7 +5,7 @@ const {
     getOrders,
     getOrderById,
     getOrderByUid,
-    createOrder,
+    getOrdersByEmail,    createOrder,
     deleteOrder,
     updateOrder
 } = require('../controllers/order_controller');
@@ -27,5 +27,10 @@ router.patch('/:id', updateOrder);
 
 // Route to get a single order by UID
 router.get('/orderid/:uid', getOrderByUid);
+
+// Route to get orders by email
+router.get('/emailid/:email', getOrdersByEmail);
+
+
 
 module.exports = router;

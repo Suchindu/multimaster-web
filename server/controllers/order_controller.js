@@ -49,6 +49,22 @@ const getOrderByUid = async (req, res) => {
   }
 };
 
+// Get orders by email
+const getOrdersByEmail = async (req, res) => {
+  const { email } = req.params;
+
+  try {
+    const orders = await Order.find({ email: email });
+    if (!orders) {
+      return res.status(404).json({ error: "No orders found for this email" });
+    }
+    res.status(200).json(orders);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Server error" });
+  }
+};
+
 // Create a new order
 const createOrder = async (req, res) => {
   // const {
@@ -141,6 +157,7 @@ module.exports = {
   getOrders,
   getOrderById,
   getOrderByUid,
+  getOrdersByEmail,
   createOrder,
   deleteOrder,
   updateOrder,

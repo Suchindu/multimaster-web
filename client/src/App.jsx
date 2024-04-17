@@ -13,6 +13,7 @@ import Register from "./components/Auth/Register.jsx";
 import UserProfile from "./components/Auth/UserProfile.jsx";
 import Orderview from "./components/order_view.jsx";
 import SingleOrder from "./components/singleorder.jsx";
+import OrderHistory from "./components/orderHistory.jsx";
 
 
 const queryClient = new QueryClient();
@@ -30,6 +31,7 @@ function App() {
           <Route path="/profile" element={<UserProfile />} />
           <Route path='/orderview' element={<Orderview />}/>
           <Route path="/singleorder/:uid" element={<SingleOrder />} />
+          <Route path="/orderhistory" element={<OrderHistory />} />
         </Routes>
       </div>
     </QueryClientProvider>

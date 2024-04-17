@@ -212,12 +212,3 @@ export default function Orderview() {
   );
 }
 
-{
-  /* <a
-                              href="#"
-                              className="text-indigo-600 hover:text-indigo-900"
-                            >
-                              View Order
-                              <span className="sr-only">, {order.name}</span>
-                            </a> */
-}
