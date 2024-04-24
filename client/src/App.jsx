@@ -17,16 +17,26 @@ function App() {
     <>
     <div className="App">
       <BrowserRouter>
-        <Header/>
+        
         <Routes>
-          <Route path='/admin-products' element={<Product/>}/> 
+          <Route path='/' element={
+            <>
+              <Header/>
+              <SearchProduct/>
+              <Footer/>
+            </>
+          }/>
+          <Route path="/view-product/:id" element={
+            <>
+              <Header/>
+              <OverviewProduct/>
+              <Footer/>
+            </>
+          }/>
           <Route path='/add-products' element={<AddProduct/>}/>
-          <Route path='/products' element={<SearchProduct/>}/>
+          <Route path='/admin-products' element={<Product/>}/>
           <Route path="/edit-product/:id" element={<EditProduct/>}/>
-          <Route path="/view-product/:id" element={<OverviewProduct/>}/>
-          <Route path="/productsearch" element={<ProductSearch/>}/>
         </Routes>
-        <Footer/>
       </BrowserRouter>
     </div>
     </>

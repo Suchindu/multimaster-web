@@ -13,7 +13,8 @@ export default function Product() {
 
   const navigate = useNavigate();
   const [products, setProducts] = useState([]);
-  
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [search, setSearch] = useState('');
   
   
   const componentRef = useRef();
@@ -24,6 +25,23 @@ export default function Product() {
         getProducts();
       },[]);
 
+      useEffect(() => {
+        if (search.trim() !== '') {
+            const filtered = products.filter((product) => {
+                return product.name.toLowerCase().includes(search.toLowerCase()) ||
+                product.brand.toLowerCase().includes(search.toLowerCase()) ||
+                product.price.toString().includes(search) ||
+                product.category.toLowerCase().includes(search.toLowerCase()) ||
+                product.description.toLowerCase().includes(search.toLowerCase())
+                // product.image.toLowerCase().includes(search.toLowerCase()) ||
+                // product.countInStock.toLowerCase().includes(search.toLowerCase()) ||
+                // repair.description.toLowerCase().includes(search.toLowerCase());
+            });
+            setFilteredProducts(filtered);
+        } else {
+            setFilteredProducts(products);
+        }
+    }, [products, search]);
 
         const getProducts = () => {
               axios.get('http://localhost:4000/api/products/')
@@ -66,8 +84,8 @@ export default function Product() {
         <input
           type="text"
           placeholder="Search..."
-          // value={searchTerm}
-          // onChange={e => setSearchTerm(e.target.value)}
+          value={search}
+          onChange={e => setSearch(e.target.value)}
           className="border-2 border-gray-300 bg-white h-10 px-5 pr-16 sm:pr-60 rounded-lg text-sm focus:outline-none w-full sm:w-auto"
         />
         <button 
@@ -83,7 +101,7 @@ export default function Product() {
           <button
             type="button"
             onClick={() => navigate('/add-products')}
-            className="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            className="block rounded-md bg-color4 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
           >
             Add Product
           </button>
@@ -92,7 +110,7 @@ export default function Product() {
           <button
             type="button"
             
-            className="block rounded-md bg-green-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600 mt-2"
+            className="block rounded-md bg-color4 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600 mt-2"
           >
             Print as PDF
           </button>
@@ -136,16 +154,16 @@ export default function Product() {
                     <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 sm:text-nowrap">
                       In Stock
                     </th>
-                    <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-6">
+                    <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-6 hide-on-print">
                       <span className="sr-only">Edit</span>
                     </th>
-                    <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-6">
+                    <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-6 hide-on-print">
                       <span className="sr-only">Delete</span>
                     </th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200 bg-white">
-                  {products.length > 0 ? products.map((product) => (
+                  {filteredProducts &&filteredProducts.length > 0 ? filteredProducts.map((product) => (
                     <tr key={product._id}>
                       <td className="whitespace-wrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
                         {product._id}
@@ -158,12 +176,12 @@ export default function Product() {
                       <td className="whitespace-wrap px-3 py-4 text-sm text-gray-500">{product.image}</td>
                       <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{product.countInStock}</td>
                       <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                        <Link to={`/edit-product/${product._id}`} className="border border-gray-300 rounded px-2 py-1 text-indigo-600 hover:text-indigo-900">
+                        <Link to={`/edit-product/${product._id}`} className="border border-gray-300 rounded px-2 py-1 text-indigo-600 hover:text-indigo-900 hide-on-print">
                           Edit<span className="sr-only">, {product._id}</span>
                         </Link>
                       </td>
                       <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                        <button onClick={e=> deleteProduct(product._id)} className="border border-gray-300 rounded px-2 py-1 text-indigo-600 hover:text-indigo-900">
+                        <button onClick={e=> deleteProduct(product._id)} className="border border-gray-300 rounded px-2 py-1 text-indigo-600 hover:text-indigo-900 hide-on-print">
                           Delete<span className="sr-only">, {product._id}</span>
                         </button>
                       </td>
@@ -177,7 +195,10 @@ export default function Product() {
                 </tr>
 }
                 </tbody>
+
               </table>
+
+
               </div>
             </div>
           </div>
