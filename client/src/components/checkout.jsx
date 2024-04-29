@@ -160,7 +160,11 @@ export default function Checkout() {
                     <input
                       {...register("email", {
                         required: true,
-                        maxLength: 200,
+                        maxLength: 20,
+                        pattern: {
+                        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                        message: "invalid email address"
+                        }
                       })}
                       type="email"
                       autoComplete="email"
@@ -187,7 +191,8 @@ export default function Checkout() {
                     <input
                       {...register("phone", {
                         required: true,
-                        maxLength: 200,
+                        maxLength: 10,
+                        minLength: 10,
                       })}
                       className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />

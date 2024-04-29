@@ -14,6 +14,8 @@ import UserProfile from "./components/Auth/UserProfile.jsx";
 import Orderview from "./components/order_view.jsx";
 import SingleOrder from "./components/singleorder.jsx";
 import OrderHistory from "./components/orderHistory.jsx";
+import Header from "./components/header.jsx";
+import Footer from "./components/footer.jsx";
 
 
 const queryClient = new QueryClient();
@@ -22,6 +24,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <div className="app">
+        <Header />
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route path="/cart" element={<Cart />} />
@@ -33,6 +36,7 @@ function App() {
           <Route path="/singleorder/:uid" element={<SingleOrder />} />
           <Route path="/orderhistory" element={<OrderHistory />} />
         </Routes>
+        <Footer />
       </div>
     </QueryClientProvider>
   );
