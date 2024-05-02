@@ -1,101 +1,87 @@
 import React from 'react';
 // import { toast } from 'react-toastify';
 import { useState, useEffect } from 'react';
-import { PhotoIcon } from '@heroicons/react/20/solid';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useContext } from 'react';
 
 export default function EditProduct() {
+  
+      const { id } = useParams();
+      const navigate = useNavigate();
+      const [product, setProduct] = useState({
+        name: '',
+        brand: '',
+        price: 0,
+        category: '',
+        description: '',
+        image: '',
+        countInStock: 0,
+      });
+      const [isFileChanged, setIsFileChanged] = useState(false);
+      const [imagePreview, setImagePreview] = useState(null);
 
-    const { id } = useParams();
-    const [name, setName] = useState('');
-    const [brand, setBrand] = useState('');
-    const [price, setPrice] = useState(0);
-    const [category, setCategory] = useState('');
-    const [description, setDescription] = useState('');
-    const [image, setImage] = useState('');
-    const [countInStock, setCountInStock] = useState(0);
-    const navigate = useNavigate();
-    const [isFileChanged, setIsFileChanged] = useState(false);
-    const [imagePreview, setImagePreview] = useState(null);
+      useEffect(() => {
+        const fetchProduct = async () => {
+          try {
+            const response = await axios.get(`http://localhost:4000/api/products/${id}`);
+            console.log(response.data);
+            setProduct(response.data);
+            setImagePreview(`http://localhost:4000${response.data.image}`);
+          } catch (error) {
+            console.error(error);
+          }
+        };
+        fetchProduct();
+      }, [id]);
 
-    useEffect(() => {
-    const fetchProduct = async () => {
-      try {
-        const response = await axios.get(`http://localhost:4000/api/products/${id}`);
-        console.log(response.data);
-        setName(response.data.name);
-        setBrand(response.data.brand);
-        setPrice(response.data.price);
-        setCategory(response.data.category);
-        setDescription(response.data.description);
-        setImage(response.data.image);
-        setImagePreview(`http://localhost:4000${response.data.image}`)
-        setCountInStock(response.data.countInStock);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchProduct();
-  }, [id]);
-    
-    const onChangeFile = (e) => {
-      setImage(e.target.files[0]);
-      setIsFileChanged(true)
-      setImagePreview(URL.createObjectURL(e.target.files[0]))
-    }
-
-    const changeOnClick = (e) => {
-      e.preventDefault();
-    
-      const productData = {
-        name: name,
-        brand: brand,
-        price: price,
-        category: category,
-        description: description,
-        countInStock: countInStock
+      const onChangeFile = (e) => {
+        setProduct({ ...product, image: e.target.files[0] });
+        setIsFileChanged(true);
+        setImagePreview(URL.createObjectURL(e.target.files[0]));
       };
-    
-      if (isFileChanged) {
-        const formData = new FormData();
-        formData.append('image', image);
-        console.log(image);
-        axios.post('http://localhost:4000/api/products/upload', formData)
+
+      const changeOnClick = (e) => {
+        e.preventDefault();
+        if (isFileChanged) {
+          const formData = new FormData();
+          formData.append('image', product.image);
+          console.log(product.image);
+          axios.post('http://localhost:4000/api/products/upload', formData)
+          .then((res) => {
+            console.log(res.data);
+            product.image = res.data.image;
+            updateProduct(product);
+          })
+          .catch(error => {
+            console.log(error);
+            alert(error.response.data.message);
+          });
+        } else {
+          updateProduct(product);
+        }
+      };
+
+      const updateProduct = (productData) => {
+        axios.put(`http://localhost:4000/api/products/${id}`, productData)
         .then((res) => {
           console.log(res.data);
-          productData.image = res.data.image;
-          updateProduct(productData);
+          alert('Product Updated successfully!');
+          setProduct({
+            name: '',
+            brand: '',
+            price: 0,
+            category: '',
+            description: '',
+            image: '',
+            countInStock: 0,
+          });
         })
         .catch(error => {
           console.log(error);
-          alert(error.response.data.message)
+          alert(error.response.data.message);
         });
-      } else {
-        updateProduct(productData);
-      }
-    }
-    
-    const updateProduct = (productData) => {
-      axios.put(`http://localhost:4000/api/products/${id}`, productData)
-      .then((res) => {
-        console.log(res.data);
-        alert('Product Updated successfully!')
-        setName('');
-        setBrand('');
-        setPrice(0);
-        setCategory('');
-        setDescription('');
-        setImage('');
-        setCountInStock(0);
-      })
-      .catch(error => {
-        console.log(error);
-        alert(error.response.data.message)
-      });
-    }
-
+      };
 
   return (
     
@@ -116,7 +102,7 @@ export default function EditProduct() {
                   type="text"
                   name="name"
                   id="name"
-                  value={name}
+                  value={product.name}
                   onChange={(e) => setName(e.target.value)}
                   autoComplete="name"
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -134,7 +120,7 @@ export default function EditProduct() {
                   type="text"
                   name="brand"
                   id="brand"
-                  value={brand}
+                  value={product.brand}
                   onChange={(e) => setBrand(e.target.value)}
                   autoComplete="brand"
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -152,7 +138,7 @@ export default function EditProduct() {
                   type="number"
                   name="price"
                   id="price"
-                  value={price}
+                  value={product.price}
                   onChange={(e) => setPrice(e.target.value)}
                   min= "0"
                   max="1000000"
@@ -173,7 +159,7 @@ export default function EditProduct() {
                 <select
                   id="category"
                   name="category"
-                  value={category}
+                  value={product.category}
                   onChange={(e) => setCategory(e.target.value)}
                   autoComplete="category-name"
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
@@ -200,7 +186,7 @@ export default function EditProduct() {
                   type="number"
                   name="stock"
                   id="stock"
-                  value={countInStock}
+                  value={product.countInStock}
                   onChange={(e) => setCountInStock(e.target.value)}
                   min="0"
                   max="100"
@@ -219,7 +205,7 @@ export default function EditProduct() {
                 <textarea
                   id="Description"
                   name="Description"
-                  value={description}
+                  value={product.description}
                   onChange={(e) => setDescription(e.target.value)}
                   rows={4}
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -269,7 +255,7 @@ export default function EditProduct() {
           className="rounded-md bg-color4 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
           
         >
-         Update
+          Update
         </button>
       </div>
     </form>

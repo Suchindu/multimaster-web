@@ -1,74 +1,65 @@
 import React from 'react';
 // import { toast } from 'react-toastify';
 import { useState } from 'react';
-import { PhotoIcon } from '@heroicons/react/20/solid';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-export default function AddProduct({getProducts}) {
+export default function AddProduct({}) {
 
     const navigate = useNavigate();
-    // const [id, setId] = useState(0);
-    const [name, setName] = useState('');
-    const [brand, setBrand] = useState('');
-    const [price, setPrice] = useState(0);
-    const [category, setCategory] = useState('');
-    const [description, setDescription] = useState('');
-    const [image, setImage] = useState('');
-    const [countInStock, setCountInStock] = useState(0);
+    const [product, setProduct] = useState({
+      name: '',
+      brand: '',
+      price: 0,
+      category: '',
+      description: '',
+      image: '',
+      countInStock: 0,
+    });
     const [imagePreview, setImagePreview] = useState(null);
-    
 
     const onChangeFile = (e) => {
-      setImage(e.target.files[0]);
-      setImagePreview(URL.createObjectURL(e.target.files[0]))
-    }
-
+      setProduct({ ...product, image: e.target.files[0] });
+      setImagePreview(URL.createObjectURL(e.target.files[0]));
+    };
 
     const changeOnClick = (e) => {
       e.preventDefault();
-  
       const formData = new FormData();
-      formData.append('image', image);
-  
+      formData.append('image', product.image);
+
       axios.post('http://localhost:4000/api/products/upload', formData)
       .then((res) => {
         console.log(res.data);
-          const productData = {
-              name: name,
-              brand: brand,
-              price: price,
-              category: category,
-              description: description,
-              image: res.data.image,
-              countInStock: countInStock
-          };
-  
-          axios.post('http://localhost:4000/api/products/', productData)
-          .then((res) => {
-              console.log(res.data);
-              alert('Product added successfully!')
-              setName('');
-              setBrand('');
-              setPrice(0);
-              setCategory('');
-              setDescription('');
-              setImage('');
-              setCountInStock(0);
-          })
-          .catch(error => {
-              console.log(error);
-              alert(error.response.data.message)
-          });
+        product.image = res.data.image;
+        addProduct(product);
       })
       .catch(error => {
-          console.log(error);
-          alert(error.response.data.message)
+        console.log(error);
+        alert(error.response.data.message);
       });
-    }
+    };
 
-
-
+    const addProduct = (productData) => {
+      axios.post('http://localhost:4000/api/products/', productData)
+      .then((res) => {
+        console.log(res.data);
+        alert('Product added successfully!');
+        setProduct({
+          name: '',
+          brand: '',
+          price: 0,
+          category: '',
+          description: '',
+          image: '',
+          countInStock: 0,
+        });
+      })
+      .catch(error => {
+        console.log(error);
+        alert(error.response.data.message);
+      });
+    };
 
   return (
     
@@ -89,7 +80,7 @@ export default function AddProduct({getProducts}) {
                   type="text"
                   name="name"
                   id="name"
-                  value={name}
+                  value={product.name}
                   onChange={(e) => setName(e.target.value)}
                   autoComplete="name"
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -107,7 +98,7 @@ export default function AddProduct({getProducts}) {
                   type="text"
                   name="brand"
                   id="brand"
-                  value={brand}
+                  value={product.brand}
                   onChange={(e) => setBrand(e.target.value)}
                   autoComplete="brand"
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -125,7 +116,7 @@ export default function AddProduct({getProducts}) {
                   type="number"
                   name="price"
                   id="price"
-                  value={price}
+                  value={product.price}
                   onChange={(e) => setPrice(e.target.value)}
                   min= "0"
                   max="1000000"
@@ -146,7 +137,7 @@ export default function AddProduct({getProducts}) {
                 <select
                   id="category"
                   name="category"
-                  value={category}
+                  value={product.category}
                   onChange={(e) => setCategory(e.target.value)}
                   autoComplete="category-name"
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
@@ -173,7 +164,7 @@ export default function AddProduct({getProducts}) {
                   type="number"
                   name="stock"
                   id="stock"
-                  value={countInStock}
+                  value={product.countInStock}
                   onChange={(e) => setCountInStock(e.target.value)}
                   min="0"
                   max="100"
@@ -192,7 +183,7 @@ export default function AddProduct({getProducts}) {
                 <textarea
                   id="Description"
                   name="Description"
-                  value={description}
+                  value={product.description}
                   onChange={(e) => setDescription(e.target.value)}
                   rows={4}
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"

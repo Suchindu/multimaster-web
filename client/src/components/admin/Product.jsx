@@ -1,6 +1,5 @@
 import React, { useRef } from 'react';
 import { useEffect } from 'react';
-import AddProduct from './AddProduct';
 import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -19,8 +18,6 @@ export default function Product() {
   
   const componentRef = useRef();
 
- 
-
       useEffect(() => {
         getProducts();
       },[]);
@@ -31,11 +28,8 @@ export default function Product() {
                 return product.name.toLowerCase().includes(search.toLowerCase()) ||
                 product.brand.toLowerCase().includes(search.toLowerCase()) ||
                 product.price.toString().includes(search) ||
-                product.category.toLowerCase().includes(search.toLowerCase()) ||
-                product.description.toLowerCase().includes(search.toLowerCase())
-                // product.image.toLowerCase().includes(search.toLowerCase()) ||
-                // product.countInStock.toLowerCase().includes(search.toLowerCase()) ||
-                // repair.description.toLowerCase().includes(search.toLowerCase());
+                product.category.toLowerCase().includes(search.toLowerCase()) 
+
             });
             setFilteredProducts(filtered);
         } else {
@@ -65,9 +59,6 @@ export default function Product() {
           });
         }
 
-       
-
-          
 
   return (
     <div >
@@ -91,6 +82,7 @@ export default function Product() {
         <button 
         // onClick={handleSearch}
         className="bg-blue-500 text-white px-6 py-2 rounded-lg ml-2 hover:bg-blue-600 focus:outline-none mt-2 sm:mt-0 w-full sm:w-auto"
+        // className="bg-blue-500 text-white px-6 py-2 rounded-lg ml-2 hover:bg-blue-600 focus:outline-none mt-2 sm:mt-0 w-full sm:w-auto"
         >
             Search
         </button>
