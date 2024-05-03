@@ -1,20 +1,20 @@
-import React, { useRef } from 'react';
-import { useEffect } from 'react';
+import React, { useRef, useEffect, useState, useContext } from 'react';
 import axios from 'axios';
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import ReactToPrint from 'react-to-print';
-
+import ProductContext from '../../context/ProductContext';
 
 
 export default function Product() {
 
   const navigate = useNavigate();
-  const [products, setProducts] = useState([]);
+  
+  const { product, getProducts } = useContext(ProductContext);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [search, setSearch] = useState('');
   
+  console.log(getProducts);
   
   const componentRef = useRef();
 
@@ -24,7 +24,7 @@ export default function Product() {
 
       useEffect(() => {
         if (search.trim() !== '') {
-            const filtered = products.filter((product) => {
+            const filtered = product.filter((product) => {
                 return product.name.toLowerCase().includes(search.toLowerCase()) ||
                 product.brand.toLowerCase().includes(search.toLowerCase()) ||
                 product.price.toString().includes(search) ||
@@ -33,20 +33,20 @@ export default function Product() {
             });
             setFilteredProducts(filtered);
         } else {
-            setFilteredProducts(products);
+            setFilteredProducts(product);
         }
-    }, [products, search]);
+    }, [product, search]);
 
-        const getProducts = () => {
-              axios.get('http://localhost:4000/api/products/')
-              .then((response) => {
+        // const getProducts = () => {
+        //       axios.get('http://localhost:4000/api/products/')
+        //       .then((response) => {
               
-                  setProducts(response.data.products || []);
-              })
-              .catch(error => {
-                console.error("Axios Erro Occur :", error);
-              });
-          }
+        //           setProducts(response.data.products || []);
+        //       })
+        //       .catch(error => {
+        //         console.error("Axios Erro Occur :", error);
+        //       });
+        //   }
         
         const deleteProduct = (id) => {
           axios.delete(`http://localhost:4000/api/products/${id}`)

@@ -1,6 +1,7 @@
 import { createContext, useState, useEffect } from "react";
+import axios from 'axios';
 
-const ProductContext = createContext();
+const ProductContext = createContext({});
 
 export const ProductProvider = ({ children }) => {
     const [product, setProduct] = useState({
@@ -12,18 +13,27 @@ export const ProductProvider = ({ children }) => {
         image: '',
         countInStock: 0,
         });
-    const [isFileChanged, setIsFileChanged] = useState(false);
-    const [imagePreview, setImagePreview] = useState(null);
-
+    
+        const getProducts = () => {
+            axios.get('http://localhost:4000/api/products/')
+            .then((response) => {
+            
+                setProduct(response.data.products || []);
+            })
+            .catch(error => {
+                console.error("Axios Erro Occur :", error);
+            });
+        }
 
 
     return (
         <ProductContext.Provider value={{
-            product,setProduct,
-            isFileChanged, setIsFileChanged,
-            imagePreview, setImagePreview
+            product,setProduct,getProducts
+
         }}>
             {children}
         </ProductContext.Provider>
     );
 }
+
+export default ProductContext;

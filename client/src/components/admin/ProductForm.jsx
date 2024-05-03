@@ -1,18 +1,19 @@
 import react from 'react';
 import { useContext } from 'react';
-import DataContext from './context/ProductContext';
+import ProductContext from '../../context/ProductContext';
+import { useNavigate } from 'react-router-dom';
 
-export default function ProductForm() {
+export default function ProductForm({changeOnClick, onChangeFile, imagePreview, title}) {
 
-    const { product, setProduct } = useContext(DataContext);
-    
+    const { product, setProduct } = useContext(ProductContext);
+    const navigate = useNavigate();
 
     return (
         <div className="flex items-center justify-center min-h-screen p-4">
         <form className=" border rounded-md border-gray-300 p-4 w-full sm:w-auto " onSubmit={changeOnClick} encType='multipart/form-data'>
         <div className="space-y-12">
             <div className="border-b border-gray-900/10 pb-12">
-            <h2 className="text-xl  font-sans font-semibold leading-7 text-gray-900">Add Product</h2>
+            <h2 className="text-xl  font-sans font-semibold leading-7 text-gray-900">{title} Product</h2>
             <div className="lg:w-[600px] mt-5 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 w-auto">
             
             {/* product title */}
