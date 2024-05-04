@@ -40,7 +40,7 @@ const Repair_table = () => {
       const filtered = repairs.filter((repair) => {
         return (
           repair.name.toLowerCase().includes(search.toLowerCase()) ||
-          repair.email.toLowerCase().includes(search.toLowerCase()) ||
+          // repair.email.toLowerCase().includes(search.toLowerCase()) ||
           repair.date.toLowerCase().includes(search.toLowerCase()) ||
           repair.status.toLowerCase().includes(search.toLowerCase())
         );

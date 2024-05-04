@@ -17,7 +17,7 @@ export const RepairsReducer = (state, action) => {
                 ...state,
                 repairs: state.repairs.filter((re) => re._id !== action.payload)
             }
-         case 'UPDATE_REVIEW':
+         case 'UPDATE_REPAIR':
                 return {
                     repairs: state.repairs.map(repair =>
                         repair._id === action.payload._id ? action.payload : repair

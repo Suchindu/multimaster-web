@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 //component
 
-import RepairAlert_box from './RepairAlert_box';
-import { useRepairContext } from '../hooks/useRepairContext';
-import { generateRepairIdInt, generateRepairIdStr } from '../IdGeneration/repairs';
-
+import RepairAlert_box from "./RepairAlert_box";
+import { useRepairContext } from "../hooks/useRepairContext";
+import {
+  generateNewRepairId,
+  generateRepairIdStr,
+  generateRepairIdInt,
+} from "../IdGeneration/repairs";
 
 // import RepairAlert_box from "./RepairAlert_box";
 // import { useRepairContext } from "../hooks/useRepairContext";
@@ -12,69 +15,44 @@ import { generateRepairIdInt, generateRepairIdStr } from '../IdGeneration/repair
 const Repair_form = () => {
   const { dispatch } = useRepairContext();
 
+  const [repair_id_int, setrepairIdInt] = useState("");
+  const [repair_id_str, setrepairIdStr] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [contact, setContact] = useState("");
+  const [date, setDate] = useState("");
+  const [device_brand, setDeviceBrand] = useState("");
+  const [device_model, setDeviceModel] = useState("");
+  const [problem, setProblem] = useState("");
+  const [description, setDescription] = useState("");
+  const [emailError, setEmailError] = useState(null);
+  const [contactError, setContactError] = useState(null);
+  const [error, setError] = useState(null);
+  const [showAlert, setShowAlert] = useState(false);
 
-    const [repair_id_int, setrepairIdInt] = useState("");
-    const [repair_id_str, setrepairIdStr] = useState("");
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [contact, setContact] = useState('');
-    const [date, setDate] = useState('');
-    const [device_brand, setDeviceBrand] = useState('');
-    const [device_model, setDeviceModel] = useState('');
-    const [problem, setProblem] = useState('');
-    const [description, setDescription] = useState('');
-    const [emailError, setEmailError] = useState(null);
-    const [contactError, setContactError] = useState(null);
-    const [error, setError] = useState(null);
-    const [showAlert, setShowAlert] = useState(false);
+  //generate new repair id
 
-    //email validation
-    const handleEmailChange = (e) => {
-            const input = e.target.value.toLowerCase();
-            setEmail(input);
-            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // regular expression
-            if(!emailPattern.test(input)){
-                setEmailError("Please enter a valid email address");
-        }else {    
-            setEmailError(null);
-        }
+  useEffect(() => {
+    const generateAndSetNewId = async () => {
+      const newRepairId = await generateNewRepairId();
+      setrepairIdInt(newRepairId);
+      setrepairIdStr(generateRepairIdStr(newRepairId));
     };
 
-    //contact validation
-    const handleContactChange = (e) => {
-        const input = e.target.value; // Remove non-digit characters
-        if(!/^\d*$/.test(input)){
-            setContactError("Please enter a valid phone number");
-        }else {
-            setContact(input);
-            setContactError(null);
-        }
+    generateAndSetNewId();
+  }, []);
 
-//   const [name, setName] = useState("");
-//   const [email, setEmail] = useState("");
-//   const [contact, setContact] = useState("");
-//   const [date, setDate] = useState("");
-//   const [device_brand, setDeviceBrand] = useState("");
-//   const [device_model, setDeviceModel] = useState("");
-//   const [problem, setProblem] = useState("");
-//   const [description, setDescription] = useState("");
-//   const [emailError, setEmailError] = useState(null);
-//   const [contactError, setContactError] = useState(null);
-//   const [error, setError] = useState(null);
-//   const [showAlert, setShowAlert] = useState(false);
-
-//   //email validation
-//   const handleEmailChange = (e) => {
-//     const input = e.target.value.toLowerCase();
-//     setEmail(input);
-//     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // regular expression
-//     if (!emailPattern.test(input)) {
-//       setEmailError("Please enter a valid email address");
-//     } else {
-//       setEmailError(null);
-//     }
-//   };
-
+  //email validation
+  const handleEmailChange = (e) => {
+    const input = e.target.value.toLowerCase();
+    setEmail(input);
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // regular expression
+    if (!emailPattern.test(input)) {
+      setEmailError("Please enter a valid email address");
+    } else {
+      setEmailError(null);
+    }
+  };
 
   //contact validation
   const handleContactChange = (e) => {
@@ -86,6 +64,41 @@ const Repair_form = () => {
       setContactError(null);
     }
   };
+  //   const [name, setName] = useState("");
+  //   const [email, setEmail] = useState("");
+  //   const [contact, setContact] = useState("");
+  //   const [date, setDate] = useState("");
+  //   const [device_brand, setDeviceBrand] = useState("");
+  //   const [device_model, setDeviceModel] = useState("");
+  //   const [problem, setProblem] = useState("");
+  //   const [description, setDescription] = useState("");
+  //   const [emailError, setEmailError] = useState(null);
+  //   const [contactError, setContactError] = useState(null);
+  //   const [error, setError] = useState(null);
+  //   const [showAlert, setShowAlert] = useState(false);
+
+  //   //email validation
+  //   const handleEmailChange = (e) => {
+  //     const input = e.target.value.toLowerCase();
+  //     setEmail(input);
+  //     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // regular expression
+  //     if (!emailPattern.test(input)) {
+  //       setEmailError("Please enter a valid email address");
+  //     } else {
+  //       setEmailError(null);
+  //     }
+  //   };
+
+  //contact validation
+  // const handleContactChange = (e) => {
+  //   const input = e.target.value; // Remove non-digit characters
+  //   if (!/^\d*$/.test(input)) {
+  //     setContactError("Please enter a valid phone number");
+  //   } else {
+  //     setContact(input);
+  //     setContactError(null);
+  //   }
+  // };
 
   //pop up box timing
   useEffect(() => {
@@ -95,30 +108,40 @@ const Repair_form = () => {
     }, 2000);
 
     return () => clearTimeout(timeout);
+  }, [showAlert]);
 
-}, [showAlert]);
+  // const handleSubmit = async (e) => {
+  //     e.preventDefault();
+  //     // Handle form submission logic here
 
+  //     let repair_id_integer = await generateRepairIdInt();
+  //     setrepairIdInt(repair_id_integer);
 
+  //     let repair_id_string = await generateRepairIdStr();
+  //     setrepairIdStr(repair_id_string);
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        // Handle form submission logic here
-        
-        let repair_id_integer = await generateRepairIdInt();
-        setrepairIdInt(repair_id_integer);
+  //     const repair = ({repair_id_int, repair_id_str, name, email, contact, date, device_brand, device_model, problem, description});
 
-        let repair_id_string = await generateRepairIdStr();
-        setrepairIdStr(repair_id_string);
-      
-        const repair = ({repair_id_int, repair_id_str, name, email, contact, date, device_brand, device_model, problem, description});
-
-//   }, [showAlert]);
-
+  //  }, [showAlert]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     // Handle form submission logic here
+
+    //Generate new repair id
+    let newRepairId = await generateNewRepairId();
+
+    let repair_id_integer = generateRepairIdInt(newRepairId);
+    setrepairIdInt(repair_id_integer);
+
+    let repair_id_string = generateRepairIdStr(newRepairId);
+    setrepairIdStr(repair_id_string);
+
+    // const repair = ({repair_id_int, repair_id_str, name, email, contact, date, device_brand, device_model, problem, description});
+
     const repair = {
+      repair_id_int: repair_id_integer,
+      repair_id_str: repair_id_string,
       name,
       email,
       contact,
@@ -158,6 +181,13 @@ const Repair_form = () => {
     }
   };
 
+  //get today date
+  const today = new Date();
+  const dd = String(today.getDate()).padStart(2, "0");
+  const mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+  const yyyy = today.getFullYear();
+
+  const todayFormatted = yyyy + "-" + mm + "-" + dd;
   return (
     <>
       <div className="bg-blue-100 min-h-screen pt-10 pb-6">
@@ -233,6 +263,7 @@ const Repair_form = () => {
               id="date"
               name="date"
               pattern="mm/dd/yyyy"
+              min={todayFormatted}
               onChange={(e) => setDate(e.target.value)}
               value={date}
               className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
