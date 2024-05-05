@@ -49,15 +49,18 @@ export default function Product() {
         //   }
         
         const deleteProduct = (id) => {
+          if (window.confirm('Are you sure you want to delete this product?')){
           axios.delete(`http://localhost:4000/api/products/${id}`)
           .then((res) => {
             console.log(res.data);
+            alert('Product Deleted Successfully');
             getProducts();
           })
           .catch(error => {
             console.error("Axios Erro Occur :", error);
           });
         }
+      }
 
 
   return (
