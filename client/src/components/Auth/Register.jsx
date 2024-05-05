@@ -144,8 +144,8 @@ function Register() {
   //   </div>
   // );
 
-  <div className="flex items-center justify-center min-h-screen p-4">
-        <form className=" border rounded-md border-gray-300 p-4 w-full sm:w-auto " onSubmit={handleSubmit} encType='multipart/form-data'>
+  <div className="flex items-center justify-center min-h-screen p-4  bg-gray-100">
+        <form className=" border rounded-md bg-white  border-gray-300 p-4 w-full sm:w-auto " onSubmit={handleSubmit} encType='multipart/form-data'>
         <div className="space-y-12">
             <div className="border-b border-gray-900/10 pb-12">
             <h2 className="text-xl  font-sans font-semibold leading-7 text-gray-900">User Resgistration</h2>
@@ -294,6 +294,7 @@ function Register() {
         </div>
         </form>
     </div>
+ 
   )
 }
 

@@ -69,21 +69,6 @@ const cart = useSelector((state) => state.cart);
     return (
       <div>
       <div className="flex justify-between items-center my-4 mx-2">
-        <div
-          className={`bg-blue-600 py-2 px-4 rounded text-white font-bold  ${
-            getTotalQuantity() > 0 ? "cursor-pointer" : "grayscale"
-          }`}
-          onClick={() => {
-            if (getTotalQuantity() > 0) {
-              navigate("/cart");
-            }
-          }}
-        >
-          Cart
-          <span className="rounded-full px-2 py-1 ml-2 bg-white text-black">
-            {getTotalQuantity() || 0}
-          </span>
-        </div>
         {isSuccess ? (
           <NavLink to={`/profile`}>
             <div className="bg-red-500 py-2 px-4 rounded text-white font-bold cursor-pointer">
