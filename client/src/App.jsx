@@ -27,6 +27,8 @@ import UserProfile from "./components/Auth/UserProfile.jsx";
 import Orderview from "./components/order_view.jsx";
 import SingleOrder from "./components/singleorder.jsx";
 import OrderHistory from "./components/orderHistory.jsx";
+import AdminDash from "./components/admin/AdminDash.jsx"; 
+import Dashboard from "./components/admin/Dashboard.jsx";
 
 const queryClient = new QueryClient();
 
@@ -34,36 +36,24 @@ function App() {
   return (
      <QueryClientProvider client={queryClient}>
     <div className="App">
-  
-        
         <Routes>
-          <Route path='/' element={
-            <>
-              <Header/>
-              <SearchProduct/>
-              <Footer/>
-            </>
-          }/>
-          <Route path="/view-product/:id" element={
-            <>
-              <Header/>
-              <OverviewProduct/>
-              <Footer/>
-            </>
-          }/>
+          <Route path='/' element={<><Header/><SearchProduct/><Footer/></>}/>
+          <Route path="/dashboard" element={<AdminDash currentPage={<Dashboard/>}/>}/>
+          {/* <Route path="/admin" element={<AdminDash />} /> */}
+          <Route path="/view-product/:id" element={<><Header/><OverviewProduct/><Footer/></>}/>
           <Route path="/cart" element={<><Header/><Cart/><Footer/></>} />
           <Route path="/checkout" element={<><Header/><CheckOut/><Footer/></>} />
           <Route path="/login" element={<><Header/><Login/><Footer/></>} />
           <Route path="/register" element={<><Header/><Register/><Footer/></>} />
           <Route path="/profile" element={<><Header/><UserProfile/><Footer/></>} />
-          <Route path='/add-products' element={<AddProduct/>}/>
-          <Route path='/admin-products' element={<Product/>}/>
-          <Route path="/edit-product/:id" element={<EditProduct/>}/>
+          <Route path='/add-products' element={<AdminDash currentPage={<AddProduct />}/>}/>
+          <Route path='/admin-products' element={<AdminDash currentPage={<Product/>}/>}/>
+          <Route path="/edit-product/:id" element={<AdminDash currentPage={<EditProduct/>}/>}/>
           <Route path="/search" element={<ProductSearch/>}/>
           <Route path="/compare" element={<Compare/>}/>
-          <Route path='/orderview' element={<Orderview />}/>
-          <Route path="/singleorder/:uid" element={<SingleOrder />} />
-          <Route path="/orderhistory" element={<OrderHistory />} />
+          <Route path='/orderview' element={<AdminDash currentPage={<Orderview />}/>}/>
+          <Route path="/singleorder/:uid" element={<AdminDash currentPage={<SingleOrder />}/>} />
+          <Route path="/orderhistory" element={<AdminDash currentPage={<OrderHistory />}/>} />
         </Routes>
     </div>
 </QueryClientProvider>
