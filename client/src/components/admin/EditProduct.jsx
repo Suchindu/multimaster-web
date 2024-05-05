@@ -13,6 +13,7 @@ export default function EditProduct() {
       const [isFileChanged, setIsFileChanged] = useState(false);
       const [imagePreview, setImagePreview] = useState(null);
 
+      
       useEffect(() => {
         const fetchProduct = async () => {
           try {
@@ -73,6 +74,7 @@ export default function EditProduct() {
           console.log(error);
           alert(error.response.data.message);
         });
+        setImagePreview(null)
       };
 
   return (

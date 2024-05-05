@@ -91,7 +91,7 @@ useEffect(() => {
                   <div className="border border-slate-400 rounded-lg grid w-3/4 grid-cols-1 items-start gap-x-6 gap-y-8 sm:grid-cols-12 lg:gap-x-8 p-10 mb-10">
                     <div className="sm:col-span-4 lg:col-span-5">
                       <div className="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg bg-gray-100">
-                        <img src={`http://localhost:4000${image}`} alt={product.imageAlt} className="object-cover object-center" />
+                        <img src={`http://localhost:4000${image}`} className="object-cover object-center" />
                       </div>
                     </div>
                     <div className="sm:col-span-8 lg:col-span-7">

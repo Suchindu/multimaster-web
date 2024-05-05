@@ -6,6 +6,7 @@ import SearchProduct from './components/store/ProductGrid';
 import EditProduct from './components/admin/EditProduct';
 import OverviewProduct from './components/store/ProductOverview';
 import ProductSearch from './components/store/ProductSearch';
+import Compare from './components/store/Compare';
 // Importing pages and components
 // import Review from './pages/review_form';
 import Header from './components/header';
@@ -36,6 +37,8 @@ function App() {
           <Route path='/add-products' element={<AddProduct/>}/>
           <Route path='/admin-products' element={<Product/>}/>
           <Route path="/edit-product/:id" element={<EditProduct/>}/>
+          <Route path="/search" element={<ProductSearch/>}/>
+          <Route path="/compare" element={<Compare/>}/>
         </Routes>
       </BrowserRouter>
     </div>

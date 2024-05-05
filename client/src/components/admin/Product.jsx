@@ -14,7 +14,7 @@ export default function Product() {
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [search, setSearch] = useState('');
   
-  console.log(getProducts);
+  
   
   const componentRef = useRef();
 

@@ -25,8 +25,8 @@ export default function AddProduct({}) {
       axios.post('http://localhost:4000/api/products/upload', formData)
       .then((res) => {
         console.log(res.data);
-        product.image = res.data.image;
-        addProduct(product);
+        const updatedProduct = { ...product, image: res.data.image };
+        addProduct(updatedProduct);
       })
       .catch(error => {
         console.log(error);
@@ -48,10 +48,11 @@ export default function AddProduct({}) {
           image: '',
           countInStock: 0,
         });
+        setImagePreview(null)
       })
       .catch(error => {
         console.log(error);
-        alert(error.response.data.message);
+        alert('Image Format not supported or file size is too large!');
       });
     };
 
