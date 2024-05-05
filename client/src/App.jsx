@@ -20,7 +20,6 @@ import {
 
 //Importing pages and components
 import Cart from './components/Cart.jsx';
-import Home from './pages/Home.jsx';
 import CheckOut from './components/checkout.jsx';
 import Login from "./components/Auth/Login.jsx";
 import Register from "./components/Auth/Register.jsx";
@@ -52,7 +51,6 @@ function App() {
               <Footer/>
             </>
           }/>
-          <Route exact path="/home" element={<><Header/><Home/><Footer/></>} />
           <Route path="/cart" element={<><Header/><Cart/><Footer/></>} />
           <Route path="/checkout" element={<><Header/><CheckOut/><Footer/></>} />
           <Route path="/login" element={<><Header/><Login/><Footer/></>} />
