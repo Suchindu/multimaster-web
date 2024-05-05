@@ -3,7 +3,10 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useReactToPrint } from "react-to-print";
 
+
 //import { PaperClipIcon } from "@heroicons/react/20/solid";
+
+
 
 export default function SingleOrder() {
   const { uid } = useParams();
@@ -170,6 +173,13 @@ export default function SingleOrder() {
                       className="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 hide-on-print"
                     >
                       Update
+                    </button>
+                    <button
+                      //onClick={() => sendConfirmationEmail(orderDetails)} // replace orderDetails with the actual order details object
+                      type="button"
+                      className="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 hide-on-print"
+                    >
+                      Send Confirmation Email
                     </button>
                   </div>
                 </div>
