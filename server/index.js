@@ -1,7 +1,8 @@
 require('dotenv').config();
-
 // Importing the necessary frameworks  
 const express = require('express'); 
+const path = require('path');
+const upload_route = require('./routes/uploadRoutes.js');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const review_route = require('./routes/reviews.js');
@@ -11,7 +12,6 @@ const order_route = require('./routes/order_routes.js');
 const user_route = require("./routes/UserRoutes");
 const user_login_route = require("./routes/UserLoginRoute");
 const user_profile_route = require("./routes/ProfileRoute");
-
 const port = process.env.port || 5050;
 const uri = process.env.uri;
 
@@ -26,10 +26,15 @@ app.use((request, response, next) => {
     next();
 });
 
+app.use(cors());
+
+
 // Routes
 app.use('/api/reviews', review_route); 
 app.use('/api/repair', repair_route); 
 app.use('/api/products', product_route);
+app.use(upload_route);
+app.use('/uploads', express.static(path.join(__dirname + '/uploads')));
 app.use('/api/orders', order_route);
 app.use("/user", user_route);
 app.use("/login", user_login_route);
