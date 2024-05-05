@@ -4,12 +4,60 @@ import { Bars3Icon,XMarkIcon } from '@heroicons/react/24/outline'
 import { CiSearch } from "react-icons/ci";
 import { BsCart2 } from "react-icons/bs";
 import { VscGitCompare } from "react-icons/vsc";
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { Link, NavLink } from 'react-router-dom';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
+
 export default function Header() {
+
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
+
+  const cart = useSelector(state => state.cart);
+  
+  const getTotalQuantity = () => {
+    return cart.reduce((total, item) => total + item.quantity, 0);
+  };
+
+ 
+  const { isSuccess } = useQuery({
+    queryKey: ["getUser"],
+    cacheTime: 15 * (60 * 1000),
+    staleTime: 10 * (60 * 1000),
+    queryFn: async () => {
+      const token = localStorage.getItem("token");
+
+      if (token === null) {
+        throw new Error("Error retrieving user details");
+      }
+
+      try {
+        const response = await axios.post("http://localhost:4000/profile", {
+          token: token,
+        });
+        if (response.data.status === "ok") {
+          return response.data.user; // Update user state with received user data
+        } else {
+          console.error("Error retrieving user details:", response.data.data);
+
+          throw new Error("Error retrieving user details");
+        }
+      } catch (error) {
+        console.error("Error retrieving user details:", error.message);
+
+        throw new Error("Error retrieving user details");
+      }
+    },
+  });
+    
+
+
   return (
     <Disclosure as="nav" className="bg-color1">
       {({ open }) => (
@@ -60,6 +108,11 @@ export default function Header() {
                   
                   <button
                     type="button"
+                    onClick={() => {
+                      if (getTotalQuantity() > 0) {
+                        navigate("/cart");
+                      }
+                    }}
                     className="relative rounded-full bg-color2 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 mr-4"
                   >
                     <span className="absolute -inset-1.5" />
@@ -67,12 +120,20 @@ export default function Header() {
                     <CiSearch className="h-6 w-6 pr-0.5 pl-0.5" aria-hidden="true" />
                   </button>
                   <button
-                  type="button"
+                    type="button"
                     className="relative rounded-full bg-color2 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 mr-4 "
+                    onClick={() => {
+                      if (getTotalQuantity() > 0) {
+                        navigate("/cart");
+                      }
+                    }}
                   >
                     <span className="absolute -inset-1.5" />
                     <span className="sr-only">Cart</span>
                     <BsCart2 className="h-6 w-6 pr-1 pl-1" aria-hidden="true" />
+                    <span className="absolute top-0 right-0 inline-block w-4 h-4 bg-color4 text-white text-xs rounded-full">
+                      {getTotalQuantity() || 0}
+                    </span>
                   </button>
 
                   <button
@@ -83,8 +144,17 @@ export default function Header() {
                     <span className="sr-only">Search</span>
                     <VscGitCompare className="h-6 w-6 pr-1 pl-1" aria-hidden="true" />
                   </button>
+                  <div>
+                  {!isSuccess ? (
+                  <NavLink to={`/login`}>
+                    <button className='block  ml-10 w-16 rounded-md bg-color2 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-color3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'>
+                      Login
+                    </button>
+                  </NavLink>
+
+                    ) : (
+
                   
-                  {/* Profile dropdown */}
                   <Menu as="div" className="relative ml-3 pl-5 hidden sm:block">
                     <div>
                       <Menu.Button className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
@@ -109,15 +179,15 @@ export default function Header() {
                       <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                         <Menu.Item>
                           {({ active }) => (
-                            <a
-                              href="#"
+                             <Link
+                             to= "/profile"
                               className={classNames(
                                 active ? 'bg-gray-100' : '',
                                 'block px-4 py-2 text-sm text-gray-700'
                               )}
                             >
                               Your Profile
-                            </a>
+                            </Link>
                           )}
                         </Menu.Item>
                         <Menu.Item>
@@ -141,6 +211,11 @@ export default function Header() {
                                 active ? 'bg-gray-100' : '',
                                 'block px-4 py-2 text-sm text-gray-700'
                               )}
+                              onClick={async () => {
+                                await localStorage.removeItem("token");
+                                queryClient.removeQueries({ queryKey: ["getUser"] });
+                                navigate("/");
+                              }}
                             >
                               Sign out
                             </a>
@@ -149,6 +224,8 @@ export default function Header() {
                       </Menu.Items>
                     </Transition>
                   </Menu>
+                   )}
+                  </div>
                 </div>
               </div>
               <div className="-mr-2 flex lg:hidden">
