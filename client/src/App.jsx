@@ -38,7 +38,8 @@ function App() {
     <div className="App">
         <Routes>
           <Route path='/' element={<><Header/><SearchProduct/><Footer/></>}/>
-          <Route path="/admin" element={<AdminDash />} />
+          <Route path="/dashboard" element={<AdminDash currentPage={<Dashboard/>}/>}/>
+          {/* <Route path="/admin" element={<AdminDash />} /> */}
           <Route path="/view-product/:id" element={<><Header/><OverviewProduct/><Footer/></>}/>
           <Route path="/cart" element={<><Header/><Cart/><Footer/></>} />
           <Route path="/checkout" element={<><Header/><CheckOut/><Footer/></>} />
@@ -48,7 +49,6 @@ function App() {
           <Route path='/add-products' element={<AdminDash currentPage={<AddProduct />}/>}/>
           <Route path='/admin-products' element={<AdminDash currentPage={<Product/>}/>}/>
           <Route path="/edit-product/:id" element={<AdminDash currentPage={<EditProduct/>}/>}/>
-          <Route path="/dashboard" element={<AdminDash currentPage={<Dashboard/>}/>}/>
           <Route path="/search" element={<ProductSearch/>}/>
           <Route path="/compare" element={<Compare/>}/>
           <Route path='/orderview' element={<AdminDash currentPage={<Orderview />}/>}/>
