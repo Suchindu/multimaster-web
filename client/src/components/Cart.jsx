@@ -50,7 +50,7 @@ export default function Cart() {
                 <li key={product.id} className="flex py-6 sm:py-10">
                   <div className="flex-shrink-0">
                     <img
-                      src={product.image}
+                      src={`http://localhost:4000${product.image}`}
                       className="h-24 w-24 rounded-md object-cover object-center sm:h-48 sm:w-48"
                     />
                   </div>
