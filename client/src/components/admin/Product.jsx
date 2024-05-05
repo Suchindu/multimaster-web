@@ -1,6 +1,5 @@
 import React, { useRef, useEffect, useState, useContext } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import ReactToPrint from 'react-to-print';
 import ProductContext from '../../context/ProductContext';
@@ -8,7 +7,6 @@ import ProductContext from '../../context/ProductContext';
 
 export default function Product() {
 
-  const navigate = useNavigate();
   
   const { product, getProducts } = useContext(ProductContext);
   const [filteredProducts, setFilteredProducts] = useState([]);
@@ -84,8 +82,8 @@ export default function Product() {
         />
         <button 
         // onClick={handleSearch}
-        className="bg-blue-500 text-white px-6 py-2 rounded-lg ml-2 hover:bg-blue-600 focus:outline-none mt-2 sm:mt-0 w-full sm:w-auto"
-        // className="bg-blue-500 text-white px-6 py-2 rounded-lg ml-2 hover:bg-blue-600 focus:outline-none mt-2 sm:mt-0 w-full sm:w-auto"
+        className="bg-color4 text-white px-6 py-2 rounded-lg ml-2 hover:bg-indigo-500 focus:outline-none mt-2 sm:mt-0 w-full sm:w-auto"
+        
         >
             Search
         </button>
@@ -95,17 +93,16 @@ export default function Product() {
        
           <button
             type="button"
-            onClick={() => navigate('/add-products')}
             className="block rounded-md bg-color4 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
           >
-            Add Product
+            <Link to="/add-products">Add Product</Link>
           </button>
           <ReactToPrint
         trigger={() => (
           <button
             type="button"
             
-            className="block rounded-md bg-color4 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600 mt-2"
+            className="block rounded-md bg-color4 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600 mt-2"
           >
             Print as PDF
           </button>
