@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import {addToCart} from '../../redux/cartSlice';
 
   
   export default function Product({product}) {
    
+    const dispatch = useDispatch()
+
     return (
     <div className="bg-white ">
         <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8 lg:pt-8">
@@ -30,10 +34,19 @@ import { Link } from 'react-router-dom';
                 </div>
                 </Link>
                 <div className="mb-5 mt-1 flex justify-center">
-                <Link to={`/view-product/${product._id}`} className="rounded-md border border-transparent  bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50">
+                <Link to={`/view-product/${product._id}`} className="m-1 rounded-md border border-transparent  bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50">
                           View Product<span className="sr-only">, {product._id}</span>
                 </Link>
-                
+                <button className=" m-1 rounded-md border border-transparent  bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50"
+                    onClick={() => 
+                      dispatch(addToCart({
+                        id: product._id, 
+                        title: product.name, 
+                        image: product.image, 
+                        price: product.price 
+                      }))
+                    }>Add to Cart
+                  </button>
                 </div>
                 </div>
             
