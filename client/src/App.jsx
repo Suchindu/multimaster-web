@@ -66,7 +66,6 @@ function App() {
           <Route path="/checkrepair" element={<><Header/><CheckRepair /><Footer/></>} />
           <Route path="/ReviewsForm" element={<><Header/><ReviewsForm /><Footer/></>} />
           <Route path="/ReviewsDetails" element={<><Header/><ReviewsDetails /><Footer/></>} />
-          <Route path="/ReviewsReply" element={<><Header/><ReviewsReply /><Footer/></>} />
           <Route path='/add-products' element={<AdminDash currentPage={<AddProduct />}/>}/>
           <Route path='/admin-products' element={<AdminDash currentPage={<Product/>}/>}/>
           <Route path="/edit-product/:id" element={<AdminDash currentPage={<EditProduct/>}/>}/>
@@ -80,6 +79,7 @@ function App() {
           <Route path="/repairdetails" element={<AdminDash currentPage={<Repair_details />}/>} />
           <Route path="/repairtable" element={<AdminDash currentPage={<Repair_table />}/>} />
           <Route path="/ReviewsTable" element={<AdminDash currentPage={<AdminReviewsTable />}/>} />
+          <Route path="/ReviewsReply" element={<AdminDash currentPage={<ReviewsReply />}/>}/>
         </Routes>
     </div>
 </QueryClientProvider>
