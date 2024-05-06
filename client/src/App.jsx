@@ -8,6 +8,7 @@ import EditProduct from './components/admin/EditProduct';
 import OverviewProduct from './components/store/ProductOverview';
 import ProductSearch from './components/store/ProductSearch';
 import Compare from './components/store/Compare';
+import CompareProduct from './components/store/CompareProduct';
 // Importing pages and components
 // import Review from './pages/review_form';
 import Header from './components/header';
@@ -51,6 +52,7 @@ function App() {
           <Route path="/edit-product/:id" element={<AdminDash currentPage={<EditProduct/>}/>}/>
           <Route path="/search" element={<ProductSearch/>}/>
           <Route path="/compare" element={<Compare/>}/>
+          <Route path="/compareproduct" element={<CompareProduct/>}/>
           <Route path='/orderview' element={<AdminDash currentPage={<Orderview />}/>}/>
           <Route path="/singleorder/:uid" element={<AdminDash currentPage={<SingleOrder />}/>} />
           <Route path="/orderhistory" element={<AdminDash currentPage={<OrderHistory />}/>} />
