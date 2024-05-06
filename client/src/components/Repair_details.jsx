@@ -198,6 +198,16 @@ const Repair_details = ({ repair }) => {
               Delete
             </button>
           </td>
+          {/* <td>
+            {repair.status === "completed" && (
+              <button
+                className="bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transform transition-all duration-300 ease-in-out hide-on-print"
+                onClick={() => sendEmail(repair.email)}
+              >
+                Send Email
+              </button>
+            )}
+          </td> */}
         </tr>
       ) : (
         <tr>

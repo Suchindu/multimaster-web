@@ -1,5 +1,6 @@
 const Repair = require("../models/repair_model");
 const mongoose = require("mongoose");
+const nodemailer = require("nodemailer");
 
 //get all repairs
 const get_repairs = async (req, res) => {
@@ -107,7 +108,34 @@ const updateRepair = async (req, res) => {
     return res.status(400).json({ error: "No such repair" });
   }
 
+  await sendEmail(repair.email);
+
   res.status(200).json(repair);
+};
+
+const sendEmail = async (userEmail) => {
+  let transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: "multimaster.orderconfirmation@gmail.com",
+      pass: "pzap ssfk azxw yubg",
+    },
+  });
+
+  let mailOptions = {
+    from: "multimaster896@gmail.com",
+    to: userEmail,
+    subject: "Repair Status",
+    text: "Your repair status is updated.",
+  };
+
+  transporter.sendMail(mailOptions, function (error, info) {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log("Email sent: " + info.response);
+    }
+  });
 };
 
 module.exports = {

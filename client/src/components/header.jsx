@@ -1,12 +1,13 @@
-import { Fragment } from 'react'
-import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { Bars3Icon,XMarkIcon } from '@heroicons/react/24/outline'
+import { Fragment } from "react";
+import { Disclosure, Menu, Transition } from "@headlessui/react";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { CiSearch } from "react-icons/ci";
 import { BsCart2 } from "react-icons/bs";
 import { VscGitCompare } from "react-icons/vsc";
+import { Link } from "react-router-dom";
 
 function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
+  return classes.filter(Boolean).join(" ");
 }
 
 export default function Header() {
@@ -21,53 +22,69 @@ export default function Header() {
                   <img
                     className="h-11 w-auto"
                     src="/multimaster.svg"
-                    
                     alt="Multimaster logo"
-                    />
-                    <p className="text-white" style={{ fontFamily: 'Goldman, sans-serif',letterSpacing: '0.05em',fontSize: '18px'}}>multimaster</p>
-
-                  
+                  />
+                  <p
+                    className="text-white"
+                    style={{
+                      fontFamily: "Goldman, sans-serif",
+                      letterSpacing: "0.05em",
+                      fontSize: "18px",
+                    }}
+                  >
+                    multimaster
+                  </p>
                 </div>
-                <div className="hidden lg:ml-20 sm:ml-7 md:block" >
-                  <div className="flex space-x-4" >
+                <div className="hidden lg:ml-20 sm:ml-7 md:block">
+                  <div className="flex space-x-4">
                     {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
-                    <a href="#" className="rounded-md bg-color3 px-3 py-2 text-sm font-medium text-white" style={{ fontSize: '13px'}}>
+                    <a
+                      href="#"
+                      className="rounded-md bg-color3 px-3 py-2 text-sm font-medium text-white"
+                      style={{ fontSize: "13px" }}
+                    >
                       Home
                     </a>
                     <a
                       href="#"
-                      className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-color2 hover:text-white" style={{ fontSize: '13px'}}
+                      className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-color2 hover:text-white"
+                      style={{ fontSize: "13px" }}
                     >
                       Store
                     </a>
                     <a
                       href="#"
-                      className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-color2 hover:text-white" style={{ fontSize: '13px'}}
+                      className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-color2 hover:text-white"
+                      style={{ fontSize: "13px" }}
                     >
                       Technician
                     </a>
-                    <a
-                      href="#"
-                      className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-color2 hover:text-white" style={{ fontSize: '13px'}}
+                    <Link
+                      // href="#"
+                      to="check-repair"
+                      className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-color2 hover:text-white"
+                      style={{ fontSize: "13px" }}
                     >
-                      Repair Stauts
-                    </a>
+                      Repair Status
+                    </Link>
                   </div>
                 </div>
               </div>
               <div className="hidden sm:ml-6 lg:block">
                 <div className="flex items-center">
-                  
                   <button
                     type="button"
                     className="relative rounded-full bg-color2 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 mr-4"
                   >
                     <span className="absolute -inset-1.5" />
                     <span className="sr-only">Search</span>
-                    <CiSearch className="h-6 w-6 pr-0.5 pl-0.5" aria-hidden="true" />
+                    <CiSearch
+                      className="h-6 w-6 pr-0.5 pl-0.5"
+                      aria-hidden="true"
+                    />
                   </button>
                   <button
-                  type="button"
+                    type="button"
                     className="relative rounded-full bg-color2 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 mr-4 "
                   >
                     <span className="absolute -inset-1.5" />
@@ -81,9 +98,12 @@ export default function Header() {
                   >
                     <span className="absolute -inset-1.5" />
                     <span className="sr-only">Search</span>
-                    <VscGitCompare className="h-6 w-6 pr-1 pl-1" aria-hidden="true" />
+                    <VscGitCompare
+                      className="h-6 w-6 pr-1 pl-1"
+                      aria-hidden="true"
+                    />
                   </button>
-                  
+
                   {/* Profile dropdown */}
                   <Menu as="div" className="relative ml-3 pl-5 hidden sm:block">
                     <div>
@@ -112,8 +132,8 @@ export default function Header() {
                             <a
                               href="#"
                               className={classNames(
-                                active ? 'bg-gray-100' : '',
-                                'block px-4 py-2 text-sm text-gray-700'
+                                active ? "bg-gray-100" : "",
+                                "block px-4 py-2 text-sm text-gray-700"
                               )}
                             >
                               Your Profile
@@ -125,8 +145,8 @@ export default function Header() {
                             <a
                               href="#"
                               className={classNames(
-                                active ? 'bg-gray-100' : '',
-                                'block px-4 py-2 text-sm text-gray-700'
+                                active ? "bg-gray-100" : "",
+                                "block px-4 py-2 text-sm text-gray-700"
                               )}
                             >
                               Settings
@@ -138,8 +158,8 @@ export default function Header() {
                             <a
                               href="#"
                               className={classNames(
-                                active ? 'bg-gray-100' : '',
-                                'block px-4 py-2 text-sm text-gray-700'
+                                active ? "bg-gray-100" : "",
+                                "block px-4 py-2 text-sm text-gray-700"
                               )}
                             >
                               Sign out
@@ -208,8 +228,12 @@ export default function Header() {
                   />
                 </div>
                 <div className="ml-3">
-                  <div className="text-base font-medium text-white">Tom Cook</div>
-                  <div className="text-sm font-medium text-gray-400">tom@example.com</div>
+                  <div className="text-base font-medium text-white">
+                    Tom Cook
+                  </div>
+                  <div className="text-sm font-medium text-gray-400">
+                    tom@example.com
+                  </div>
                 </div>
                 {/* <button 
                   type="button"
@@ -248,5 +272,5 @@ export default function Header() {
         </>
       )}
     </Disclosure>
-  )
+  );
 }
