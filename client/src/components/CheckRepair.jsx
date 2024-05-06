@@ -101,7 +101,7 @@ const CheckRepair = () => {
 
   return (
     <>
-      <Header />
+      
 
       <div className="w-full lg:w-1/4 lg:mr-5">
         <SidebarContent />
@@ -173,7 +173,7 @@ const CheckRepair = () => {
           </div>
         )}
       </div>
-      <Footer className="mt-auto" />
+     
     </>
   );
 };

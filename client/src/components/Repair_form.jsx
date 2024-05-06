@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+
 //component
 
 import RepairAlert_box from "./RepairAlert_box";
@@ -12,23 +13,25 @@ import {
 // import RepairAlert_box from "./RepairAlert_box";
 // import { useRepairContext } from "../hooks/useRepairContext";
 
+
 const Repair_form = () => {
   const { dispatch } = useRepairContext();
 
   const [repair_id_int, setrepairIdInt] = useState("");
   const [repair_id_str, setrepairIdStr] = useState("");
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [contact, setContact] = useState("");
-  const [date, setDate] = useState("");
-  const [device_brand, setDeviceBrand] = useState("");
-  const [device_model, setDeviceModel] = useState("");
-  const [problem, setProblem] = useState("");
-  const [description, setDescription] = useState("");
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [contact, setContact] = useState('');
+  const [date, setDate] = useState('');
+  const [device_brand, setDeviceBrand] = useState('');
+  const [device_model, setDeviceModel] = useState('');
+  const [problem, setProblem] = useState('');
+  const [description, setDescription] = useState('');
   const [emailError, setEmailError] = useState(null);
   const [contactError, setContactError] = useState(null);
   const [error, setError] = useState(null);
   const [showAlert, setShowAlert] = useState(false);
+
 
   //generate new repair id
 
@@ -42,14 +45,16 @@ const Repair_form = () => {
     generateAndSetNewId();
   }, []);
 
+
   //email validation
   const handleEmailChange = (e) => {
     const input = e.target.value.toLowerCase();
     setEmail(input);
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // regular expression
-    if (!emailPattern.test(input)) {
+
+    if(!emailPattern.test(input)){
       setEmailError("Please enter a valid email address");
-    } else {
+    }else {    
       setEmailError(null);
     }
   };
@@ -57,9 +62,9 @@ const Repair_form = () => {
   //contact validation
   const handleContactChange = (e) => {
     const input = e.target.value; // Remove non-digit characters
-    if (!/^\d*$/.test(input)) {
+    if(!/^\d*$/.test(input)){
       setContactError("Please enter a valid phone number");
-    } else {
+    }else {
       setContact(input);
       setContactError(null);
     }
@@ -110,6 +115,7 @@ const Repair_form = () => {
     return () => clearTimeout(timeout);
   }, [showAlert]);
 
+
   // const handleSubmit = async (e) => {
   //     e.preventDefault();
   //     // Handle form submission logic here
@@ -124,9 +130,19 @@ const Repair_form = () => {
 
   //  }, [showAlert]);
 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     // Handle form submission logic here
+//dev==============================================
+//     let repair_id_integer = await generateRepairIdInt();
+//     setrepairIdInt(repair_id_integer);
+
+//     let repair_id_string = await generateRepairIdStr();
+//     setrepairIdStr(repair_id_string);
+  
+//     const repair = {repair_id_int, repair_id_str, name, email, contact, date, device_brand, device_model, problem, description};
+//===========================================================
 
     //Generate new repair id
     let newRepairId = await generateNewRepairId();
@@ -152,6 +168,7 @@ const Repair_form = () => {
       description,
     };
 
+
     const response = await fetch("http://localhost:4000/api/repair/", {
       method: "POST",
       body: JSON.stringify(repair),
@@ -175,7 +192,6 @@ const Repair_form = () => {
       setProblem("");
       setDescription("");
       setError(null);
-      //alert("New Repair Request Added");
       setShowAlert(true);
       dispatch({ type: "Create_Repair", payload: json });
     }
@@ -356,4 +372,4 @@ const Repair_form = () => {
   );
 };
 
-export default Repair_form;
+export default Repair_form
