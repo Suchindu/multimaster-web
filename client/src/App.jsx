@@ -10,6 +10,7 @@ import ProductSearch from './components/store/ProductSearch';
 import Compare from './components/store/Compare';
 import CompareProduct from './components/store/CompareProduct';
 // Importing pages and components
+
 // import Review from './pages/review_form';
 import Header from './components/header';
 import Footer from './components/footer';
@@ -30,6 +31,11 @@ import SingleOrder from "./components/singleorder.jsx";
 import OrderHistory from "./components/orderHistory.jsx";
 import AdminDash from "./components/admin/AdminDash.jsx"; 
 import Dashboard from "./components/admin/Dashboard.jsx";
+//Sachintha Import Functions
+import Repair_form from "./components/Repair_form";
+import Repair_details from "./components/Repair_details";
+import Repair_table from "./pages/Repair_table";
+import CheckRepair from "./components/CheckRepair";
 
 const queryClient = new QueryClient();
 
@@ -47,6 +53,7 @@ function App() {
           <Route path="/login" element={<><Header/><Login/><Footer/></>} />
           <Route path="/register" element={<><Header/><Register/><Footer/></>} />
           <Route path="/profile" element={<><Header/><UserProfile/><Footer/></>} />
+          <Route path="/checkrepair" element={<><Header/><CheckRepair /><Footer/></>} />
           <Route path='/add-products' element={<AdminDash currentPage={<AddProduct />}/>}/>
           <Route path='/admin-products' element={<AdminDash currentPage={<Product/>}/>}/>
           <Route path="/edit-product/:id" element={<AdminDash currentPage={<EditProduct/>}/>}/>
@@ -56,6 +63,9 @@ function App() {
           <Route path='/orderview' element={<AdminDash currentPage={<Orderview />}/>}/>
           <Route path="/singleorder/:uid" element={<AdminDash currentPage={<SingleOrder />}/>} />
           <Route path="/orderhistory" element={<AdminDash currentPage={<OrderHistory />}/>} />
+          <Route path="/repairform" element={<AdminDash currentPage={<Repair_form />}/>} />
+          <Route path="/repairdetails" element={<AdminDash currentPage={<Repair_details />}/>} />
+          <Route path="/repairtable" element={<AdminDash currentPage={<Repair_table />}/>} />
         </Routes>
     </div>
 </QueryClientProvider>
@@ -89,6 +99,7 @@ export default App;
 
  
 
+
 // function App() {
 //   return (
 //     <>
@@ -111,6 +122,7 @@ export default App;
 // }
 
 
+
 // function App() {
 //   return (
 //     <>
@@ -127,6 +139,48 @@ export default App;
 //         {/* <Footer/> */}
 //       </BrowserRouter>
 //     </div>
+//     </>
+//   );
+// }
+// export default App;
+
+
+// function App() {
+//   return (
+    <>
+      {/* <div className="App">
+      <BrowserRouter>
+       <Header/> 
+        <div className="pages">
+          <Routes>
+            <Route
+              path='/'
+              element={<Review />}
+            />
+          </Routes>
+        </div>
+        <Footer/>
+      </BrowserRouter>
+    </div>
+    </>
+  );
+} */}
+      {/* export default App; */}{" "}
+//       <div className="App">
+//         {" "}
+//         <BrowserRouter>
+//           {" "}
+//           <div className="pages">
+//             {" "}
+//             <Routes>
+//               <Route path="/repairform" element={<Repair_form />} />
+//               <Route path="/repairdetails" element={<Repair_details />} />
+//               <Route path="/repairtable" element={<Repair_table />} />
+//               <Route path="/checkrepair" element={<CheckRepair />} />
+//             </Routes>{" "}
+//           </div>{" "}
+//         </BrowserRouter>{" "}
+//       </div>
 //     </>
 //   );
 // }
