@@ -64,7 +64,7 @@ function App() {
           <Route path="/singleorder/:uid" element={<AdminDash currentPage={<SingleOrder />}/>} />
           <Route path="/orderhistory" element={<AdminDash currentPage={<OrderHistory />}/>} />
           <Route path="/repairform" element={<AdminDash currentPage={<Repair_form />}/>} />
-          <Route path="/repairdetails" element={<AdminDash currentPage={<Repair_details />} />
+          <Route path="/repairdetails" element={<AdminDash currentPage={<Repair_details />}/>} />
           <Route path="/repairtable" element={<AdminDash currentPage={<Repair_table />}/>} />
         </Routes>
     </div>

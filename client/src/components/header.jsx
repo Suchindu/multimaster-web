@@ -175,7 +175,7 @@ export default function Header() {
 
                     ) : (
 
-                  {/* Profile dropdown */}
+                 
 
                   <Menu as="div" className="relative ml-3 pl-5 hidden sm:block">
                     <div>
