@@ -137,7 +137,7 @@ const sendEmail = async (userEmail, userName) => {
     from: "multimaster.orderconfirmation@gmail.com",
     to: userEmail,
     subject: "Repair Status",
-    text: `Hello ${userName}, your repair status is updated.😊😊😊`,
+    text: `Hello ${userName}, we're pleased to inform you that your repair status has been updated. 😊 Feel free to check the details and let us know if you need any further assistance.`,
   };
 
   transporter.sendMail(mailOptions, function (error, info) {
