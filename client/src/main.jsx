@@ -41,6 +41,7 @@ import { store } from './redux/store';
 //     <Shopping_cart />
 //   </React.StrictMode>,
 
+
 // );
 
 // )
@@ -50,6 +51,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
   <RepairsContextProvider>
+  <ReviewsContextProvider>
     <ProductProvider>
     <BrowserRouter>
       <Provider store={store}>
@@ -57,7 +59,9 @@ root.render(
       </Provider>
     </BrowserRouter>
     </ProductProvider>
+    </ReviewsContextProvider>
 </RepairsContextProvider>
   </React.StrictMode>
 );
+
 
