@@ -5,9 +5,12 @@ const {
     getOrders,
     getOrderById,
     getOrderByUid,
-    getOrdersByEmail,    createOrder,
+    getOrdersByEmail,   
+    createOrder,
     deleteOrder,
-    updateOrder
+    updateOrder,
+    sendEmail,
+    
 } = require('../controllers/order_controller');
 
 // Route to get all orders
@@ -31,6 +34,7 @@ router.get('/orderid/:uid', getOrderByUid);
 // Route to get orders by email
 router.get('/emailid/:email', getOrdersByEmail);
 
+router.post('/send-email', sendEmail);
 
 
 module.exports = router;

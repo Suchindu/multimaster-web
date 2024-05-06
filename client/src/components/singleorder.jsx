@@ -4,9 +4,6 @@ import { useParams } from "react-router-dom";
 import { useReactToPrint } from "react-to-print";
 
 
-//import { PaperClipIcon } from "@heroicons/react/20/solid";
-
-
 
 export default function SingleOrder() {
   const { uid } = useParams();
@@ -22,11 +19,29 @@ export default function SingleOrder() {
     }
   };
 
+
+
+  const sendConfirmationEmail = async (orderDetails) => {
+    try {
+      const response = await axios.post('http://localhost:3000/send-email/send-email', orderDetails);
+      console.log("Message sent: %s", response.data.messageId);
+    } catch (error) {
+      console.error('Error sending email', error);
+    }
+  };
+
+
+
+
   const [orderState, setOrderState] = useState("pending");
 
   const handleStateChange = (event) => {
     setOrderState(event.target.value);
   };
+
+
+
+
   //update order state
   const handleUpdate = async () => {
     try {
@@ -43,11 +58,21 @@ export default function SingleOrder() {
 
   const [order, setOrder] = useState(null);
 
-  useEffect(() => {
-    fetchHandler().then((data) => {
-      setOrder(data);
-    });
-  }, [uid]);
+  const [orderDetails, setOrderDetails] = useState(null);
+
+useEffect(() => {
+  fetchHandler().then((data) => {
+    setOrder(data);
+    if (data) {
+      const newOrderDetails = {
+        buyerEmail: data.email,
+        buyerName: data.name,
+        productName: data.uid,
+      };
+      setOrderDetails(newOrderDetails);
+    }
+  });
+}, [uid]);
 
   const ComponentsRef = useRef();
 
@@ -65,6 +90,8 @@ export default function SingleOrder() {
     });
     return totalPrice;
   };
+
+
 
   return (
     order && (
@@ -175,7 +202,7 @@ export default function SingleOrder() {
                       Update
                     </button>
                     <button
-                      //onClick={() => sendConfirmationEmail(orderDetails)} // replace orderDetails with the actual order details object
+                      onClick={() => orderDetails && sendConfirmationEmail(orderDetails)} 
                       type="button"
                       className="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 hide-on-print"
                     >
@@ -190,4 +217,7 @@ export default function SingleOrder() {
       </div>
     )
   );
+
+
+  
 }

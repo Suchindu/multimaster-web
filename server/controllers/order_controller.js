@@ -1,5 +1,48 @@
 const Order = require("../models/order_model");
 const mongoose = require("mongoose");
+const express = require('express');
+const nodemailer = require('nodemailer');
+const app = express();
+
+
+app.use(express.json());
+
+
+//Send email using nodemailer
+
+const transporter = nodemailer.createTransport({
+  host: "smtp.gmail.com",
+  port: 587,
+  secure: false,
+  auth: {
+    user: "multimaster.orderconfirmation@gmail.com",
+    pass: "myep nmub solj fkoh",
+  },
+});
+
+const sendEmail = async (req, res) => {
+  const orderDetails = req.body;
+
+  try {
+    const info = await transporter.sendMail({
+      from: '"Multimaster Computer Store 👻" <multimaster.orderconfirmation@gmail.com>',
+      to: orderDetails.buyerEmail,
+      subject: "Order Confirmation",
+      text: `Hello ${orderDetails.buyerName}, your order for ${orderDetails.productName} has been received.`,
+      html: `<b>Hello ${orderDetails.buyerName},</b><br>Your order for ${orderDetails.productName} has been received.`,
+    });
+
+    res.json({ messageId: info.messageId });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Error sending email' });
+  }
+};
+
+
+
+
+
 
 // Get all orders
 const getOrders = async (req, res) => {
@@ -161,4 +204,6 @@ module.exports = {
   createOrder,
   deleteOrder,
   updateOrder,
+  sendEmail,
+  
 };

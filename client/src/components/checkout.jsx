@@ -160,7 +160,7 @@ export default function Checkout() {
                     <input
                       {...register("email", {
                         required: true,
-                        maxLength: 20,
+                        maxLength: 30,
                         pattern: {
                         value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
                         message: "invalid email address"
