@@ -1,8 +1,8 @@
-import { Fragment, useState } from "react";
-import Store from "./Product";
+import { Fragment, useState } from 'react'
+import Store from './Product';
 
-import { Dialog, Transition } from "@headlessui/react";
-import { Link } from "react-router-dom";
+import { Dialog, Transition } from '@headlessui/react'
+import {Link} from 'react-router-dom';
 import {
   Bars3Icon,
   CalendarIcon,
@@ -12,16 +12,14 @@ import {
   HomeIcon,
   UsersIcon,
   XMarkIcon,
-  UserCircleIcon,
+  UserCircleIcon,  
   BuildingStorefrontIcon,
-  ArchiveBoxIcon,
-  AcademicCapIcon,
-  TableCellsIcon,
-  DocumentIcon,
-} from "@heroicons/react/24/outline";
+  ArchiveBoxIcon
+} from '@heroicons/react/24/outline'
 
-export default function AdminDash({ currentPage }) {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+export default function AdminDash({currentPage}) {
+  const [sidebarOpen, setSidebarOpen] = useState(false)
 
   return (
     <>
@@ -61,16 +59,9 @@ export default function AdminDash({ currentPage }) {
                     leaveTo="opacity-0"
                   >
                     <div className="absolute left-full top-0 flex w-16 justify-center pt-5">
-                      <button
-                        type="button"
-                        className="-m-2.5 p-2.5"
-                        onClick={() => setSidebarOpen(false)}
-                      >
+                      <button type="button" className="-m-2.5 p-2.5" onClick={() => setSidebarOpen(false)}>
                         <span className="sr-only">Close sidebar</span>
-                        <XMarkIcon
-                          className="h-6 w-6 text-white"
-                          aria-hidden="true"
-                        />
+                        <XMarkIcon className="h-6 w-6 text-white" aria-hidden="true" />
                       </button>
                     </div>
                   </Transition.Child>
@@ -82,83 +73,51 @@ export default function AdminDash({ currentPage }) {
                         src="/multimaster.svg"
                         alt="Multimaster Logo"
                       />
-                      <p
-                        className="text-white"
-                        style={{
-                          fontFamily: "Goldman, sans-serif",
-                          letterSpacing: "0.05em",
-                          fontSize: "18px",
-                        }}
-                      >
-                        multimaster
-                      </p>
+                      <p className="text-white" style={{ fontFamily: 'Goldman, sans-serif',letterSpacing: '0.05em',fontSize: '18px'}}>multimaster</p>
                     </div>
                     <nav className="flex flex-1 flex-col mt-10">
                       <ul role="list" className="flex flex-1 flex-col gap-y-7">
                         <li>
                           <ul role="list" className="-mx-2 space-y-1">
-                            <li>
-                              <Link to="/dashboard">
-                                <button className="text-indigo-200 hover:text-white w-11/12 hover:bg-color2 group flex gap-x-3 rounded-md p-2  ml-2 mb-3  text-sm leading-6 font-semibold">
-                                  {/* Replace with your icon */}
-                                  <HomeIcon
-                                    className="text-indigo-200 group-hover:text-white h-6 w-6 shrink-0"
-                                    aria-hidden="true"
-                                  />
-                                  Dashboard
-                                </button>
+                          <li>
+                          <Link to="/dashboard">
+                              <button
+                                className="text-indigo-200 hover:text-white w-11/12 hover:bg-color2 group flex gap-x-3 rounded-md p-2  ml-2 mb-3  text-sm leading-6 font-semibold"
+                                
+                              >
+                                {/* Replace with your icon */}
+                                <HomeIcon className="text-indigo-200 group-hover:text-white h-6 w-6 shrink-0" aria-hidden="true" />
+                                Dashboard
+                              </button>
                               </Link>
                             </li>
                             <li>
-                              <Link to="/admin-products">
-                                <button className="text-indigo-200 hover:text-white w-11/12 hover:bg-color2 group flex gap-x-3 rounded-md p-2  ml-2 mb-3  text-sm leading-6 font-semibold">
-                                  {/* Replace with your icon */}
-                                  <BuildingStorefrontIcon
-                                    className="text-indigo-200 group-hover:text-white h-6 w-6 shrink-0"
-                                    aria-hidden="true"
-                                  />
-                                  Store
-                                </button>
+                            <Link to="/admin-products">
+                              <button
+                                className="text-indigo-200 hover:text-white w-11/12 hover:bg-color2 group flex gap-x-3 rounded-md p-2  ml-2 mb-3  text-sm leading-6 font-semibold"
+                                
+                              >
+                                {/* Replace with your icon */}
+                                <BuildingStorefrontIcon className="text-indigo-200 group-hover:text-white h-6 w-6 shrink-0" aria-hidden="true" />
+                                Store
+                              </button>
                               </Link>
                             </li>
                             <li>
-                              <Link to="/orderview">
-                                <button className="text-indigo-200 hover:text-white w-11/12 hover:bg-color2 group flex gap-x-3 rounded-md p-2 ml-2 mb-3  text-sm leading-6 font-semibold">
-                                  {/* Replace with your icon */}
-                                  <ArchiveBoxIcon
-                                    className="text-indigo-200 group-hover:text-white h-6 w-6 shrink-0"
-                                    aria-hidden="true"
-                                  />
-                                  Order
-                                </button>
-                              </Link>
-                            </li>
-                            <li>
-                              <Link to="/repairform">
-                                <button className="text-indigo-200 hover:text-white w-11/12 hover:bg-color2 group flex gap-x-3 rounded-md p-2 ml-2 mb-3  text-sm leading-6 font-semibold">
-                                  {/* Replace with your icon */}
-                                  <DocumentIcon
-                                    className="text-indigo-200 group-hover:text-white h-6 w-6 shrink-0"
-                                    aria-hidden="true"
-                                  />
-                                  Submit Repair
-                                </button>
-                              </Link>
-                            </li>
-                            <li>
-                              <Link to="/repairtable">
-                                <button className="text-indigo-200 hover:text-white w-11/12 hover:bg-color2 group flex gap-x-3 rounded-md p-2 ml-2 mb-3  text-sm leading-6 font-semibold">
-                                  {/* Replace with your icon */}
-                                  <TableCellsIcon
-                                    className="text-indigo-200 group-hover:text-white h-6 w-6 shrink-0"
-                                    aria-hidden="true"
-                                  />
-                                  Repair Details
-                                </button>
+                            <Link to="/orderview">
+                              <button
+                                className="text-indigo-200 hover:text-white w-11/12 hover:bg-color2 group flex gap-x-3 rounded-md p-2 ml-2 mb-3  text-sm leading-6 font-semibold"
+                                
+                              >
+                                {/* Replace with your icon */}
+                                <ArchiveBoxIcon className="text-indigo-200 group-hover:text-white h-6 w-6 shrink-0" aria-hidden="true" />
+                                Order
+                              </button>
                               </Link>
                             </li>
                           </ul>
                         </li>
+
                       </ul>
                     </nav>
                   </div>
@@ -169,17 +128,11 @@ export default function AdminDash({ currentPage }) {
         </Transition.Root>
 
         <div className="sticky top-0 z-40 flex items-center gap-x-6 bg-color1 px-4 py-4 shadow-sm sm:px-6 ">
-          <button
-            type="button"
-            className="-m-2.5 p-2.5 text-indigo-200 "
-            onClick={() => setSidebarOpen(true)}
-          >
+          <button type="button" className="-m-2.5 p-2.5 text-indigo-200 " onClick={() => setSidebarOpen(true)}>
             <span className="sr-only">Open sidebar</span>
             <Bars3Icon className="h-7 w-7" aria-hidden="true" />
           </button>
-          <div className="flex-1 text-sm font-semibold leading-6 text-white">
-            Dashboard
-          </div>
+          <div className="flex-1 text-sm font-semibold leading-6 text-white">Dashboard</div>
           <a href="#">
             <span className="sr-only">Your profile</span>
             {/* <UserCircleIcon  className="h-8 w-auto rounded-full bg-color2"/> */}
@@ -194,10 +147,10 @@ export default function AdminDash({ currentPage }) {
         <main className="py-10 ">
           <div className="px-4 sm:px-6 lg:px-8">
             {/* Your content */}
-            {currentPage}
-          </div>
+            {currentPage }
+            </div>
         </main>
       </div>
     </>
-  );
+  )
 }

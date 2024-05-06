@@ -13,23 +13,25 @@ import {
 // import RepairAlert_box from "./RepairAlert_box";
 // import { useRepairContext } from "../hooks/useRepairContext";
 
+
 const Repair_form = () => {
   const { dispatch } = useRepairContext();
 
   const [repair_id_int, setrepairIdInt] = useState("");
   const [repair_id_str, setrepairIdStr] = useState("");
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [contact, setContact] = useState("");
-  const [date, setDate] = useState("");
-  const [device_brand, setDeviceBrand] = useState("");
-  const [device_model, setDeviceModel] = useState("");
-  const [problem, setProblem] = useState("");
-  const [description, setDescription] = useState("");
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [contact, setContact] = useState('');
+  const [date, setDate] = useState('');
+  const [device_brand, setDeviceBrand] = useState('');
+  const [device_model, setDeviceModel] = useState('');
+  const [problem, setProblem] = useState('');
+  const [description, setDescription] = useState('');
   const [emailError, setEmailError] = useState(null);
   const [contactError, setContactError] = useState(null);
   const [error, setError] = useState(null);
   const [showAlert, setShowAlert] = useState(false);
+
 
   //generate new repair id
 
@@ -43,15 +45,16 @@ const Repair_form = () => {
     generateAndSetNewId();
   }, []);
 
+
   //email validation
   const handleEmailChange = (e) => {
     const input = e.target.value.toLowerCase();
     setEmail(input);
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // regular expression
 
-    if (!emailPattern.test(input)) {
+    if(!emailPattern.test(input)){
       setEmailError("Please enter a valid email address");
-    } else {
+    }else {    
       setEmailError(null);
     }
   };
@@ -59,9 +62,9 @@ const Repair_form = () => {
   //contact validation
   const handleContactChange = (e) => {
     const input = e.target.value; // Remove non-digit characters
-    if (!/^\d*$/.test(input)) {
+    if(!/^\d*$/.test(input)){
       setContactError("Please enter a valid phone number");
-    } else {
+    }else {
       setContact(input);
       setContactError(null);
     }
@@ -112,6 +115,7 @@ const Repair_form = () => {
     return () => clearTimeout(timeout);
   }, [showAlert]);
 
+
   // const handleSubmit = async (e) => {
   //     e.preventDefault();
   //     // Handle form submission logic here
@@ -126,18 +130,19 @@ const Repair_form = () => {
 
   //  }, [showAlert]);
 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     // Handle form submission logic here
-    //dev==============================================
-    //     let repair_id_integer = await generateRepairIdInt();
-    //     setrepairIdInt(repair_id_integer);
+//dev==============================================
+//     let repair_id_integer = await generateRepairIdInt();
+//     setrepairIdInt(repair_id_integer);
 
-    //     let repair_id_string = await generateRepairIdStr();
-    //     setrepairIdStr(repair_id_string);
-
-    //     const repair = {repair_id_int, repair_id_str, name, email, contact, date, device_brand, device_model, problem, description};
-    //===========================================================
+//     let repair_id_string = await generateRepairIdStr();
+//     setrepairIdStr(repair_id_string);
+  
+//     const repair = {repair_id_int, repair_id_str, name, email, contact, date, device_brand, device_model, problem, description};
+//===========================================================
 
     //Generate new repair id
     let newRepairId = await generateNewRepairId();
@@ -162,6 +167,7 @@ const Repair_form = () => {
       problem,
       description,
     };
+
 
     const response = await fetch("http://localhost:4000/api/repair/", {
       method: "POST",
@@ -200,7 +206,7 @@ const Repair_form = () => {
   const todayFormatted = yyyy + "-" + mm + "-" + dd;
   return (
     <>
-      <div className=" min-h-screen pt-10 pb-6">
+      <div className="bg-blue-100 min-h-screen pt-10 pb-6">
         <form
           className="w-full max-w-lg mx-auto p-5 mt-5 bg-white rounded-lg shadow-lg"
           onSubmit={handleSubmit}
@@ -353,7 +359,7 @@ const Repair_form = () => {
           <div className="md:col-span-2">
             <button
               type="submit"
-              className="w-full px-4 py-2 mt-4 font-semibold bg-color4 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50 transition duration-150"
+              className="w-full px-4 py-2 mt-4 font-semibold bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50 transition duration-150"
             >
               Submit
             </button>
@@ -366,4 +372,4 @@ const Repair_form = () => {
   );
 };
 
-export default Repair_form;
+export default Repair_form
