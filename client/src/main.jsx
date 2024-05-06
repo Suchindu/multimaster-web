@@ -1,3 +1,4 @@
+
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
@@ -10,13 +11,30 @@ import { Provider } from 'react-redux';
 import { store } from './redux/store';
 
 // ReactDOM.createRoot(document.getElementById('root')).render(
+
+
+
+
+
+// import { ReviewsContextProvider } from "./context/ReviewContext.jsx";
+
+
+// ReactDOM.createRoot(document.getElementById('root')).render(
+//   <React.StrictMode>
+//     <ReviewsContextProvider>
+//       <App/>
+//     </ReviewsContextProvider>
+//   </React.StrictMode>
+// );
+
+// ReactDOM.createRoot(document.getElementById("root")).render(
+
 //   <React.StrictMode>
 //     <ReviewsContextProvider>
 //       <App/>
 //     </ReviewsContextProvider>
 //   </React.StrictMode>
 // )
-
 
 // ReactDOM.createRoot(document.getElementById('root')).render(
 //   <React.StrictMode>
@@ -31,6 +49,7 @@ import { store } from './redux/store';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+  <RepairContextProvider>
     <ProductProvider>
     <BrowserRouter>
       <Provider store={store}>
@@ -38,5 +57,7 @@ root.render(
       </Provider>
     </BrowserRouter>
     </ProductProvider>
+</RepairContextProvider>
   </React.StrictMode>
 );
+
