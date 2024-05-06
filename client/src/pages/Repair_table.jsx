@@ -86,9 +86,7 @@ const Repair_table = () => {
   return (
     <>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
-        <h1 className="text-blue-800 text-center font-bold text-2xl my-6">
-          Repair Requets
-        </h1>
+        <h1 className=" text-center font-bold text-2xl my-6">Repair Requets</h1>
       </div>
       <div>
         <div className="flex justify-center my-4">
