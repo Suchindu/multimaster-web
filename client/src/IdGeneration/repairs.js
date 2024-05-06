@@ -1,10 +1,10 @@
 export async function generateRepairIdStr() {
 
     try {
-        const response = await fetch('http://localhost:4000/api/reviews/');
+        const response = await fetch('http://localhost:4000/api/repair/');
         const repairs = await response.json();
 
-        const RepairId_Integer = repairs.map(review => parseInt(review.repair_id_int));
+        const RepairId_Integer = repairs.map(repair => parseInt(repair.repair_id_int));
 
         let newRepairId;
 
@@ -28,17 +28,17 @@ export async function generateRepairIdStr() {
 export async function generateRepairIdInt() {
 
     try {
-        const response = await fetch('http://localhost:4000/api/reviews/');
-        const reviews = await response.json();
+        const response = await fetch('http://localhost:4000/api/repair/');
+        const repairs = await response.json();
 
-        const ReviewId_Integer = reviews.map(review => parseInt(review.review_id_int));
+        const RepairIDInteger = repairs.map(repair => parseInt(repair.repair_id_int));
 
         let newRepairId;
 
-        if (ReviewId_Integer.length === 0) {
+        if (RepairIDInteger.length === 0) {
             newRepairId = 1;
         } else {
-            const lastRepairId = Math.max(...ReviewId_Integer);
+            const lastRepairId = Math.max(...RepairIDInteger);
             newRepairId = lastRepairId + 1;
         }
 

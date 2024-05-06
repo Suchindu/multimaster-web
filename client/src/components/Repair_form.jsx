@@ -157,6 +157,8 @@ const Repair_form = () => {
       dispatch({ type: "Create_Repair", payload: json });
     }
   };
+    
+}
 
   return (
     <>
@@ -322,7 +324,8 @@ const Repair_form = () => {
         {showAlert && <RepairAlert_box message="New Repair Request Added" />}
       </div>
     </>
-  );
-};
+    );
+  };
+}
 
 export default Repair_form;

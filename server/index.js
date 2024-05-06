@@ -27,6 +27,7 @@ app.use(cors({
 app.use('/api/reviews', review_route); 
 app.use('/api/repair', repair_route); 
 app.use('/api/products', product_route);
+
 // Connect to DB
 mongoose.connect(uri)
     .then(() => {

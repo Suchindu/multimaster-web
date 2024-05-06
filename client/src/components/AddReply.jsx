@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useReviewsContext } from "../hooks/useReviewsContext";
-import { formatDistanceToNow } from "date-fns/formatDistanceToNow";
 
 export default function AddReply({ review }) {
 
@@ -40,7 +39,6 @@ export default function AddReply({ review }) {
       <div className="grid grid-cols-1 gap-4 bg-gray-900 p-6 rounded-lg mb-5">
       <div className="flex justify-between items-center">
         <h3 className="text-xl text-white font-bold mb-2 text-center">{review.review_id_str}</h3>
-        {/* <p className="mb-1 text-sm text-white">{createdDate}</p> */}
       </div>
       <div className="grid grid-cols-2 gap-4">
         <div className="border border-white p-4 rounded-lg">
@@ -61,7 +59,8 @@ export default function AddReply({ review }) {
       <div className="bg-gray-800 p-4 rounded-lg flex items-center justify-between">
       <p className="mb-1 text-white"><strong>Technician's Reply : </strong>{review.technician_reply}</p>
       <div className="bg-white rounded-xl p-2 mr-2">
-          <button className="material-symbols-outlined bg-transparent text-blue-500 font-semibold py-2 px-4 border border-blue-500 rounded-xl" onClick={() => setIsReplying(true)}>
+          <button className="material-symbols-outlined bg-transparent text-blue-500 font-semibold py-2 px-4 border border-blue-500 rounded-xl" 
+            onClick={() => setIsReplying(true)}>
               Reply
           </button>
       </div>
@@ -72,8 +71,8 @@ export default function AddReply({ review }) {
     {isReplying && (
       <div>
         <form>
-          <div className="border-2 border-gray-300 rounded-lg p-4 max-w-xl mx-auto">
-            <label className="block mb-1 text-white">Enter Your Reply</label><br />
+          <div className="border-2 border-gray-300 rounded-lg mb-5 p-4 max-w-xl mx-auto">
+            <label className="block mb-1 text-gray">Enter Technicians Reply</label><br />
             <input 
               type="text" 
               name="technician_reply" 
@@ -86,7 +85,7 @@ export default function AddReply({ review }) {
               <div className="bg-white rounded-xl p-2 mr-2">
                 <button className="material-symbols-outlined bg-transparent text-blue-500 font-semibold py-2 px-4 border border-blue-500 rounded-xl" 
                   onClick={handleUpdate}>
-                    Submit Reply
+                    Reply
                 </button>
               </div>
               <div className="bg-white rounded-xl p-2 mr-2">

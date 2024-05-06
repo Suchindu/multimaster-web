@@ -28,15 +28,4 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 //     <Shopping_cart />
 //   </React.StrictMode>,
 
-// )
-
 // );
-
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <RepairsContextProvider>
-      <App />
-    </RepairsContextProvider>
-  </React.StrictMode>
-);
-
