@@ -40,7 +40,6 @@ app.use("/user", user_route);
 app.use("/login", user_login_route);
 app.use("/profile", user_profile_route);
 
-
 // Connect to DB
 mongoose.connect(uri)
     .then(() => {

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useReviewsContext } from "../hooks/useReviewsContext";
+import { formatDistanceToNow } from "date-fns/formatDistanceToNow";
 
 export default function ReviewDetails({ review }) {
 
@@ -50,11 +51,15 @@ export default function ReviewDetails({ review }) {
     }));
   }
 
+  // Formatting the date
+  // const createdDate = formatDistanceToNow(new Date(review.createdAt), {addSuffix : true});
+
   return (
     <>
       <div className="grid grid-cols-1 gap-4 bg-gray-900 p-6 rounded-lg mb-5">
       <div className="flex justify-between items-center">
         <h3 className="text-xl text-white font-bold mb-2 text-center">{review.review_id_str}</h3>
+        {/* <p className="mb-1 text-sm text-white">{createdDate}</p> */}
       </div>
       <div className="grid grid-cols-2 gap-4">
         <div className="border border-white p-4 rounded-lg">
