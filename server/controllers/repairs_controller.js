@@ -96,6 +96,12 @@ const updateRepair = async (req, res) => {
     return res.status(404).json({ error: "No such repair" });
   }
 
+  //new
+  const oldRepair = await Repair.findById(id);
+  if (!oldRepair) {
+    return res.status(400).json({ error: "No such repair" });
+  }
+
   const repair = await Repair.findOneAndUpdate(
     { _id: id },
     {
@@ -108,12 +114,17 @@ const updateRepair = async (req, res) => {
     return res.status(400).json({ error: "No such repair" });
   }
 
-  await sendEmail(repair.email);
+  //check if repair status is changed
+  if (oldRepair.status !== repair.status) {
+    await sendEmail(repair.email, repair.name);
+  }
+
+  // await sendEmail(repair.email);
 
   res.status(200).json(repair);
 };
 
-const sendEmail = async (userEmail) => {
+const sendEmail = async (userEmail, userName) => {
   let transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
@@ -123,10 +134,10 @@ const sendEmail = async (userEmail) => {
   });
 
   let mailOptions = {
-    from: "multimaster896@gmail.com",
+    from: "multimaster.orderconfirmation@gmail.com",
     to: userEmail,
     subject: "Repair Status",
-    text: "Your repair status is updated.",
+    text: `Hello ${userName}, your repair status is updated.😊😊😊`,
   };
 
   transporter.sendMail(mailOptions, function (error, info) {
