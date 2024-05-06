@@ -68,7 +68,7 @@ function ReviewsTable({ reviews, onDelete }) {
             <td className="border px-4 py-2">{review.technician_reply}</td>
             <td className="border px-4 py-2">
               <button
-                className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded hide-on-print"
+                className="bg-red-700 hover:bg-red-900 text-white font-bold py-2 px-4 rounded hide-on-print"
                 onClick={() => onDelete(review._id)}
               >
                 Delete
@@ -84,7 +84,7 @@ function ReviewsTable({ reviews, onDelete }) {
           <button
             type="button"
             
-            className="block rounded-md bg-green-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600 mt-2"
+            className="block rounded-md bg-color3 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-color4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600 mt-2"
           >
             Print as PDF
           </button>
