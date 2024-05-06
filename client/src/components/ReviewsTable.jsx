@@ -1,9 +1,12 @@
 import { useReviewsContext } from "../hooks/useReviewsContext";
-import {useState,useEffect} from 'react';
+import {useState,useEffect,useRef} from 'react';
+import ReactToPrint from 'react-to-print';
 
 function ReviewsTable({ reviews, onDelete }) {
   
   const { dispatch } = useReviewsContext();
+
+  const componentRef = useRef(); 
 
   const [filteredReviews, setFilteredReviews] = useState([]);
   const [search, setSearch] = useState('');
@@ -28,19 +31,15 @@ function ReviewsTable({ reviews, onDelete }) {
 
   return (
     <>
-    <div className="flex justify-center mt-4">
+    <div className="flex justify-center mt-4 mb-5">
       <input 
           onChange={(e) => setSearch(e.target.value)}
           type="text"
           placeholder="Search"
-          // onChange={handleFilter}
           className="px-4 w-9/12 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
       />
-      {/* <button className="ml-2 justify-center px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
-          Search
-      </button> */}
     </div>
-    <table className="table-auto text-sm">
+    <table className="table-auto text-sm" ref={componentRef}>
       <thead>
         <tr>
           <th className="border px-4 py-2 bg-color1 text-white">ID</th>
@@ -51,7 +50,8 @@ function ReviewsTable({ reviews, onDelete }) {
           <th className="border px-4 py-2 bg-color1 text-white">Service Type</th>
           <th className="border px-4 py-2 bg-color1 text-white">Rating</th>
           <th className="border px-4 py-2 bg-color1 text-white">Review</th>
-          <th className="border px-4 py-2 bg-color1 text-white">Actions</th>
+          <th className="border px-4 py-2 bg-color1 text-white">Technician's Reply</th>
+          <th className="border px-4 py-2 bg-color1 text-white hide-on-print">Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -65,18 +65,32 @@ function ReviewsTable({ reviews, onDelete }) {
             <td className="border px-4 py-2">{review.service_type}</td>
             <td className="border px-4 py-2">{review.rating}</td>
             <td className="border px-4 py-2">{review.review_body}</td>
+            <td className="border px-4 py-2">{review.technician_reply}</td>
             <td className="border px-4 py-2">
               <button
-                className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded hide-on-print"
                 onClick={() => onDelete(review._id)}
               >
                 Delete
               </button>
             </td>
           </tr>
+          
         ))}
       </tbody>
     </table>
+    <ReactToPrint
+        trigger={() => (
+          <button
+            type="button"
+            
+            className="block rounded-md bg-green-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600 mt-2"
+          >
+            Print as PDF
+          </button>
+          )}
+          content={() => componentRef.current}
+          />
     </>
   );
 }

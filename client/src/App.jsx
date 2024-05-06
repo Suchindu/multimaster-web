@@ -1,4 +1,5 @@
 
+
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'; 
 import Product from './components/admin/Product';
@@ -13,12 +14,21 @@ import CompareProduct from './components/store/CompareProduct';
 
 // import Review from './pages/review_form';
 import Header from './components/header';
+
+// Importing pages and components
+import ReviewsForm from './components/ReviewsForm';
+import ReviewsDetails from './pages/ReviewsDetails';
+import ReviewsReply from "./pages/ReviewsReply";
+import AdminReviewsTable from "./pages/ReviewsTable";
+
+
 import Footer from './components/footer';
 // import Repair_form from './components/Repair_form';
 import {
   QueryClient,
   QueryClientProvider,
 } from "@tanstack/react-query";
+
 
 //Importing pages and components
 import Cart from './components/Cart.jsx';
@@ -54,6 +64,9 @@ function App() {
           <Route path="/register" element={<><Header/><Register/><Footer/></>} />
           <Route path="/profile" element={<><Header/><UserProfile/><Footer/></>} />
           <Route path="/checkrepair" element={<><Header/><CheckRepair /><Footer/></>} />
+          <Route path="/ReviewsForm" element={<><Header/><ReviewsForm /><Footer/></>} />
+          <Route path="/ReviewsDetails" element={<><Header/><ReviewsDetails /><Footer/></>} />
+          <Route path="/ReviewsReply" element={<><Header/><ReviewsReply /><Footer/></>} />
           <Route path='/add-products' element={<AdminDash currentPage={<AddProduct />}/>}/>
           <Route path='/admin-products' element={<AdminDash currentPage={<Product/>}/>}/>
           <Route path="/edit-product/:id" element={<AdminDash currentPage={<EditProduct/>}/>}/>
@@ -66,6 +79,7 @@ function App() {
           <Route path="/repairform" element={<AdminDash currentPage={<Repair_form />}/>} />
           <Route path="/repairdetails" element={<AdminDash currentPage={<Repair_details />}/>} />
           <Route path="/repairtable" element={<AdminDash currentPage={<Repair_table />}/>} />
+          <Route path="/ReviewsTable" element={<AdminDash currentPage={<AdminReviewsTable />}/>} />
         </Routes>
     </div>
 </QueryClientProvider>
@@ -73,116 +87,3 @@ function App() {
 }
 
 export default App;
-
-
-
-// function App() {
-//   return (
-//     <QueryClientProvider client={queryClient}>
-//       <div className="app">
-//         <Header />
-//         <Routes>
-//           <Route exact path="/" element={<Home />} />
-//           <Route path="/cart" element={<Cart />} />
-//           <Route path="/checkout" element={<CheckOut />} />
-//           <Route path="/login" element={<Login />} />
-//           <Route path="/register" element={<Register />} />
-//           <Route path="/profile" element={<UserProfile />} />
-//         </Routes>
-//         <Footer />
-//       </div>
-//     </QueryClientProvider>
-//   );
-// }
-
-
-
- 
-
-
-// function App() {
-//   return (
-//     <>
-//     <div className="App">
-//       <BrowserRouter>
-//        <Header/>
-//         <div className="pages">
-//           <Routes>
-//             <Route
-//               path='/'
-//               element={<Review />}
-//             />
-//           </Routes>
-//         </div>
-//         <Footer/>
-//       </BrowserRouter>
-//     </div>
-//     </>
-//   );
-// }
-
-
-
-// function App() {
-//   return (
-//     <>
-//     <div className="App">
-//       <BrowserRouter>
-//         <div className="pages">
-//           <Routes>
-//             <Route
-//               path='/'
-//               element={<Repair_form />}
-//             />
-//           </Routes>
-//         </div>
-//         {/* <Footer/> */}
-//       </BrowserRouter>
-//     </div>
-//     </>
-//   );
-// }
-// export default App;
-
-
-// function App() {
-//   return (
-    <>
-      {/* <div className="App">
-      <BrowserRouter>
-       <Header/> 
-        <div className="pages">
-          <Routes>
-            <Route
-              path='/'
-              element={<Review />}
-            />
-          </Routes>
-        </div>
-        <Footer/>
-      </BrowserRouter>
-    </div>
-    </>
-  );
-} */}
-      {/* export default App; */}{" "}
-//       <div className="App">
-//         {" "}
-//         <BrowserRouter>
-//           {" "}
-//           <div className="pages">
-//             {" "}
-//             <Routes>
-//               <Route path="/repairform" element={<Repair_form />} />
-//               <Route path="/repairdetails" element={<Repair_details />} />
-//               <Route path="/repairtable" element={<Repair_table />} />
-//               <Route path="/checkrepair" element={<CheckRepair />} />
-//             </Routes>{" "}
-//           </div>{" "}
-//         </BrowserRouter>{" "}
-//       </div>
-//     </>
-//   );
-// }
-// export default App;
-
