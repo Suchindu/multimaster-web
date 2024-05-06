@@ -1,51 +1,84 @@
-export async function generateRepairIdStr() {
+// export async function generateRepairIdStr() {
+//   try {
+//     const response = await fetch("http://localhost:4000/api/repair/");
+//     const repairs = await response.json();
 
-    try {
-        const response = await fetch('http://localhost:4000/api/reviews/');
-        const repairs = await response.json();
+//     const RepairId_Integer = repairs.map((repair) =>
+//       parseInt(repair.repair_id_int)
+//     );
 
-        const RepairId_Integer = repairs.map(review => parseInt(review.repair_id_int));
+//     let newRepairId;
 
-        let newRepairId;
+//     if (RepairId_Integer.length === 0) {
+//       newRepairId = 1;
+//     } else {
+//       const lastRepairId = Math.max(...RepairId_Integer);
+//       newRepairId = lastRepairId + 1;
+//     }
 
-        if (RepairId_Integer.length === 0) {
-            newRepairId = 1;
-        } else {
-            const lastRepairId = Math.max(...RepairId_Integer);
-            newRepairId = lastRepairId + 1;
-        }
+//     const RepairId_String = "REP00" + newRepairId;
 
-        const RepairId_String = "REP00" + newRepairId;
+//     return RepairId_String;
+//   } catch (error) {
+//     console.error("Error fetching repair IDs : ", error);
+//     return null;
+//   }
+// }
 
-        return RepairId_String;
+// export async function generateRepairIdInt() {
+//   try {
+//     const response = await fetch("http://localhost:4000/api/repair/");
+//     const repairs = await response.json();
 
-    } catch (error) {
-        console.error('Error fetching review IDs : ', error);
-        return null;
+//     const RepairId_Integer = repairs.map((repair) =>
+//       parseInt(repair.repair_id_int)
+//     );
+
+//     let newRepairId;
+
+//     if (RepairId_Integer.length === 0) {
+//       newRepairId = 1;
+//     } else {
+//       const lastRepairId = Math.max(...RepairId_Integer);
+//       newRepairId = lastRepairId + 1;
+//     }
+
+//     return newRepairId;
+//   } catch (error) {
+//     console.error("Error fetching repair IDs : ", error);
+//     return null;
+//   }
+// }
+
+export async function generateNewRepairId() {
+  try {
+    const response = await fetch("http://localhost:4000/api/repair/");
+    const repairs = await response.json();
+
+    const RepairId_Integer = repairs.map((repair) =>
+      parseInt(repair.repair_id_int)
+    );
+
+    let newRepairId;
+
+    if (RepairId_Integer.length === 0) {
+      newRepairId = 1;
+    } else {
+      const lastRepairId = Math.max(...RepairId_Integer);
+      newRepairId = lastRepairId + 1;
     }
+
+    return newRepairId;
+  } catch (error) {
+    console.error("Error fetching repair IDs : ", error);
+    return null;
+  }
 }
 
-export async function generateRepairIdInt() {
+export function generateRepairIdStr(newRepairId) {
+  return "REP00" + newRepairId;
+}
 
-    try {
-        const response = await fetch('http://localhost:4000/api/reviews/');
-        const reviews = await response.json();
-
-        const ReviewId_Integer = reviews.map(review => parseInt(review.review_id_int));
-
-        let newRepairId;
-
-        if (ReviewId_Integer.length === 0) {
-            newRepairId = 1;
-        } else {
-            const lastRepairId = Math.max(...ReviewId_Integer);
-            newRepairId = lastRepairId + 1;
-        }
-
-        return newRepairId;
-
-    } catch (error) {
-        console.error('Error fetching review IDs : ', error);
-        return null;
-    }
+export function generateRepairIdInt(newRepairId) {
+  return newRepairId;
 }
