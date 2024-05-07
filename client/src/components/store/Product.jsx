@@ -1,18 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import {addToCart} from '../../redux/cartSlice';
 
-import { useCompare } from '../../context/CompareContext';
   
-export default function Product({product}) {
-
-    const { addToCompare } = useCompare();
-
-    const dispatch = useDispatch();
- 
+  export default function Product({product}) {
    
-  
+    const dispatch = useDispatch()
+
     return (
     <div className="bg-white ">
         <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8 lg:pt-8">
@@ -43,25 +38,18 @@ export default function Product({product}) {
                           View Product<span className="sr-only">, {product._id}</span>
                 </Link>
                 <button className=" m-1 rounded-md border border-transparent  bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50"
-                  onClick={() => {
-                    const productDetails = {
-                      id: product._id, 
-                      title: product.name, 
-                      image: product.image, 
-                      price: product.price 
-                    };
-                    console.log(productDetails);
-                    dispatch(addToCart(productDetails));
-                  }}
-                    >
-                      Add to Cart
+                    onClick={() => 
+                      dispatch(addToCart({
+                        id: product._id, 
+                        title: product.name, 
+                        image: product.image, 
+                        price: product.price 
+                      }))
+                    }>Add to Cart
                   </button>
-                  <button 
-                    onClick={() => addToCompare(product._id)}
-                    className="m-1 rounded-md border border-transparent  bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50"
-                  >
-                    Compare Product<span className="sr-only">, {product._id}</span>
-                  </button>
+                  <Link to={`/view-product/${product._id}/$${product._id}`} className="m-1 rounded-md border border-transparent  bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50">
+                          Compare Product<span className="sr-only">, {product._id}</span>
+                </Link>
                 </div>
                 </div>
             

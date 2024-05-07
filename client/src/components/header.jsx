@@ -86,13 +86,13 @@ export default function Header() {
                 <div className="hidden lg:ml-20 sm:ml-7 md:block">
                   <div className="flex space-x-4">
                     {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
-                    <Link
-                      to="/"
+                    <a
+                      href="#"
                       className="rounded-md bg-color3 px-3 py-2 text-sm font-medium text-white"
                       style={{ fontSize: "13px" }}
                     >
                       Home
-                    </Link>
+                    </a>
                     <a
                       href="#"
                       className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-color2 hover:text-white"
@@ -122,11 +122,11 @@ export default function Header() {
                 <div className="flex items-center">
                   <button
                     type="button"
-                    // onClick={() => {
-                    //    if (getTotalQuantity() > 0) {
-                    //     navigate("/compare");
-                    //    }
-                    // }}
+                    onClick={() => {
+                      if (getTotalQuantity() > 0) {
+                        navigate("/cart");
+                      }
+                    }}
                     className="relative rounded-full bg-color2 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 mr-4"
                   >
                     <span className="absolute -inset-1.5" />
@@ -155,15 +155,10 @@ export default function Header() {
 
                   <button
                     type="button"
-                    onClick={() => {
-                    
-                        navigate("/compare");
-                    
-                    }}
                     className="relative rounded-full bg-color2 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 "
                   >
                     <span className="absolute -inset-1.5" />
-                    <span className="sr-only">Compare</span>
+                    <span className="sr-only">Search</span>
                     <VscGitCompare
                       className="h-6 w-6 pr-1 pl-1"
                       aria-hidden="true"
