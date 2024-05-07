@@ -3,6 +3,8 @@ const mongoose = require("mongoose");
 const express = require('express');
 const nodemailer = require('nodemailer');
 const app = express();
+require('dotenv').config();
+
 
 
 app.use(express.json());
@@ -16,7 +18,7 @@ const transporter = nodemailer.createTransport({
   secure: false,
   auth: {
     user: "multimaster.orderconfirmation@gmail.com",
-    pass: "myep nmub solj fkoh",
+    pass: process.env.SMTP_PASSWORD,
   },
 });
 
@@ -25,7 +27,7 @@ const sendEmail = async (req, res) => {
 
   try {
     const info = await transporter.sendMail({
-      from: '"Multimaster Computer Store 👻" <multimaster.orderconfirmation@gmail.com>',
+      from: '"Multimaster Computer Store" <multimaster.orderconfirmation@gmail.com>',
       to: orderDetails.buyerEmail,
       subject: "Order Confirmation",
       text: `Hello ${orderDetails.buyerName}, your order for ${orderDetails.productName} has been received.`,

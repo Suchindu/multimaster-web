@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import { PhotoIcon } from "@heroicons/react/24/solid";
-import axios from "axios"; // Import Axios for making HTTP requests
+import axios from "axios"; 
 import { useSelector, useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { v4 as uuidv4 } from "uuid";
 import { useQuery } from "@tanstack/react-query";
 import { emptyCart } from "../redux/cartSlice";
 import { useNavigate } from "react-router-dom";
+
 
 export default function Checkout() {
   const cart = useSelector((state) => state.cart);
