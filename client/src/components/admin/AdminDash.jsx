@@ -18,6 +18,7 @@ import {
   AcademicCapIcon,
   TableCellsIcon,
   DocumentIcon,
+  ArrowPathRoundedSquareIcon,
 } from "@heroicons/react/24/outline";
 
 export default function AdminDash({ currentPage }) {
@@ -154,6 +155,30 @@ export default function AdminDash({ currentPage }) {
                                     aria-hidden="true"
                                   />
                                   Repair Details
+                                </button>
+                              </Link>
+                            </li>
+                            <li>
+                              <Link to="/ReviewsTable">
+                                <button className="text-indigo-200 hover:text-white w-11/12 hover:bg-color2 group flex gap-x-3 rounded-md p-2 ml-2 mb-3  text-sm leading-6 font-semibold">
+                                  {/* Replace with your icon */}
+                                  <TableCellsIcon
+                                    className="text-indigo-200 group-hover:text-white h-6 w-6 shrink-0"
+                                    aria-hidden="true"
+                                  />
+                                  Review Details
+                                </button>
+                              </Link>
+                            </li>
+                            <li>
+                              <Link to="/ReviewsReply">
+                                <button className="text-indigo-200 hover:text-white w-11/12 hover:bg-color2 group flex gap-x-3 rounded-md p-2 ml-2 mb-3  text-sm leading-6 font-semibold">
+                                  {/* Replace with your icon */}
+                                  <ArrowPathRoundedSquareIcon
+                                    className="text-indigo-200 group-hover:text-white h-6 w-6 shrink-0"
+                                    aria-hidden="true"
+                                  />
+                                  Review Reply
                                 </button>
                               </Link>
                             </li>

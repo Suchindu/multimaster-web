@@ -202,7 +202,7 @@ const Repair_form = () => {
     <>
       <div className=" min-h-screen pt-10 pb-6">
         <form
-          className="w-full max-w-lg mx-auto p-5 mt-5 bg-white rounded-lg shadow-lg"
+          className="w-full max-w-lg mx-auto p-5 mt-5 bg-white rounded-lg shadow-lg border border-gray-200"
           onSubmit={handleSubmit}
         >
           <h1 className="text-2xl font-bold text-center mb-6">

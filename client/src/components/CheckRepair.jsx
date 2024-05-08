@@ -101,8 +101,6 @@ const CheckRepair = () => {
 
   return (
     <>
-      
-
       <div className="w-full lg:w-1/4 lg:mr-5">
         <SidebarContent />
       </div>
@@ -157,14 +155,14 @@ const CheckRepair = () => {
             <div className="flex justify-around mt-4">
               <button
                 onClick={handleDownload}
-                className="px-4 py-2 bg-color3 text-white rounded-md shadow-lg flex items-center transform transition duration-300 ease-in-out hover:scale-105 hide-on-print"
+                className="px-4 py-2 bg-color4 text-white rounded-md shadow-lg flex items-center transform transition duration-300 ease-in-out hover:scale-105 hide-on-print"
               >
                 {" "}
                 <FaDownload className="mr-2" /> Download
               </button>
               <button
                 onClick={handleShare}
-                className="px-4 py-2 bg-color3 text-white rounded-md shadow-lg flex items-center transform transition duration-300 ease-in-out hover:scale-105 hide-on-print"
+                className="px-4 py-2 bg-color4 text-white rounded-md shadow-lg flex items-center transform transition duration-300 ease-in-out hover:scale-105 hide-on-print"
               >
                 {" "}
                 <FaShareAlt className="mr-2" /> Share
@@ -173,7 +171,6 @@ const CheckRepair = () => {
           </div>
         )}
       </div>
-     
     </>
   );
 };
