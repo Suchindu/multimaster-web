@@ -106,7 +106,7 @@ export default function Orderview() {
                   </div>
                   <button
                     type="button"
-                    className="relative -ml-px inline-flex items-center gap-x-1.5 rounded-r-md px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+                    className="relative -ml-px inline-flex items-center gap-x-1.5 rounded-r-md px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-color4"
                     onClick={handleSearch}
                   >
                     <MagnifyingGlassIcon
@@ -122,7 +122,7 @@ export default function Orderview() {
               <button
                 onClick={handlePrint}
                 type="button"
-                className="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                className="block rounded-md bg-color4 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
                 Generate Order Report
               </button>
@@ -135,29 +135,29 @@ export default function Orderview() {
                 <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
                   <div ref={ComponentsRef}>
                     <table className="min-w-full divide-y divide-gray-300">
-                      <thead className="bg-gray-50">
+                      <thead className="bg-color2">
                         <tr>
                           <th
                             scope="col"
-                            className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6"
+                            className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-white sm:pl-6"
                           >
                             Order ID
                           </th>
                           <th
                             scope="col"
-                            className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                            className="px-3 py-3.5 text-left text-sm font-semibold text-white"
                           >
                             Buyer Name
                           </th>
                           <th
                             scope="col"
-                            className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                            className="px-3 py-3.5 text-left text-sm font-semibold text-white"
                           >
                             Email
                           </th>
                           <th
                             scope="col"
-                            className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                            className="px-3 py-3.5 text-left text-sm font-semibold text-white"
                           >
                             Order States
                           </th>
@@ -190,7 +190,7 @@ export default function Orderview() {
                                 {order.orderState}
                               </span>
                             </td>
-                            <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                            <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm text-color4 font-medium sm:pr-6">
                               <button
                                 onClick={() => handleViewOrder(order.uid)}
                               >

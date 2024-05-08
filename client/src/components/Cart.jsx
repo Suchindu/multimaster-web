@@ -12,6 +12,8 @@ import {
 } from "@heroicons/react/20/solid";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+
 
 export default function Cart() {
   const cart = useSelector((state) => state.cart);
@@ -19,6 +21,22 @@ export default function Cart() {
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
+
+  const { data, error } = useQuery({
+    queryKey: ["getUser"],
+    cacheTime: 15 * (60 * 1000),
+    staleTime: 10 * (60 * 1000),
+    enabled: !!localStorage.getItem("token"), // Only run the query if the token is present
+    queryFn: async () => {
+      const token = localStorage.getItem("token");
+  
+      if (token === null) {
+        throw new Error("Not logged in");
+      }
+    },
+  });
+
+  
 
   const getTotal = () => {
     let totalQuantity = 0;
@@ -214,15 +232,20 @@ export default function Cart() {
             </dl>
 
             <div className="mt-6">
-              <button
-                type="submit"
-                className="w-full rounded-md border border-transparent bg-indigo-600 px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50"
-                onClick={() => {
-                  navigate("/checkout");
-                }}
-              >
-                Checkout
-              </button>
+            <button
+          type="submit"
+          className="w-full rounded-md border border-transparent bg-color4 px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50"
+          onClick={() => {
+            if (!error) { // If the user is logged in
+              navigate("/checkout");
+            } else { // If the user is not logged in
+              alert("Please login to continue checkout");
+              navigate("/login");
+            }
+          }}
+        >
+          Checkout
+        </button>
             </div>
           </section>
         </form>

@@ -39,6 +39,9 @@ app.use('/api/orders', order_route);
 app.use("/user", user_route);
 app.use("/login", user_login_route);
 app.use("/profile", user_profile_route);
+app.use("/send-email", order_route);
+
+app.listen(3000, () => console.log('Server started on port 3000'));
 
 
 // Connect to DB
