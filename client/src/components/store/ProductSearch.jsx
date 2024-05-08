@@ -39,26 +39,47 @@ const ProductList = () => {
   const [keyword, setKeyword] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const fetchProducts = async () => {
-    if(keyword){
-    try {
-      setLoading(true);
-      const response = await axios.get(`http://localhost:4000/api/products?keyword=${keyword}`);
-      setProduct(response.data.products);
-      setLoading(false);
-      setKeyword('');
-    } catch (error) {
-      console.error('Error fetching products:', error);
-      setLoading(false);
-    }
-  }else{
-      setProduct([]);
-    }
-  };
+  // const fetchProducts = async () => {
+  //   if(keyword){
+  //   try {
+  //     setLoading(true);
+  //     const response = await axios.get(`http://localhost:4000/api/products?keyword=${keyword}`);
+  //     setProduct(response.data.products);
+  //     setLoading(false);
+  //     setKeyword('');
+  //   } catch (error) {
+  //     console.error('Error fetching products:', error);
+  //     setLoading(false);
+  //   }
+  // }else{
+  //     setProduct([]);
+  //   }
+  // };
   
   useEffect(() => {
+    const fetchProducts = async () => {
+      if(keyword){
+      try {
+        setLoading(true);
+        const response = await axios.get(`http://localhost:4000/api/products?keyword=${keyword}`);
+        setProduct(response.data.products);
+        setLoading(false);
+        // setKeyword('');
+      } catch (error) {
+        console.error('Error fetching products:', error);
+        setLoading(false);
+      }
+    }else{
+        setProduct([]);
+      }
+    };
+
+    if(keyword){
     fetchProducts();
-  }, []);
+    }else{
+      setProduct([]);
+    }
+  }, [keyword]);
 
   const handleChange = e => {
     setKeyword(e.target.value);
