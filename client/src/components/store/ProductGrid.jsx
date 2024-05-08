@@ -84,9 +84,9 @@ axios.get("http://localhost:4000/api/products")
     });
 
     return (
-        <div className="flex justify-between items-center my-4 mx-2 h-screen">
+        <div className="flex justify-between items-center my-4 mx-2 ">
     {loading ? (
-    <div className="flex justify-center items-center h-full w-full ">    
+    <div className="flex justify-center items-center  w-full h-screen ">    
       <img className="w-24 h-24 "  src="/loading.gif" alt="Loading..." />
       </div>
     ) : (
