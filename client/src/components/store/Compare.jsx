@@ -7,6 +7,7 @@ import { useCompare } from '../../context/CompareContext';
 const ParentComponent = () => {
 
   const { compareList } = useCompare();
+  const { clearCompare } = useCompare();
 
   return (
     <div className="m-4 p-4 border-2 border-gray-300 rounded-lg relative">
@@ -16,10 +17,10 @@ const ParentComponent = () => {
         <table className="table-auto w-full">
           <tbody className="text-center">
             <tr className="border-b-2 border-gray-200"><td className="py-4"></td></tr>
-            <tr className="border-b-2 border-gray-200"><td className="py-4">Feature 2</td></tr>
-            <tr className="border-b-2 border-gray-200"><td className="py-4">Feature 3</td></tr>
-            <tr className="border-b-2 border-gray-200"><td className="py-4">Feature 4</td></tr>
-            <tr className="border-b-2 border-gray-200"><td className="py-4">Feature 5</td></tr>
+            <tr className="border-b-2 border-gray-200"><td className="py-4">Title</td></tr>
+            <tr className="border-b-2 border-gray-200"><td className="py-4">Brand</td></tr>
+            <tr className="border-b-2 border-gray-200"><td className="py-4">Price</td></tr>
+            <tr className="border-b-2 border-gray-200"><td className="py-4">Description</td></tr>
           </tbody>
         </table>
       </div>
@@ -29,6 +30,7 @@ const ParentComponent = () => {
         {compareList.length > 1 && <CompareProduct id={compareList[1]}  />}
       </div>
     </div>
+    <button className="bg-color4 text-white px-6 py-2 rounded-lg ml-2 hover:bg-indigo-500 focus:outline-none mt-2 sm:mt-0 w-full sm:w-auto" onClick={clearCompare}>Clear Compare List</button>
   </div>
 
   );

@@ -60,6 +60,16 @@ const ProductList = () => {
     fetchProducts();
   }, []);
 
+  const handleChange = e => {
+    setKeyword(e.target.value);
+  
+    // if (timeoutId) clearTimeout(timeoutId);
+  
+    // setTimeoutId(setTimeout(() => {
+    //   fetchProducts();
+    // }, 500));  // Fetch products 500 ms after the user stops typing
+  };
+  
 
   return (
     <div>
@@ -67,10 +77,11 @@ const ProductList = () => {
         type="text"
         placeholder="Search products..."
         value={keyword}
-        onChange={e => setKeyword(e.target.value)}
-      />
+        // onChange={e => setKeyword(e.target.value)
+        onChange={handleChange}
+        />
       <button 
-        onClick={fetchProducts}
+        // onClick={fetchProducts}
         className="bg-blue-500 text-white px-6 py-2 rounded-lg ml-2 hover:bg-blue-600 focus:outline-none mt-2 sm:mt-0 w-full sm:w-auto"
         // className="bg-blue-500 text-white px-6 py-2 rounded-lg ml-2 hover:bg-blue-600 focus:outline-none mt-2 sm:mt-0 w-full sm:w-auto"
         >

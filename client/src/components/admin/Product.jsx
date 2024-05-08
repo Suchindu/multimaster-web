@@ -120,30 +120,30 @@ export default function Product() {
             <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
             
               <table ref={componentRef} className="min-w-full divide-y divide-gray-300">
-                <thead className="bg-gray-50">
+                <thead className="bg-color2">
                   <tr>
-                    <th scope="col" className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
+                    <th scope="col" className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-white sm:pl-6">
                       ID
                     </th>
-                    <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                    <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-white">
                       Name
                     </th>
-                    <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                    <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-white">
                       Brand
                     </th>
-                    <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                    <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-white">
                       Price
                     </th>
-                    <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                    <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-white">
                       Cetagory
                     </th>
-                    <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                    <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-white">
                       Description
                     </th>
-                    <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                    <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-white">
                       Image Path
                     </th>
-                    <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 sm:text-nowrap">
+                    <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-white sm:text-nowrap">
                       In Stock
                     </th>
                     <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-6 hide-on-print">
