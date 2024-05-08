@@ -118,7 +118,7 @@ const Repair_table = () => {
       <div ref={componentPdf} className="overflow-x-auto">
         <table className="min-w-full divide-y divide-gray-300 shadow-sm">
           <thead className="bg-gray-50">
-            <tr className="bg-blue-950 text-left">
+            <tr className="bg-color2 text-left">
               <th className="px-6 py-3 text-left text-xs font-medium text-slate-50 uppercase tracking-wider">
                 ID
               </th>
@@ -164,7 +164,7 @@ const Repair_table = () => {
       </div>
       <div className="flex justify-center pl-1 my-4">
         <button
-          className="bg-color1 text-white px-4 py-2 rounded-md hover:bg-blue-950 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+          className="bg-color4 text-white px-4 py-2 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
           onClick={generatePdf}
         >
           Download

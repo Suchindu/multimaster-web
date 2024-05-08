@@ -20,17 +20,21 @@ const Repair_details = ({ repair }) => {
 
   //delete repair request
   const handleClick = async () => {
-    const response = await fetch(
-      `http://localhost:4000/api/repair/` + repair._id,
-      {
-        method: "DELETE",
+    if (
+      window.confirm("Are you sure you want to delete this repair request?")
+    ) {
+      const response = await fetch(
+        `http://localhost:4000/api/repair/` + repair._id,
+        {
+          method: "DELETE",
+        }
+      );
+
+      const json = await response.json();
+
+      if (response.ok) {
+        dispatch({ type: "DELETE_REPAIR", payload: repair._id });
       }
-    );
-
-    const json = await response.json();
-
-    if (response.ok) {
-      dispatch({ type: "DELETE_REPAIR", payload: repair._id });
     }
   };
 
@@ -186,13 +190,13 @@ const Repair_details = ({ repair }) => {
           </td>
           <td className="flex justify-center items-center">
             <button
-              className="bg-blue-700 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transform transition-all duration-300 ease-in-out hide-on-print"
+              className="bg-color4 m-2 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transform transition-all duration-300 ease-in-out hide-on-print"
               onClick={() => setIsUpdating(true)}
             >
               Edit
             </button>
             <button
-              className="bg-red-700 hover:bg-red-900 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transform transition-all duration-300 ease-in-out hide-on-print"
+              className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transform transition-all duration-300 ease-in-out hide-on-print"
               onClick={handleClick}
             >
               Delete
@@ -380,7 +384,7 @@ const Repair_details = ({ repair }) => {
                 <div className="flex justify-start mt-4">
                   <button
                     type="submit"
-                    className="px-6 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:ring-opacity-50 transition duration-200"
+                    className="px-6 py-2 text-white bg-color4 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:ring-opacity-50 transition duration-200"
                   >
                     Update
                   </button>
