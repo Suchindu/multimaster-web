@@ -11,7 +11,7 @@ const ParentComponent = () => {
 
   return (
     <div className="m-4 p-4 border-2 border-gray-300 rounded-lg relative">
-    <h1 className="text-center text-2xl font-bold mb-4">Product Comparison</h1>
+    <h1 className="text-center text-2xl font-bold mb-10">Product Comparison</h1>
     <div className="m-4 flex flex-col sm:flex-row">
       <div className="w-full md:w-1/4 mt-20 bg-white rounded-lg p-2 md:block hidden">
         <table className="table-auto w-full">

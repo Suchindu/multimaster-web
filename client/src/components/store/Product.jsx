@@ -10,9 +10,7 @@ export default function Product({product}) {
     const { addToCompare } = useCompare();
 
     const dispatch = useDispatch();
- 
-   
-  
+    
     return (
     <div className="bg-white ">
         <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8 lg:pt-8">
@@ -35,7 +33,7 @@ export default function Product({product}) {
                 <p className="mt-1 ml-3  mr-2 text-md font-medium text-gray-900">IN STOCK : {product.countInStock}</p>
                 <p className="mt-1 ml-3 mr-2 text-lg font-medium text-gray-900">
                   <span className="text-sm">LKR </span> 
-                  {product.price}</p>
+                  {product.price}.00</p>
                 </div>
                 </Link>
                 <div className="mb-5 mt-1 flex justify-center">
