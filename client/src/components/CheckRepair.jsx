@@ -13,9 +13,11 @@ const CheckRepair = () => {
   const componentRef = useRef(); //reference to the component
 
   //fetch repair details
-  const fetchData = async (_id) => {
+  const fetchData = async (repair_id_str) => {
     try {
-      const response = await fetch(`http://localhost:4000/api/repair/${_id}`);
+      const response = await fetch(
+        `http://localhost:4000/api/repair/str/${repair_id_str}`
+      );
       const data = await response.json();
       console.log("Respnse data: ", data);
       setData(data);
@@ -63,14 +65,14 @@ const CheckRepair = () => {
     switch (data.status) {
       case "completed":
         return (
-          <div className="ml-3">
+          <div className="ml-3 text-center">
             <h3 className="text-lg font-semibold">Congratulations!</h3>
             <p>Your repair has been completed successfully.</p>
           </div>
         );
       case "checking":
         return (
-          <div className="ml-3">
+          <div className="ml-3 text-center">
             <h3 className="text-lg font-semibold">Repair In Progress</h3>
             <p>
               Your device is currently being repaired. We appreciate your
@@ -80,11 +82,10 @@ const CheckRepair = () => {
         );
       case "not completed":
         return (
-          <div className="ml-3">
+          <div className="ml-3 text-center">
             <h3 className="text-lg font-semibold">Pending Completion</h3>
             <p>
-              We are encountering some issues. Please contact support for more
-              details.
+              You're almost there! Your device is being repaired. We'll notify
             </p>
           </div>
         );
@@ -100,7 +101,7 @@ const CheckRepair = () => {
 
   return (
     <>
-      <Header />
+      
 
       <div className="w-full lg:w-1/4 lg:mr-5">
         <SidebarContent />
@@ -156,14 +157,14 @@ const CheckRepair = () => {
             <div className="flex justify-around mt-4">
               <button
                 onClick={handleDownload}
-                className="px-4 py-2 bg-blue-800 text-white rounded-md shadow-lg flex items-center transform transition duration-300 ease-in-out hover:scale-105"
+                className="px-4 py-2 bg-color3 text-white rounded-md shadow-lg flex items-center transform transition duration-300 ease-in-out hover:scale-105 hide-on-print"
               >
                 {" "}
                 <FaDownload className="mr-2" /> Download
               </button>
               <button
                 onClick={handleShare}
-                className="px-4 py-2 bg-blue-800 text-white rounded-md shadow-lg flex items-center transform transition duration-300 ease-in-out hover:scale-105"
+                className="px-4 py-2 bg-color3 text-white rounded-md shadow-lg flex items-center transform transition duration-300 ease-in-out hover:scale-105 hide-on-print"
               >
                 {" "}
                 <FaShareAlt className="mr-2" /> Share
@@ -172,7 +173,7 @@ const CheckRepair = () => {
           </div>
         )}
       </div>
-      <Footer className="mt-auto" />
+     
     </>
   );
 };

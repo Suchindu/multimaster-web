@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useReactToPrint } from "react-to-print";
+// import nodemailer from "nodemailer";
 //components
 import Repair_details from "../components/Repair_details";
 //hooks
@@ -40,7 +41,7 @@ const Repair_table = () => {
       const filtered = repairs.filter((repair) => {
         return (
           repair.name.toLowerCase().includes(search.toLowerCase()) ||
-          repair.email.toLowerCase().includes(search.toLowerCase()) ||
+          // repair.email.toLowerCase().includes(search.toLowerCase()) ||
           repair.date.toLowerCase().includes(search.toLowerCase()) ||
           repair.status.toLowerCase().includes(search.toLowerCase())
         );
@@ -56,12 +57,36 @@ const Repair_table = () => {
     }
   }, [repairs, search]);
 
+  // //send email
+  // const sendEmail = async (userEmail) => {
+  //   let transporter = nodemailer.createTransport({
+  //     service: "gmail",
+  //     auth: {
+  //       user: "your-email@gmail.com",
+  //       pass: "your-password",
+  //     },
+  //   });
+
+  //   let mailOptions = {
+  //     from: "your-email@gmail.com",
+  //     to: userEmail,
+  //     subject: "Repair Status",
+  //     text: "Your repair status is completed.",
+  //   };
+
+  //   transporter.sendMail(mailOptions, function (error, info) {
+  //     if (error) {
+  //       console.log(error);
+  //     } else {
+  //       console.log("Email sent: " + info.response);
+  //     }
+  //   });
+  // };
+
   return (
     <>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
-        <h1 className="text-blue-800 text-center font-bold text-2xl my-6">
-          Repair Requets
-        </h1>
+        <h1 className=" text-center font-bold text-2xl my-6">Repair Requets</h1>
       </div>
       <div>
         <div className="flex justify-center my-4">
@@ -139,7 +164,7 @@ const Repair_table = () => {
       </div>
       <div className="flex justify-center pl-1 my-4">
         <button
-          className="bg-blue-900 text-white px-4 py-2 rounded-md hover:bg-blue-950 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+          className="bg-color1 text-white px-4 py-2 rounded-md hover:bg-blue-950 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
           onClick={generatePdf}
         >
           Download

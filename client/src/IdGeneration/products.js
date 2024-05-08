@@ -1,10 +1,11 @@
-export async function generateProductIdStr() {
+export async function generateProductIdStr(category) {
 
     try {
         const response = await fetch('http://localhost:4000/api/products/');
+        
         const products = await response.json();
 
-        const productIdInteger = products.map(product => parseInt(product.product_id_int));
+        const productIdInteger = products.map(product => parseInt(product.category));
 
         let newProductId;
 

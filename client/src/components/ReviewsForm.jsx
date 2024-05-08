@@ -14,7 +14,7 @@ function ReviewForm() {
     const [service_type, setService] = useState("");
     const [rating, setRating] = useState(0);
     const [review_body, setReview] = useState("");
-    const [technician_reply, setTechnicianReply] = useState("");
+    const [technician_reply, setTechnicianReply] = useState("Not Replied");
 
     const [error, setError] = useState(null);
 
@@ -26,8 +26,6 @@ function ReviewForm() {
 
         let id_string = await generateReviewIdStr();
         setReviewidStr(id_string);
-
-        setTechnicianReply("Not Replied");
 
         const review = {
             review_id_int,
@@ -70,15 +68,22 @@ function ReviewForm() {
             setTechnicianReply("");
 
             setError(null);
-            alert("New Review Added");
 
             dispatch({ type : 'CREATE_REVIEW', payload : json});
+
+            alert("New Review Added");
         }
     } 
     
     return (
         <>
-        <div className="flex justify-center items-center h-screen mt-10 rounded-xl">
+        <div className="flex justify-center items-center margin ml-28 mt-5 rounded-xl mb-5 width w-4/5 bg-color1">
+        <div className="flex mt-5 rounded-xl mb-5">
+            <div>
+            <p className=" text-white text-lg mt-2">Help Us Improve, Share your Experience.</p>
+            </div>
+        </div>
+        <div className="flex justify-center items-center mt-10 ml-28 rounded-xl mb-5">
         <div className="w-full max-w-xl">
             <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={handleSubmit}>
                 <div className="mb-4 mt-">
@@ -168,6 +173,7 @@ function ReviewForm() {
                 </div>
                 </form>
             </div>
+        </div>
         </div>
         </>
     );
