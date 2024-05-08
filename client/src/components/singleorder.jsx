@@ -170,7 +170,7 @@ export default function SingleOrder() {
                     <button
                       onClick={handlePrint}
                       type="button"
-                      className="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 hide-on-print"
+                      className="block rounded-md bg-color4 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 hide-on-print"
                     >
                       Generate Order Bill
                     </button>
@@ -178,7 +178,7 @@ export default function SingleOrder() {
                     <select
                       value={orderState}
                       onChange={handleStateChange}
-                      className="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 hide-on-print"
+                      className="block rounded-md bg-color4 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 hide-on-print"
                     >
                       <option value="pending">Pending</option>
                       <option value="approved">Approved</option>
@@ -188,7 +188,7 @@ export default function SingleOrder() {
                     <button
                       onClick={handleUpdate}
                       type="button"
-                      className="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 hide-on-print"
+                      className="block rounded-md bg-color4 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 hide-on-print"
                     >
                       Update
                     </button>
@@ -200,7 +200,7 @@ export default function SingleOrder() {
                         }
                       }}
                       type="button"
-                      className="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 hide-on-print"
+                      className="block rounded-md bg-color4 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 hide-on-print"
                     >
                       Send Confirmation Email
                     </button>

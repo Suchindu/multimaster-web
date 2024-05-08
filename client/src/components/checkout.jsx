@@ -1,13 +1,12 @@
 import { useState, useEffect } from "react";
 import { PhotoIcon } from "@heroicons/react/24/solid";
-import axios from "axios"; 
+import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { v4 as uuidv4 } from "uuid";
 import { useQuery } from "@tanstack/react-query";
 import { emptyCart } from "../redux/cartSlice";
 import { useNavigate } from "react-router-dom";
-
 
 export default function Checkout() {
   const cart = useSelector((state) => state.cart);
@@ -163,9 +162,9 @@ export default function Checkout() {
                         required: true,
                         maxLength: 30,
                         pattern: {
-                        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                        message: "invalid email address"
-                        }
+                          value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                          message: "invalid email address",
+                        },
                       })}
                       type="email"
                       autoComplete="email"
@@ -307,12 +306,13 @@ export default function Checkout() {
             <button
               type="button"
               className="text-sm font-semibold leading-6 text-gray-900"
+              onClick={() => navigate("/")}
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              className="rounded-md bg-color4 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
               Submit Order
             </button>
