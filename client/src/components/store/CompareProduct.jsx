@@ -8,7 +8,7 @@ import ProductContext from '../../context/ProductContext';
 const CompareProduct = ({id}) => {
     const [product, setProduct] = useState('');
 
-    const { clearCompare } = useCompare();
+    
 
     useEffect(() => {
             const fetchProduct = async () => {
@@ -41,13 +41,13 @@ const CompareProduct = ({id}) => {
         <table className="table-auto w-full">
             <tbody className="text-center">
             <tr className="border-b-2 border-gray-200"><td className="py-4">{product && <img src={`http://localhost:4000${product.image}`} alt="Product" />}</td></tr>
-            <tr className="border-b-2 border-gray-200"><td className="py-4">Row 2</td></tr>
-            <tr className="border-b-2 border-gray-200"><td className="py-4">Row 3</td></tr>
-            <tr className="border-b-2 border-gray-200"><td className="py-4">Row 4</td></tr>
-            <tr className="border-b-2 border-gray-200"><td className="py-4">Row 5</td></tr>
+            <tr className="border-b-2 border-gray-200"><td className="py-4">{}</td></tr>
+            <tr className="border-b-2 border-gray-200"><td className="py-4">{}</td></tr>
+            <tr className="border-b-2 border-gray-200"><td className="py-4">{}</td></tr>
+            <tr className="border-b-2 border-gray-200"><td className="py-4">{}</td></tr>
             </tbody>
         </table>
-        <button onClick={clearCompare}>Clear Compare List</button>
+        
         </div>
     );
     };
