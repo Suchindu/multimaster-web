@@ -40,7 +40,7 @@ const CompareProduct = ({id}) => {
         </div> */}
         <table className="table-auto w-full">
             <tbody className="text-center">
-            <tr className="border-b-2 border-gray-200"><td className="py-4 flex justify-center items-center">{product && <img src={`http://localhost:4000${product.image}`} alt="Product" alt="Product" width="200" height="200" />}</td></tr>
+            <tr className="border-b-2 border-gray-200"><td className="py-4 flex justify-center items-center">{product && <img src={`http://localhost:4000${product.image}`} alt="Product" width="200" height="200" />}</td></tr>
             <tr className="border-b-2 border-gray-200"><td className="py-4">{product.name}</td></tr>
             <tr className="border-b-2 border-gray-200"><td className="py-4">{product.brand}</td></tr>
             <tr className="border-b-2 border-gray-200"><td className="py-4">LKR.{product.price}.00</td></tr>

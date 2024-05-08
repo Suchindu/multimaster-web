@@ -9,14 +9,20 @@ import { useQuery } from "@tanstack/react-query";
 const ProductGrid = () => {
 
     const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
 
 useEffect(() => {
 axios.get("http://localhost:4000/api/products")
+
     .then((response) => {
         console.log(response.data);
         setProducts(response.data.products);
+        setTimeout(() => {
+            setLoading(false);
+          }, 1000);
     })
     .catch((err) => {
+        setLoading(false);
         console.log(err);
     });
 
@@ -53,8 +59,12 @@ axios.get("http://localhost:4000/api/products")
     });
 
     return (
-        <div className="flex justify-between items-center my-4 mx-2">
-    
+        <div className="flex justify-between items-center my-4 mx-2 h-screen">
+    {loading ? (
+    <div className="flex justify-center items-center h-full w-full ">    
+      <img className="w-24 h-24 "  src="/loading.gif" alt="Loading..." />
+      </div>
+    ) : (
         <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 ">
         {products.map((product) => {
             return (
@@ -62,6 +72,7 @@ axios.get("http://localhost:4000/api/products")
             )
         })}
         </div>
+          )}
       </div>
     
     )
