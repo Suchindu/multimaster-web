@@ -4,12 +4,37 @@ import Product from "./Product";
 import React,{ useState, useEffect} from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
+import { useToast } from '@chakra-ui/react'
+import { useCompare } from '../../context/CompareContext';
 
 
 const ProductGrid = () => {
 
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
+    const { compareList } = useCompare();
+    const toast = useToast();
+   
+
+    useEffect(() => {
+        if (compareList.length === 2 && compareList[0].category === compareList[1].category) {
+            toast({
+                title: "Success.",
+                description: "Two products from the same category have been selected for comparison.",
+                status: "success",
+                duration: 1000,
+                isClosable: true,
+            });
+        }else if(compareList.length === 2 && compareList[0].category !== compareList[1].category){
+            toast({
+                title: "Error.",
+                description: "Two products from different categories have been selected for comparison.",
+                status: "error",
+                duration: 1000,
+                isClosable: true,
+            });
+        }
+    }, [compareList]);
 
 useEffect(() => {
 axios.get("http://localhost:4000/api/products")
@@ -19,7 +44,7 @@ axios.get("http://localhost:4000/api/products")
         setProducts(response.data.products);
         setTimeout(() => {
             setLoading(false);
-          }, 1000);
+          }, 300);
     })
     .catch((err) => {
         setLoading(false);
