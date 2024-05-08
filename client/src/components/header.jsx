@@ -60,23 +60,25 @@ export default function Header() {
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="flex h-20 items-center justify-between">
               <div className="flex items-center ">
-                <div className="flex-shrink-0 flex items-center space-x-2 sm:space-x-4 md:space-x-2 ">
-                  <img
-                    className="h-11 w-auto"
-                    src="/multimaster.svg"
-                    alt="Multimaster logo"
-                  />
-                  <p
-                    className="text-white"
-                    style={{
-                      fontFamily: "Goldman, sans-serif",
-                      letterSpacing: "0.05em",
-                      fontSize: "18px",
-                    }}
-                  >
-                    multimaster
-                  </p>
-                </div>
+                <Link to="/">
+                  <div className="flex-shrink-0 flex items-center space-x-2 sm:space-x-4 md:space-x-2 ">
+                    <img
+                      className="h-11 w-auto"
+                      src="/multimaster.svg"
+                      alt="Multimaster logo"
+                    />
+                    <p
+                      className="text-white"
+                      style={{
+                        fontFamily: "Goldman, sans-serif",
+                        letterSpacing: "0.05em",
+                        fontSize: "18px",
+                      }}
+                    >
+                      multimaster
+                    </p>
+                  </div>
+                </Link>
                 <div className="hidden lg:ml-20 sm:ml-7 md:block">
                   <div className="flex space-x-4">
                     {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
