@@ -18,7 +18,7 @@ root.render(
   <React.StrictMode>
     <ChakraProvider>
       <ProductProvider>
-      <CompareProvider>
+        <CompareProvider>
           <RepairsContextProvider>
             <ReviewsContextProvider>
               <BrowserRouter>

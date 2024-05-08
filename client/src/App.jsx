@@ -1,7 +1,6 @@
 
-
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom'; 
+import { Routes, Route } from 'react-router-dom'; 
 import Product from './components/admin/Product';
 import AddProduct from './components/admin/AddProduct';
 import SearchProduct from './components/store/ProductGrid';
@@ -10,27 +9,13 @@ import OverviewProduct from './components/store/ProductOverview';
 import ProductSearch from './components/store/ProductSearch';
 import Compare from './components/store/Compare';
 import CompareProduct from './components/store/CompareProduct';
-// Importing pages and components
-
-// import Review from './pages/review_form';
 import Header from './components/header';
-
-// Importing pages and components
 import ReviewsForm from './components/ReviewsForm';
 import ReviewsDetails from './pages/ReviewsDetails';
 import ReviewsReply from "./pages/ReviewsReply";
 import AdminReviewsTable from "./pages/ReviewsTable";
-
-
 import Footer from './components/footer';
-// import Repair_form from './components/Repair_form';
-import {
-  QueryClient,
-  QueryClientProvider,
-} from "@tanstack/react-query";
-
-
-//Importing pages and components
+import {QueryClient,QueryClientProvider,} from "@tanstack/react-query";
 import Cart from './components/Cart.jsx';
 import CheckOut from './components/checkout.jsx';
 import Login from "./components/Auth/Login.jsx";
@@ -41,11 +26,11 @@ import SingleOrder from "./components/singleorder.jsx";
 import OrderHistory from "./components/orderHistory.jsx";
 import AdminDash from "./components/admin/AdminDash.jsx"; 
 import Dashboard from "./components/admin/Dashboard.jsx";
-//Sachintha Import Functions
 import Repair_form from "./components/Repair_form";
 import Repair_details from "./components/Repair_details";
 import Repair_table from "./pages/Repair_table";
 import CheckRepair from "./components/CheckRepair";
+
 
 const queryClient = new QueryClient();
 
