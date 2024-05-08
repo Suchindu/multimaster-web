@@ -67,7 +67,7 @@ export default function OrderHistory() {
   }, []);
 
   const handleDeleteOrder = async (orderId) => {
-    const userConfirmed = window.confirm('Are you sure you want to delete this order?');
+    const userConfirmed = window.confirm('Are you sure you want to delete this order ?');
   
     if (!userConfirmed) {
       return;
@@ -123,24 +123,24 @@ export default function OrderHistory() {
               <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
                 <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
                   <table className="min-w-full divide-y divide-gray-300">
-                    <thead className="bg-gray-50">
+                    <thead className="bg-color2">
                       <tr>
                         <th
                           scope="col"
-                          className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6"
+                          className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-white sm:pl-6"
                         >
                           Order ID
                         </th>
                         <th
                           scope="col"
-                          className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                          className="px-3 py-3.5 text-left text-sm font-semibold text-white"
                         >
                           Date
                         </th>
 
                         <th
                           scope="col"
-                          className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                          className="px-3 py-3.5 text-left text-sm font-semibold text-white"
                         >
                           Order States
                         </th>
@@ -171,7 +171,7 @@ export default function OrderHistory() {
                                 {order.orderState}
                               </span>
                             </td>
-                            <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                            <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm text-red-700 font-medium sm:pr-6">
                               <button
                                 onClick={() => handleDeleteOrder(order._id)}
                               >
