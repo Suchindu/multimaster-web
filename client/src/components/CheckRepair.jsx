@@ -91,7 +91,7 @@ const CheckRepair = () => {
         );
       default:
         return (
-          <div>
+          <div className="ml-3 text-center">
             <h3 className="text-lg font-semibold">Welcome!</h3>
             <p>Enter a repair ID to see the status of your device.</p>
           </div>
