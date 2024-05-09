@@ -48,101 +48,6 @@ function Register() {
   };
 
   return (
-  //   <div>
-  //     <h1 className="login-topic">Join With Us..!</h1>
-
-  //     <div className="user_tabl_towcolum">
-  //       <div className="left_colum_user">
-  //         <img src={regiimg} alt="regi img" className="regi_img" />
-  //       </div>
-  //       <div className="riight_colum_user">
-  //         <form className="regi-form" onSubmit={handleSubmit}>
-  //           <label className="login-lable">Full Name</label>
-  //           <br />
-  //           <input
-  //             type="text"
-  //             name="name"
-  //             value={user.name}
-  //             onChange={handleInputChange}
-  //             className="login-input"
-  //             required
-  //           />
-  //           <br />
-  //           <label className="login-lable">Email</label>
-  //           <br />
-  //           <input
-  //             type="email"
-  //             value={user.email}
-  //             onChange={handleInputChange}
-  //             className="login-input"
-  //             name="email"
-  //             required
-  //           />
-  //           <br />
-  //           <label className="login-lable">Address</label>
-  //           <br />
-  //           <input
-  //             type="text"
-  //             value={user.address}
-  //             onChange={handleInputChange}
-  //             className="login-input"
-  //             name="address"
-  //             required
-  //           />
-  //           <br />
-  //           <label className="login-lable">Phone</label>
-  //           <br />
-  //           <input
-  //             name="phone"
-  //             value={user.phone}
-  //             onChange={handleInputChange}
-  //             type="tel"
-  //             pattern="[0-9]{10}"
-  //             maxLength={10}
-  //             title="Please enter a 10-digit phone number"
-  //             className="login-input"
-  //             required
-  //           />
-  //           <br />
-  //           <label className="login-lable">Password</label>
-  //           <br />
-  //           <input
-  //             name="password"
-  //             value={user.password}
-  //             onChange={handleInputChange}
-  //             type="password"
-  //             className="login-input"
-  //             required
-  //           />
-  //           <br />
-  //           <label className="login-lable">Confirm Password</label>
-  //           <br />
-  //           <input
-  //             type="password"
-  //             value={user.confirmPassword}
-  //             onChange={handleInputChange}
-  //             className="login-input"
-  //             name="confirmPassword"
-  //             required
-  //           />
-  //           <br />
-
-  //           <button type="submit" className="admin_form_cneter_btn">
-  //             Register
-  //           </button>
-  //           <div>
-  //             <p className="no-acc">
-  //               Already have an account?{" "}
-  //               <NavLink to={`/login`}>
-  //                 <span className="no-acc-reg">Login</span>
-  //               </NavLink>
-  //             </p>
-  //           </div>
-  //         </form>
-  //       </div>
-  //     </div>
-  //   </div>
-  // );
 
   <div className="flex items-center justify-center min-h-screen p-4  bg-gray-100">
         <form className=" border shadow-lg rounded-md bg-white  border-gray-300 p-4 w-full sm:w-auto " onSubmit={handleSubmit} encType='multipart/form-data'>
@@ -239,6 +144,7 @@ function Register() {
                     name="password"
                     id="password"
                     value={user.password}
+                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                     onChange={handleInputChange}
                     autoComplete="password"
                     required
@@ -257,6 +163,7 @@ function Register() {
                     name="confirmPassword"
                     id="confirmPassword"
                     value={user.confirmPassword}
+                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                     onChange={handleInputChange}
                     autoComplete="confirmPassword"
                     required
