@@ -1,104 +1,85 @@
-import { useState } from "react";
-import axios from "axios";
-import "./User.css";
-import logimg from "./img/log.png";
-import { NavLink, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
+import "./Admin.css";
+import adminimg from "./img/adminlog.webp";
+function AdminLogin() {
+  const [inputs, setInputs] = useState({ username: "", password: "" });
+  const [error, setError] = useState("");
 
-function Login() {
-  const [user, setUser] = useState({
-    email: "",
-    password: "",
-  });
-
-  const navigate = useNavigate();
-
-  const handleInputChange = (e) => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
-    setUser((prevUser) => ({ ...prevUser, [name]: value }));
+    setInputs((prevState) => ({ ...prevState, [name]: value }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    try {
-      const response = await sendRequest();
-      if (response.token) {
-        // If token exists in the response
-        localStorage.setItem("token", response.token); // Store token in localStorage
-        alert("Login Success..!");
-        navigate("/");
-      } else {
-        alert("Please enter valid Gmail & Password..!");
-      }
-    } catch (err) {
-      alert("Error: " + err.message);
-    }
-  };
-
-  const sendRequest = async () => {
-    try {
-      const res = await axios.post("http://localhost:4000/login", {
-        email: user.email,
-        password: user.password,
-      });
-      return res.data;
-    } catch (err) {
-      throw new Error("Failed to login");
+    if (inputs.username === "admin" && inputs.password === "123") {
+      // Valid credentials, proceed with login
+      alert("Login successful");
+      window.location.href = "/DashBoard";
+    } else {
+      // Invalid credentials, show error message
+      setError("Invalid username or password. Please try again.");
     }
   };
 
   return (
   //   <div>
-  //     <h1 className="login-topic">Login Here..!</h1>
+  //     <h1 className="login-topic">Admin Login Here..!</h1>
   //     <div className="user_tabl_towcolum">
   //       <div className="left_colum_user">
-  //         <img src={logimg} alt="regi img" className="regi_img" />
+  //         <img src={adminimg} alt="regi img" className="regi_img_admin" />
   //       </div>
   //       <div className="riight_colum_user">
   //         <form className="regi-form" onSubmit={handleSubmit}>
-  //           <label className="login-lable">Gmail</label>
-  //           <br></br>
+  //           <label className="login-lable">Username:</label>
+  //           <br />
   //           <input
-  //             type="email"
+  //             type="text"
   //             className="login-input"
-  //             value={user.email}
-  //             onChange={handleInputChange}
-  //             name="email"
+  //             name="username"
+  //             value={inputs.username}
+  //             onChange={handleChange}
   //             required
-  //           ></input>
-  //           <br></br>
-  //           <label className="login-lable">Password</label>
-  //           <br></br>
+  //           />
+  //           <br />
+  //           <label className="login-lable">Password:</label>
+  //           <br />
   //           <input
+  //             className="login-input"
   //             type="password"
-  //             className="login-input"
-  //             value={user.password}
   //             name="password"
-  //             onChange={handleInputChange}
+  //             value={inputs.password}
+  //             onChange={handleChange}
   //             required
-  //           ></input>
-  //           <br></br>
+  //           />
+  //           <br />
+
+  //           {error && <p style={{ color: "red" }}>{error}</p>}
+  //           <br />
   //           <button className="admin_form_cneter_btn" type="submit">
   //             Login
   //           </button>
-  //           <div>
-  //             <p className="no-acc">
-  //               {"Don't Have An Account"}
-  //               <NavLink to={`/register`}>
-  //                 <span className="no-acc-reg">Register</span>
-  //               </NavLink>
-  //             </p>
-  //           </div>
+  //           <button    onClick={() => {
+  //                   window.location.href = "/coadminLogin";
+  //                 }} className="admin_form_cneter_btn" type="submit">
+  //             Co Admin Login
+  //           </button>
+  //           <button    onClick={() => {
+  //                   window.location.href = "/techadminLogin";
+  //                 }} className="admin_form_cneter_btn" type="submit">
+  //             Tech Admin Login
+  //           </button>
   //         </form>
   //       </div>
   //     </div>
   //   </div>
-  // );
-
-  <>
+ 
+<>
       <div className="flex min-h-full flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8 bg-gray-100">
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
           <h2 className="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-            Sign in to Your Account
+          Admin Login Here..!
           </h2>
         </div>
 
@@ -107,16 +88,16 @@ function Login() {
             <form className="space-y-6" action="#" method="POST">
               <div>
                 <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
-                  Email address
+                  Admin Username
                 </label>
                 <div className="mt-2">
                   <input
-                    id="email"
-                    name="email"
+                    id="username"
+                    name="username"
                     type="email"
-                    autoComplete="email"
-                    value={user.email}
-                    onChange={handleInputChange}
+                    autoComplete="username"
+                    value={inputs.username}
+                    onChange={handleChange}
                     required
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
@@ -132,12 +113,15 @@ function Login() {
                     id="password"
                     name="password"
                     type="password"
-                    value={user.password}
+                    value={inputs.password}
                     autoComplete="current-password"
-                    onChange={handleInputChange}
+                    onChange={handleChange}
                     required
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
+                  <br />
+                    {error && <p style={{ color: "red" }}>{error}</p>}
+                <br />
                 </div>
               </div>
 
@@ -162,15 +146,15 @@ function Login() {
               </div>
 
               <div>
-              <NavLink to={`/register`}>
+              
                 <button
                   type="submit"
                   onClick={handleSubmit}
-                  className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  className="flex w-full justify-center rounded-md bg-red-700 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-red-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
                   Sign In
                 </button>
-                </NavLink>
+                
               </div>
             </form>
 
@@ -179,20 +163,20 @@ function Login() {
                 <div className="absolute inset-0 flex items-center" aria-hidden="true">
                   <div className="w-full border-t border-gray-200" />
                 </div>
-                <div className="relative flex justify-center text-sm font-medium leading-6">
+                {/* <div className="relative flex justify-center text-sm font-medium leading-6">
                   <span className="bg-white px-6 text-gray-900">Or</span>
-                </div>
+                </div> */}
               </div>
 
               <div className="mt-6 grid grid-cols-1 gap-4">
-              <NavLink to={`/register`}>
+              {/* <NavLink to={`/register`}>
               <button
                   type="submit"
                   className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
                   Sign Up
                 </button>
-                </NavLink>
+                </NavLink> */}
               </div>
             </div>
           </div>
@@ -201,7 +185,11 @@ function Login() {
         </div>
       </div>
     </>
-  )
+
+
+
+);
+
 }
 
-export default Login;
+export default AdminLogin;

@@ -22,8 +22,8 @@ function CoAdminCreateAcc() {
     try {
       await axios.post("http://localhost:4000/coadmin/coadd", inputs);
       alert(" Added Success");
-      // navigate("/");
-      window.location.reload();
+      navigate("/Dashboard");
+      // window.location.reload();
     } catch (error) {
       console.error("Error submitting discount:", error);
       // Handle error and provide feedback to the user
