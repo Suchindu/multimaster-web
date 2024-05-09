@@ -74,7 +74,8 @@ function App() {
           <Route path="/compareproduct" element={<CompareProduct/>}/>
           <Route path='/orderview' element={<AdminDash currentPage={<Orderview />}/>}/>
           <Route path="/singleorder/:uid" element={<AdminDash currentPage={<SingleOrder />}/>} />
-          <Route path="/orderhistory" element={<AdminDash currentPage={<OrderHistory />}/>} />
+          {/* <Route path="/orderhistory" element={<AdminDash currentPage={<OrderHistory />}/>} /> */}
+          <Route path="/orderhistory" element={<><Header/><OrderHistory /><Footer/></>} />
           <Route path="/repairform" element={<AdminDash currentPage={<Repair_form />}/>} />
           <Route path="/repairdetails" element={<AdminDash currentPage={<Repair_details />}/>} />
           <Route path="/repairtable" element={<AdminDash currentPage={<Repair_table />}/>} />
