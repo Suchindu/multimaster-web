@@ -72,6 +72,8 @@ function ReviewForm() {
             dispatch({ type : 'CREATE_REVIEW', payload : json});
 
             alert("New Review Added");
+
+            window.location.href = "/ReviewsDetails";
         }
     } 
     
