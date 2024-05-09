@@ -5,11 +5,11 @@ const schema = mongoose.Schema;
 const review_schema = new schema({
         review_id_int : {
             type : Number,
-            required : true
+            required : false 
         },
         review_id_str : {
             type : String,
-            required : true
+            required : false
         },
         name : {
             type : String,

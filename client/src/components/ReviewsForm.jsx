@@ -22,10 +22,10 @@ function ReviewForm() {
         event.preventDefault();
         
         let id_integer = await generateReviewIdInt();
-        setReviewidInt(id_integer);
+        setReviewidInt(10);
 
         let id_string = await generateReviewIdStr();
-        setReviewidStr(id_string);
+        setReviewidStr("REV0010");
 
         const review = {
             review_id_int,

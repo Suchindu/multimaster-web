@@ -1,4 +1,4 @@
-
+import { Element } from 'react-scroll';
 import axios from "axios";
 import Product from "./Product";
 import React,{ useState, useEffect} from "react";
@@ -6,6 +6,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { useToast } from '@chakra-ui/react'
 import { useCompare } from '../../context/CompareContext';
+import Card from "./Card";
 
 
 const ProductGrid = () => {
@@ -104,8 +105,12 @@ const ProductGrid = () => {
 
 
     return (
-        <div className="flex flex-col justify-between items-center my-4 mx-2 ">
-        <div className="flex flex-col m-1 sm:flex-row items-center justify-center">
+        <div>
+        
+        <div className="flex flex-col justify-between items-center my-10  ">
+        <Card/>
+        <Element name="searchSection" className="pb-10">
+            <div className="flex flex-col mb-10 mt-10 sm:flex-row items-center justify-center">
             <input
                 type="text"
                 placeholder="Search..."
@@ -123,25 +128,29 @@ const ProductGrid = () => {
             </div>
 
 
-    {loading ? (
-    <div className="flex justify-center items-center  w-full h-screen ">    
-      <img className="w-24 h-24 "  src="/loading.gif" alt="Loading..." />
-      </div>
-    ) : (
-        products.length > 0 ? (
-        <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 ">
-        {products.map((product) => {
-            return (
-            <Product key={product._id} product={product} />
-            )
-        })}
-        </div>
-    ) : (
-        <div className="text-center mt-4 h-screen text-lg p-10">
-            No Products Found.
-        </div>
+            {loading ? (
+            <div className="flex justify-center items-center  w-full h-screen ">    
+            <img className="w-24 h-24 "  src="/loading.gif" alt="Loading..." />
+            </div>
+            ) : (
+                products.length > 0 ? (
+                <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 ">
+                
+                {products.map((product) => {
+                    return (
+                    <Product key={product._id} product={product} />
+                    )
+                })}
+                </div>
+            ) : (
+                <div className="text-center mt-4 h-screen text-lg p-10">
+                    No Products Found.
+                </div>
          )
         )}
+        </Element>
+      </div>
+      
       </div>
     
     )

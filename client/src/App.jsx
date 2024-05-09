@@ -38,9 +38,8 @@ import CheckRepair from "./components/CheckRepair";
 
 
 import UpdateAccount from "./components/Manegment/User/UpdateAccount";
-
-import AdminLogin from "./components/Manegment/Admin/Admin/AdminLogin";
-import CoAdminCreate from "./components/Manegment/Admin/Admin/CoAdminCreateAcc";
+import AdminLogin from "./components/Manegment/Admin/Admin/AdminLogin.jsx";
+import CoAdminCreate from "./components/Manegment/Admin/Admin/CoAdminCreateAcc.jsx";
 import TechAdminCreate from "./components/Manegment/Admin/Admin/TechnicianCreateAcc";
 import CoAdminLogin from "./components/Manegment/Admin/CoAdmin/CoAdminLogin";
 import TechAdminLogin from "./components/Manegment/Admin/Technician/TechAdminLogin";

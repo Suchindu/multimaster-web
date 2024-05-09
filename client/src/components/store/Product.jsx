@@ -41,7 +41,7 @@ export default function Product({product}) {
                 className="m-1 w-64 text-center rounded-md border border-transparent  bg-color4 px-8 py-2  text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50">
                           View Product<span className="sr-only">, {product._id}</span>
                 </Link> */}
-                <button className=" m-1 w-64 rounded-md   border border-transparent  bg-color4 px-8 py-2  text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50"
+                <button className=" m-1 w-10/12 rounded-md   border border-transparent  bg-color4 px-8 py-2  text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50"
                   onClick={() => {
                     const productDetails = {
                       id: product._id, 
@@ -57,7 +57,7 @@ export default function Product({product}) {
                   </button>
                   <button 
                     onClick={() => addToCompare(product._id)}
-                    className="m-1 w-64 rounded-md  border border-transparent  bg-color4 px-8 py-2   text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50"
+                    className="m-1 w-10/12  rounded-md  border border-transparent  bg-color4 px-8 py-2   text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50"
                   >
                     Compare Product<span className="sr-only">, {product._id}</span>
                   </button>
