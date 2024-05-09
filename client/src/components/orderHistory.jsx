@@ -72,26 +72,38 @@ export default function OrderHistory() {
   }, []);
 
   const handleDeleteOrder = async (orderId) => {
-    const userConfirmed = window.confirm('Are you sure you want to delete this order ?');
+    // Fetch the order details
+
+    
+    const response = await fetch(`http://localhost:4000/api/orders/${orderId}`);
+    const order = await response.json();
+
+    //console.log('Deleting order:', orderId, 'State:', order.state);
+    console.log('Order:', order);
   
+    // Check the order state
+    if (order.orderState!== 'pending') {
+      alert('Only you can delete the order before approving it !');
+      return;
+    }
+  
+    // Confirm deletion
+    const userConfirmed = window.confirm('Are you sure you want to delete this order ?');
     if (!userConfirmed) {
       return;
     }
   
-    try {
-      const response = await fetch(`http://localhost:4000/api/orders/${orderId}`, {
-        method: 'DELETE',
-      });
+    // Delete the order
+    const deleteResponse = await fetch(`http://localhost:4000/api/orders/${orderId}`, {
+      method: 'DELETE',
+    });
   
-      if (!response.ok) {
-        throw new Error('Error deleting order');
-      }
-  
-      // Refresh orders or handle UI updates here
-      alert('Order deleted successfully');
-    } catch (error) {
-      console.error('Failed to delete order:', error);
+    if (!deleteResponse.ok) {
+      throw new Error('Error deleting order');
     }
+  
+    // Refresh orders or handle UI updates here
+    alert('Order deleted successfully');
   };
 
   const getOrderStateColor = (orderState) => {
