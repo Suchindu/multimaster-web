@@ -8,12 +8,16 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { Link, NavLink } from "react-router-dom";
+import { useRef } from "react";
+import { Link as ScrollLink } from 'react-scroll';
+
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
 export default function Header() {
+  const productsRef = useRef(null);
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
@@ -98,7 +102,7 @@ export default function Header() {
                     </a> */}
                     <Link
                       // href="#"
-                      to="/ReviewsForm"
+                      to="/ReviewsDetails"
                       className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-color2 hover:text-white"
                       style={{ fontSize: "13px" }}
                     >
@@ -117,13 +121,10 @@ export default function Header() {
               </div>
               <div className="hidden sm:ml-6 lg:block">
                 <div className="flex items-center">
+                <ScrollLink to="searchSection" smooth={true} duration={500}>
                   <button
                     type="button"
-                    // onClick={() => {
-                    //    if (getTotalQuantity() > 0) {
-                    //     navigate("/compare");
-                    //    }
-                    // }}
+                    
                     className="relative rounded-full bg-color2 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 mr-4"
                   >
                     <span className="absolute -inset-1.5" />
@@ -133,6 +134,7 @@ export default function Header() {
                       aria-hidden="true"
                     />
                   </button>
+                  </ScrollLink>
                   <button
                     type="button"
                     className="relative rounded-full bg-color2 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 mr-4 "

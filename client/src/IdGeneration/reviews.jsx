@@ -1,8 +1,6 @@
 export async function generateReviewIdStr() {
-
     try {
         const response = await fetch('http://localhost:4000/api/reviews/');
-        
         const reviews = await response.json();
 
         const ReviewId_Integer = reviews.map(review => parseInt(review.review_id_int));
@@ -27,7 +25,6 @@ export async function generateReviewIdStr() {
 }
 
 export async function generateReviewIdInt() {
-
     try {
         const response = await fetch('http://localhost:4000/api/reviews/');
         const reviews = await response.json();
