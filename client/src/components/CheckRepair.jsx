@@ -1,10 +1,11 @@
 // fetch details from the database and add the search bar to filter the data
 import React, { useState, useRef } from "react";
 import { useReactToPrint } from "react-to-print";
-import { FaDownload, FaShareAlt } from "react-icons/fa";
+import { FaDownload, FaShareAlt,FaAddressCard } from "react-icons/fa";
 //components
 import Header from "./header";
 import Footer from "./footer";
+import { Link } from "react-router-dom";
 //import multimasterLogo from '../../public/multimaster.svg';
 
 const CheckRepair = () => {
@@ -160,6 +161,16 @@ const CheckRepair = () => {
                 {" "}
                 <FaDownload className="mr-2" /> Download
               </button>
+              <Link
+              to="/ReviewsForm">
+              <button
+                
+                className="px-4 py-2 bg-color4 text-white rounded-md shadow-lg flex items-center transform transition duration-300 ease-in-out hover:scale-105 hide-on-print"
+              >
+                {" "}
+                <FaAddressCard className="mr-2" /> Add Reviews
+              </button>
+              </Link>
               <button
                 onClick={handleShare}
                 className="px-4 py-2 bg-color4 text-white rounded-md shadow-lg flex items-center transform transition duration-300 ease-in-out hover:scale-105 hide-on-print"

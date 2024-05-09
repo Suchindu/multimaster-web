@@ -73,21 +73,21 @@ export default function Product() {
           </p>
         </div>
         <div className="flex flex-col sm:flex-row items-center justify-center">
-        <input
-          type="text"
-          placeholder="Search..."
-          value={search}
-          onChange={e => setSearch(e.target.value)}
-          className="border-2 border-gray-300 bg-white h-10 px-5 pr-16 sm:pr-60 rounded-lg text-sm focus:outline-none w-full sm:w-auto"
-        />
-        <button 
-        // onClick={handleSearch}
-        className="bg-color4 text-white px-6 py-2 rounded-lg ml-2 hover:bg-indigo-500 focus:outline-none mt-2 sm:mt-0 w-full sm:w-auto"
-        
-        >
-            Search
-        </button>
-      </div>
+          <input
+            type="text"
+            placeholder="Search..."
+            value={search}
+            onChange={e => setSearch(e.target.value)}
+            className="border-2 border-gray-300 bg-white h-10 px-5 pr-16 sm:pr-60 rounded-lg text-sm focus:outline-none w-full sm:w-auto"
+          />
+          <button 
+          // onClick={handleSearch}
+          className="bg-color4 text-white px-6 py-2 rounded-lg ml-2 hover:bg-indigo-500 focus:outline-none mt-2 sm:mt-0 w-full sm:w-auto"
+          
+          >
+              Search
+          </button>
+        </div>
 
         <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
        

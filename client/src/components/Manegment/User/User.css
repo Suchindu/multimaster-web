@@ -29,15 +29,15 @@
   padding: 3px 10px;
   border-radius: 3px;
   margin: 8px 0;
-  border: 1.5px solid #5689c0;
+  border: 1.5px solid #0C134F;
 }
 .regi-form {
   padding: 25px;
 }
 .admin_form_cneter_btn {
-  background-color: #5689c0;
-  color: white;
-  border: 2px solid #5689c0;
+  background-color: #0C134F;
+  color: #4942E4;
+  border: 2px solid #0C134F;
   font-size: 20px;
   cursor: pointer;
   border-radius: 3px;
@@ -54,7 +54,7 @@
 }
 .no-acc-reg {
   font-weight: bold;
-  color: #5689c0;
+  color: #0C134F;
   cursor: pointer;
 }
 .login-topic {
@@ -74,9 +74,9 @@
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
 }
 .btn_dash_admin {
-  background-color: #5689c0;
+  background-color: #4942E4;
   color: white;
-  border: 2px solid #5689c0;
+  border: 2px solid #4942E4;
   font-size: 20px;
   cursor: pointer;
   border-radius: 3px;
@@ -102,8 +102,8 @@
 }
 .btn_dash_admin:hover {
   background-color: white;
-  color: #5689c0;
-  border: 2px solid #5689c0;
+  color: #4942E4;
+  border: 2px solid #4942E4;
 }
 .form_user {
   justify-content: center;
@@ -124,9 +124,9 @@
   justify-content: space-between;
 }
 .btn_action_user {
-  background-color: #5689c0;
+  background-color: #4942E4;
   color: white;
-  border: 2px solid #5689c0;
+  border: 2px solid #4942E4;
   font-size: 20px;
   cursor: pointer;
   border-radius: 3px;

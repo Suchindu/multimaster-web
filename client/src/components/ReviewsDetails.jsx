@@ -52,7 +52,7 @@ export default function ReviewDetails({ review }) {
 
   return (
     <>
-      <div className="grid grid-cols-1 gap-4 bg-gray-900 p-6 rounded-lg mb-5">
+      <div className="grid grid-cols-1 gap-4 bg-blue-900 p-6 rounded-lg mb-5">
       <div className="flex justify-between items-center">
         <h3 className="text-xl text-white font-bold mb-2 text-center">{review.review_id_str}</h3>
       </div>
@@ -68,11 +68,11 @@ export default function ReviewDetails({ review }) {
             <p className="mb-1 text-white"><strong>Rating : </strong>{review.rating} </p>
         </div>
       </div>
-      <div className="bg-gray-800 p-4 rounded-lg">
+      <div className="bg-blue-800 p-4 rounded-lg">
         <p className="mb-1 text-white"><strong>Review : </strong> {review.review_body} </p>
       </div>
 
-      <div className="bg-gray-800 p-4 rounded-lg">
+      <div className="bg-blue-800 p-4 rounded-lg">
         <p className="mb-1 text-white"><strong>Technician's Reply : </strong> {review.technician_reply} </p>
       </div>
 

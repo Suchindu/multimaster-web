@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import {addToCart} from '../../redux/cartSlice';
-
 import { useCompare } from '../../context/CompareContext';
   
 export default function Product({product}) {
@@ -10,9 +9,7 @@ export default function Product({product}) {
     const { addToCompare } = useCompare();
 
     const dispatch = useDispatch();
- 
-   
-  
+    
     return (
     <div className="bg-white ">
         <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8 lg:pt-8">
@@ -20,29 +17,31 @@ export default function Product({product}) {
   
           <div > 
               
-                <div className="border border-gray-300 rounded-lg ">
+                <div className="border-2 border-gray-300 rounded-md shadow-lg ">
                 <Link to={`/view-product/${product._id}`}  className="group">
-                <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg rounded-b-none bg-gray-200 xl:aspect-h-8 xl:aspect-w-7 ">
+                <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg rounded-b-none bg-white xl:aspect-h-6 xl:aspect-w-7 " >
                   <img
                     src={`http://localhost:4000${product.image}`}
                     alt={product.imageAlt}
                     className="h-full w-full object-cover object-center group-hover:opacity-75"
+                    style={{ width: '200px', height: '200px', display: 'block', marginLeft: 'auto', marginRight: 'auto', marginTop:'10px'  }}
                   />
                 </div>
-                <div className="border-t border-gray-300 lg:h-32 xl:h-30">
+                <div className="border-t border-gray-300  lg:h-32 xl:h-30">
                 
-                <h3 className="mt-4 ml-3 mr-2 text-sm text-gray-700">{product.name}</h3>
-                <p className="mt-1 ml-3  mr-2 text-md font-medium text-gray-900">IN STOCK : {product.countInStock}</p>
-                <p className="mt-1 ml-3 mr-2 text-lg font-medium text-gray-900">
+                <h3 className="mt-4 ml-3 mr-2 text-md text-gray-900 font-bold">{product.name}</h3>
+                <p className="mt-1 ml-3  mr-2 text-sm font-small text-gray-500 font-mono ">IN STOCK : {product.countInStock}</p>
+                <p className="mt-1 ml-3 mr-2 text-lg font-medium text-gray-700 ">
                   <span className="text-sm">LKR </span> 
-                  {product.price}</p>
+                  {product.price}.00</p>
                 </div>
                 </Link>
-                <div className="mb-5 mt-1 flex justify-center">
-                <Link to={`/view-product/${product._id}`} className="m-1 rounded-md border border-transparent  bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50">
+                <div className="mb-5 text-sm mt-1 flex flex-col items-center ">
+                {/* <Link to={`/view-product/${product._id}`} 
+                className="m-1 w-64 text-center rounded-md border border-transparent  bg-color4 px-8 py-2  text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50">
                           View Product<span className="sr-only">, {product._id}</span>
-                </Link>
-                <button className=" m-1 rounded-md border border-transparent  bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50"
+                </Link> */}
+                <button className=" m-1 w-10/12 rounded-md   border border-transparent  bg-color4 px-8 py-2  text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50"
                   onClick={() => {
                     const productDetails = {
                       id: product._id, 
@@ -58,7 +57,7 @@ export default function Product({product}) {
                   </button>
                   <button 
                     onClick={() => addToCompare(product._id)}
-                    className="m-1 rounded-md border border-transparent  bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50"
+                    className="m-1 w-10/12  rounded-md  border border-transparent  bg-color4 px-8 py-2   text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50"
                   >
                     Compare Product<span className="sr-only">, {product._id}</span>
                   </button>
