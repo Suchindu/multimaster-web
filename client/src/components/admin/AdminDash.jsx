@@ -76,7 +76,8 @@ export default function AdminDash({ currentPage }) {
                     </div>
                   </Transition.Child>
                   {/* Sidebar component, swap this element with another sidebar if you like */}
-                  <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-color1 px-6 pb-2 pt-3">
+                  {sidebarOpen && (
+                  <div className={`flex grow flex-col gap-y-5 overflow-y-auto bg-color1 px-6 pb-2 pt-3 ${sidebarOpen ? '' : 'hidden'}`}>
                     <div className="flex-shrink-0 flex items-center space-x-2 sm:space-x-4 md:space-x-2 ">
                       <img
                         className="h-10 w-auto "
@@ -182,11 +183,24 @@ export default function AdminDash({ currentPage }) {
                                 </button>
                               </Link>
                             </li>
+                            <li>
+                              <Link to="/adminDash">
+                                <button className="text-indigo-200 hover:text-white w-11/12 hover:bg-color2 group flex gap-x-3 rounded-md p-2 ml-2 mb-3  text-sm leading-6 font-semibold">
+                                  {/* Replace with your icon */}
+                                  <UsersIcon
+                                    className="text-indigo-200 group-hover:text-white h-6 w-6 shrink-0"
+                                    aria-hidden="true"
+                                  />
+                                  Admin Management
+                                </button>
+                              </Link>
+                            </li>
                           </ul>
                         </li>
                       </ul>
                     </nav>
                   </div>
+                  )}
                 </Dialog.Panel>
               </Transition.Child>
             </div>

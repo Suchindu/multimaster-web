@@ -1,0 +1,32 @@
+.table_details_admin {
+  border-collapse: collapse;
+  width: 100%;
+  text-align: center;
+  text-transform: capitalize;
+}
+
+.table_details_admin .admin_tbl_th,
+.table_details_admin .admin_tbl_td {
+  border: 2px solid #5689c0;
+  padding: 8px;
+}
+
+.table_details_admin .admin_tbl_th {
+  background-color: #0C134F;
+  color: white;
+  font-size: 18px;
+}
+
+.add_co_admin{
+    border: 2px solid #5689c0;
+    padding: 25px;
+    border-radius: 5px;
+    margin: 0 auto;
+    width: 450px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+.regi_img_admin{
+  display: flex;
+  justify-content: center;
+  width: 90%;
+}
