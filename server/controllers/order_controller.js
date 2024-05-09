@@ -30,8 +30,8 @@ const sendEmail = async (req, res) => {
       from: '"Multimaster Computer Store" <multimaster.orderconfirmation@gmail.com>',
       to: orderDetails.buyerEmail,
       subject: "Order Confirmation",
-      text: `Hello ${orderDetails.buyerName}, your order for ${orderDetails.productName} has been received.`,
-      html: `<b>Hello ${orderDetails.buyerName},</b><br>Your order for ${orderDetails.productName} has been received.`,
+      text: `Hello ${orderDetails.buyerName}, your order ${orderDetails.productName} has been received. We are currently processing your order and will notify you once it's ready for shipment. Thank you for shopping with us.`,
+html: `<b>Hello ${orderDetails.buyerName},</b><br>Your order for ${orderDetails.productName} has been received. We are currently processing your order and will notify you once it's ready for shipment.<br>Thank you for shopping with us.`
     });
 
     res.json({ messageId: info.messageId });
