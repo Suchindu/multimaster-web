@@ -42,7 +42,7 @@ function UpdateAccount() {
     e.preventDefault();
     sendRequest().then(() => {
       window.alert("Updated successfully!");
-      window.location.href = "/userprofile";
+      window.location.href = "/profile";
     });
   };
 
