@@ -124,7 +124,7 @@ const updateRepair = async (req, res) => {
   res.status(200).json(repair);
 };
 
-const sendEmail = async (userEmail, userName) => {
+const sendEmail = async (userEmail, userName, res) => {
   let transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
@@ -143,8 +143,10 @@ const sendEmail = async (userEmail, userName) => {
   transporter.sendMail(mailOptions, function (error, info) {
     if (error) {
       console.log(error);
+      res.status(500).json({ error: "Failed to send email" });
     } else {
       console.log("Email sent: " + info.response);
+      res.status(200).json({ success: "Email sent successfully" });
     }
   });
 };

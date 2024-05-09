@@ -55,6 +55,30 @@ const Repair_details = ({ repair }) => {
       if (response.ok) {
         dispatch({ type: "UPDATE_Repair", payload: updatedRepair });
         setIsUpdating(false);
+
+        fetch("http://localhost:4000/api/send-email", {
+          method: "POST",
+          // Include any other necessary options here
+        })
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Network response was not ok");
+            }
+            return response.json();
+          })
+          .then((data) => {
+            if (data.success) {
+              alert(data.success); // Alert box here
+            } else if (data.error) {
+              alert(data.error);
+            }
+          })
+          .catch((error) => {
+            console.error(
+              "There has been a problem with your fetch operation:",
+              error
+            );
+          });
       } else {
         alert("Repair Can't be updated !");
       }
