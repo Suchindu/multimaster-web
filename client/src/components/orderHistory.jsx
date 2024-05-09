@@ -15,6 +15,11 @@ export default function OrderHistory() {
   const queryClient = useQueryClient();
   const [email, setEmail] = useState(null);
 
+  useEffect(() => {
+    // Refetch the orders data when the component mounts
+    queryClient.invalidateQueries(["getUserOrders", email]);
+  }, []); 
+
   const {
     isLoading,
     isError,
